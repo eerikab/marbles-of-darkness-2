@@ -1,0 +1,85 @@
+The assets folder contains resources used in the game as plain files that can be edited by the user.
+Assets need to be kept in appropriate subfolders and not be deleted or renamed unless it is mentioned they're configurable.
+When talking about coordinates or dimensions. X starts at 0 on the left and increases towards the right. Y is 0 on the top and increases towards the bottom.
+
+IMAGES
+Images must be in PNG format. The "backgrounds" folder has larger pictures to be used as backgrounds. "Tunnels" has cutouts used for tunnels on maps. From the level background, cut out the overlapping parts and perhaps add some shadows. Tunnel images will be overlayed on the background as you made them. All backgrounds and tunnels are configurable. "Sprites" include images used to draw objects. Orb images are configurable. Some sprites have multiple frames, either for animation or displaying multiple states. In that case, the image has all frames in a horizontal list, left to right.
+A different kind of image is the one for the loading screen. It is located next to the game executable as "splash.png". If you edit any images used during loading, it would be good to update the splash screen too so the screen wouldn't suddenly change during startup. You may also remove the splash image to skip a part of the loading screen.
+
+SOUNDS
+Sounds are in the "sounds" folder. This includes both the music and sound effects with "mu_" and "so_" prefixes respectively. In order for the game to stream the sound from an external file, they must be in OGG format. Level music can be added and removed, there can be "mu_game4" and "mu_game5" and so on and the game will alternate between them. Removing sounds will not interrupt the game, you just won't be able to hear them.
+
+PATHS
+The path curves are stored externally in "paths" folder in plain text files. An easier way to edit them is using the experimental MoD2 Path Editor. Check the download page of the game to see if it's available. Editing the text file directly allows for more options. Paths are made from points and the orbs will smoothly go from one point to another. In the path files, each point must be on its own line and have 3 numbers seperated by spaces. First one is for the X (horizontal) location, second for the Y (vertical) location, third is the depth, which determines whether it will go over or under the tunnel image. It is recommended to use 0 for under and 100 for over, but it's not necessary. When it is over 50, it will go over the tunnel and be visible, else it will go under. Orb depth will smoothly change between points, so right between a 0 point and 100 point their depth would be 50.
+For example: 256 64 100 - This will create a point with X-location being 256 and Y-location 64. It would be on top of the tunnel.
+Most paths are configurable, the only necessity is "pt_map", which is used to display your location on the Adventure menu. Each point corresponds to one level or stage starting point on the map.
+
+FONTS
+External fonts can be put in the "fonts" folder. TTF and OTF formats are supported. They are configurable and you don't even have to have any external fonts. For the sake of consistency, the default font of Verdana Bold in sizes 15 and 30 is left built-in.
+
+CONFIG
+There are some configuration files in the "config" folder. They are basically text files, but are simply formatted like initialization files, hence the ".ini" extension. INI files have sections in [square brackets] and multiple values stored in them. If your text editor supports colour coding, it would be easier to see the different sections. So far you have dealt with changing the files themselves, but config determines how the files are used and how the game works otherwise. Following paragraphs will each explain one config file.
+
+MAP CONFIG
+In "maps.ini" you can specify which assets are loaded into maps. You can add and remove maps, but they must be numbered in order. For all assets, write the name without the extension. You can specify the following:
+background - Name of the background image.
+title - Title of the map.
+path1 - Path file.
+path2-path5 - Optional. Additional paths. You can have up to 5 paths on a map.
+tunnel - Optional. Tunnel overlay image.
+onehole - Optional. If you have multiple paths and all end in one place, you can use onehole="1" to merge the holes so there wouldn't be overlapping. You can only either have all holes merged or all seperately.
+padx, pady - Optional. You can switch out the bottom shooter to a one rotating in place by specifying its coordinates.
+pad2x, pad2y - Optional. Adds another pad for the alternate shooter at the specified coordinates that can be clicked on to switch places.
+
+LEVEL CONFIG
+While the previous file was about the contents of a map, "levels.ini" sets how a level functions. First there are the level difficulties. In Marbles of Darkness, "difficulty" can mean either the level configuration or the Adventure difficulty set by the player, so here the first one is marked as a "step". You can add and remove steps, but for each of them you have to specity the following:
+orbs - How many orbs are in a segment?
+boost - How far does the launch boost take the orbs? It is like a percentage, so 0.2 would mean 20% of the path.
+target - How many orbs have to be cleared to complete the level?
+colors - How many colours of orbs are there?
+bonus - If you clear an entire segment, how many points you get?
+cooldown - How many seconds is the interval before new segments spawn?
+When starting an Adventure run, you can select a difficulty and set of levels, called "length". You can have up to 5 difficulties and lengths. Each difficulty needs a name and a multiplier. What this does is that it multiplies most values in the steps you configured. For example, if the difficulty multiplier is 1.5, then there will be 1.5 times as much orbs and they move 1.5 times as fast. Every multiplier, including the other ones below, has to be positive. 0 or less is not accepted.
+You may have noticed that maps with multiple paths have individual segments sligthtly easier. "Path multiplier" is similar to the general difficulty multiplier, as it multiplies the step data and orb speed, but instead of being picked by the player, it depends on how many paths are in the map. You can set the multipliers with "1path", "2path" and so on. If missing, it defaults to 1, so it uses the normal values.
+You can have different Adventure level sets or lengths. First you need to specify the name and how many stages are there. For each stage you need to pick a difficulty as in step. Use "dif" + (stage for that). Then you need to set a map for each and every level in the set. Use the format "(stage)_(level)" and then the map as assigned in "maps.ini". For example, to use the 10th map as the second level in 5th stage, write 5_2="10". If you want to have a bonus level, you can assign it to the first level of the stage after the end. It wouldn't appear in Adventure, but would be unlocked in free play.
+The Default section marks that, if you would start an Adventure run, which difficulty and length would it default to.
+In the Free play section, write how many steps you want to be available in Practice, what is the difficulty multiplier and how much does a bar fill increase the multiplier in Endless.
+
+IMAGE CONFIG
+In "images.ini", you can configure a bit about sprites and other images. Firstly there are the orb sprites and their frames. For each of them write the file name of the sprite and how many frames they have. Shooter orbs now have the default shadow by default. If you would like a specific colour to not have the shadow, write shadowx="0", where "x" is the orb number. You can add or remove ordinary orbs, but orbs 11-19 are reserved for power-ups. In order they are for Wild Orb, Electric Beam, Fireball, Colour Bomb, Colour Cloud, Darts, Triple Shot, Whitener and Poison. Orbs 20 and onwards can be added as regular orbs. If you want to use them, do still use its index, like for the 22th colour set "colors" to 22 for that step. Power-ups will be ignored when generating orbs, leaving the colour count basically 13.
+Under "Powerup display" are few options about how powerups are shown. First you can confgure the origin of the Precise arrow, where the mouse cursor would be located on the sprite. It defaults to (0,0), the top-left corner. You can also change the opacity of Precise and Accuracy beams, how transparent are they. 0 is fully transparent and 1 is fully opaque. They default to 1, fully visible, and you can dismiss them by making the original image transparent, but the settings here are easier to change.
+In "Hole" you can customize the smaller warning lights on the hole. Use "light(x)_dist" and "light(x)_angle" where (x) is replaced with the index. "dist" is the distance from the center and "angle" is the angle of the offset in degrees (360th of a full circle). The angle starts facing the right at 0 degrees and icreases counter-clockwise, facing upwards at 90 degrees and so on. These lights can be added and removed and you can even remove all of them.
+Under "Backgrounds" you can set a background to each menu, or each outside-level area of the game. For each menu, write the name of the right background.
+"Font" section has the font settings. There are two fonts used in the game. Smaller font is used more often and generally and the larger font is used for titles and big buttons. For both of them, write the file name of the font with extension, like "fn_verdana.ttf", and the size. In total, the values are "file1", "size1", "file2" and "size2". If an invalid file path is given, the default built-in font is used instead. You cannot change the size of the default font.
+
+TEXT CONFIG
+In "texts.ini", you can change what any piece of text in the game says. For example. changing the text can be used to translate the game to another language or put your own humorous spin on it. They are grouped by where they are used. For example, button titles are together and so are all the instructions. Missing values will be replaced with a blank string, simply no text will appear there in-game. If you want a message to be on multiple lines, separate them with the # symbol.
+
+GENERAL CONFIG
+Lastly, there is "general.ini" for any less categorized settings. Unless said otherwise, missing values will default to 0. Some of these can be turned on or off. In that case, use "1" or "0" respectively.
+
+"Display" section deals with how the game is displayed on screen
+display_width, display_height - The resolution of the game window as it appears on your system. The game view will be visually stretched to fill the display. Defaults to 1024 and 576.
+room_width, room_height - The size of the game area. While the last values only visually stretch it, this changes the actual size of the game board. Defaults to 1024 and 576. Minimum allowed resolution is 848x480, but as the game is designed for 1024x576, this is the minimum recommended for everything to fit nicely.
+stretch_background. If the backgrounds aren't the same size as the room, setting this to 1 will stretch them to fill the screen. It only stretches the backgrounds, none of the sprites.
+
+"GUI" deals with visual elements.
+instruction_pad - In the instructions, the rolling shooter will be replaced with the rotating pad.
+loading_x, loading_y - The position of the loading bar during startup.
+hud_height - Height of the area reserved on the bottom of the screen for level information in-game. The info will vertically be displayed in the middle of it and the shooter will be placed right on top of it.
+Keys ending in "offset" deal with the horizontal offset from the middle of the screen for each element on the in-game HUD. A value higher than 0 moves it to the right, below 0 to the left.
+color_text - Whether the text should be colored in the instructions and when scoring. Turning this off leaves all text as-is, normally white. Useful if you want more consistency or the font itselt is already colorful.
+
+"Gameplay" modifies some of the functions. Note that some of them set a speed in pixels per frame. A frame is supposed to be a 60th of a second, so think of them moving by that speed 60 times a second.
+freeplay_unlock - Unlock all maps and difficulties for Practice and Endless.
+skiplevel - Cheat for testing purposes, lets you skip levels by pressing Spacebar while on Adventure map.
+extralife - Amount of points required in Adventure to get a new life.
+lifebonus - Points awarded for each remaining life upon completion of Adventure.
+shotspeed - Speed in pixels per frame for shot orbs. The speed shouldn't be much higher than the width of orbs, otherwise it might clip through the stream.
+accuracyspeed - Speed of shot orbs with the Accuracy powerup.
+Values ending in "cooldown" mark the time in seconds for a powerup to expire.
+pusherspeedconstant - The speed in pixels that rolling orbs move each frame.
+pusherspeedpath - If you want the length of the path to impact the pusher speed, this is for how much of the path will the pusher move in a frame. It is an absolute value, so "1" would mean the entire path. You'd want to have a rather small value here, as already "1" would mean it traverses the entire length of the path in a single frame. On the other hand, "0.0001" for example would mean it would move a 10000th of the path in a frame in addition to the constant speed.
+pusherboostconstant, pusherboostpath - Similar to the previous two, but instead change the speed of the launch boost at the start of the path.
+orbacceleration - Speed change of the orbs. This affects the acceleration and decelaration of the pusher, knockback and pullback of the orbs.
+link1-link3 - Web links used for the social buttons in credits. Defaults to a page about missing webpages.

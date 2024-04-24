@@ -1,0 +1,17 @@
+This project was made using GameMaker, property of YoYo Games, a company of the United Kingdom.
+
+THIS END USER LICENSE AGREEMENT APPLIES TO ALL USE OF THIS APPLICATION.
+
+You may install and use this application for personal use and modify and distribute it to the extent permitted.
+
+You may not sell, decompile, disassemble, or reverse engineer the application or claim it as your own,
+tamper with any copyright or use the application for any illegal, unlawful or immoral purposes.
+
+YoYo Games is not involved in the creation of this application except only that it was made using GameMaker. The creator is not involved in or responsible for any third-party modifications of this project.
+You install and use the Application at your own risk and in no event will YoYo Games be liable to you for any loss or damage of any kind. The application comes with no warranty.
+
+All copyright and other intellectual property rights in GameMaker and parts of it included in the Application belong to and vest in YoYo Games. All rights of YoYo Games are hereby asserted and reserved.
+All trade marks are the property of their respective owners and YoYo Games makes no warranty or representation in respect of and has no responsibility and excludes all liability for any trade mark or third party content.
+If you have a problem with this Application please contact the person who made it.
+
+Click "ACCEPT" and accept these terms to install and use this Application. If you do not accept them terms you may not continue with the installation and you must not install, use or run this software.
