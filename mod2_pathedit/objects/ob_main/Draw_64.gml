@@ -10,97 +10,113 @@ draw_rectangle_color(hud_left, 0, hud_right, window_get_height(),
 
 //Buttons
 draw_set_color(c_black);
-draw_rectangle(hud_left+16,64,hud_right-16,96,false);
-draw_rectangle(hud_left+16,112,hud_right-16,144,false);
-draw_rectangle(hud_left+16,160,hud_right-16,192,false);
-draw_rectangle(hud_left+16,256,hud_right-16,288,false);
-draw_rectangle(hud_left+16,304,hud_right-16,336,false);
-draw_rectangle(hud_left+16,352,hud_right-16,384,false);
-draw_rectangle(hud_left+16,448,hud_right-16,480,false);
-draw_rectangle(hud_left+16,496,hud_right-16,528,false);
-draw_rectangle(hud_left+16,544,hud_right-16,576,false);
-draw_rectangle(hud_left+16,592,hud_right-16,624,false);
 
+for(i=1;i<=btn_count;i+=1)
+{
+	draw_rectangle(hud_left+btn_offset,
+		btn_up[i],
+		hud_right-btn_offset,
+		btn_down[i],false);
+}
 
 //Button highlight
 draw_set_color(c_white)
 draw_set_alpha(0.20);
 
-if window_mouse_get_x() >= hud_left+16 and window_mouse_get_x() <= hud_right-16
+if window_mouse_get_x() >= hud_left+btn_offset 
+and window_mouse_get_x() < hud_right-btn_offset
 {
-	if window_mouse_get_y() >= 64 and window_mouse_get_y() <= 96
-	draw_rectangle(hud_left+16,64,hud_right-16,96,false);
-	else if window_mouse_get_y() >= 112 and window_mouse_get_y() <= 144
-	draw_rectangle(hud_left+16,112,hud_right-16,144,false);
-	else if window_mouse_get_y() >= 160 and window_mouse_get_y() <= 192
-	draw_rectangle(hud_left+16,160,hud_right-16,192,false);
-	else if window_mouse_get_y() >= 256 and window_mouse_get_y() <= 288 and selected > -1
-	draw_rectangle(hud_left+16,256,hud_right-16,288,false);
-	else if window_mouse_get_y() >= 304 and window_mouse_get_y() <= 336 and selected > 0
-	draw_rectangle(hud_left+16,304,hud_right-16,336,false);
-	else if window_mouse_get_y() >= 352 and window_mouse_get_y() <= 384 and selected > -1
-	draw_rectangle(hud_left+16,352,hud_right-16,384,false);
-	else if window_mouse_get_y() >= 448 and window_mouse_get_y() <= 480
-	draw_rectangle(hud_left+16,448,hud_right-16,480,false);
-	else if window_mouse_get_y() >= 448 and window_mouse_get_y() <= 480
-	draw_rectangle(hud_left+16,448,hud_right-16,480,false);
-	else if window_mouse_get_y() >= 496 and window_mouse_get_y() <= 528
-	draw_rectangle(hud_left+16,496,hud_right-16,528,false);
-	else if window_mouse_get_y() >= 544 and window_mouse_get_y() <= 576
-	draw_rectangle(hud_left+16,544,hud_right-16,576,false);
-	else if window_mouse_get_y() >= 592 and window_mouse_get_y() <= 624
-	draw_rectangle(hud_left+16,592,hud_right-16,624,false);
+	for(i=1;i<=btn_count;i+=1)
+	{
+		if window_mouse_get_y() >= btn_up[i] and window_mouse_get_y() < btn_down[i]
+		and selected >= btn_req[i]
+		draw_rectangle(hud_left+btn_offset,btn_up[i],
+			hud_right-btn_offset,btn_down[i],false);
+	}
 }
 draw_set_alpha(1);
 
 if grid_select
-draw_rectangle(hud_left+16,448,hud_right-16,480,true);
+draw_rectangle(hud_left+btn_offset,btn_up[8],hud_right-btn_offset,btn_down[8],true);
 
 //Text
-draw_text(hud_mid,32,"Files:");
-draw_text(hud_mid,80,"Load path");
-draw_text(hud_mid,128,"Save path");
-draw_text(hud_mid,176,"Background");
-draw_text(hud_mid,224,"Point:");
-if selected < 0
-draw_set_color(c_gray);
-else
-draw_set_color(c_white);
-draw_text(hud_mid,272,"Delete");
-if selected < 1
-draw_set_color(c_gray);
-else
-draw_set_color(c_white);
-draw_text(hud_mid,320,"Insert");
-if selected < 0
+for(i=1;i<=btn_count;i+=1)
 {
+	if btn_req[i] > selected
 	draw_set_color(c_gray);
-	draw_text(hud_mid,368,"Depth");
-}
-else
-{
-	draw_set_color(c_white);
-	if path_get_point_speed(path,selected) > 50
-	draw_text(hud_mid,368,"Depth: above");
 	else
-	draw_text(hud_mid,368,"Depth: below");
+	draw_set_color(c_white);
+	
+	txt = btn_text[i]
+	if txt == "Grid"
+	{
+		if grid_select
+		txt += ": "+string(gap_text)+"|";
+		else
+		txt += ": "+string(gap_text);
+	}
+	if txt == "Depth" and selected >= 0
+	{
+		if path_get_point_speed(path,selected) > 50
+		txt += ": above";
+		else
+		txt += ": below";
+	}
+	if txt == "Preview"
+	{
+		if preview
+		txt += ": On";
+		else
+		txt += ": Off";
+	}
+	if txt == "BG view"
+	{
+		if bg_view == 0
+		txt += ": Off";
+		else if bg_view == 1
+		txt += ": Corner";
+		else if bg_view == 2
+		txt += ": Fill";
+		else if bg_view == 3
+		txt += ": Center";
+		else if bg_view == 4
+		txt += ": Fit";
+	}
+	if txt == "Statistics"
+	{
+		if debug
+		txt += ": On";
+		else
+		txt += ": Off";
+	}
+	draw_text(hud_mid,btn_pos[i],txt)
 }
-draw_set_color(c_white);
-draw_text(hud_mid,416,"Editor:");
-if grid_select
-draw_text(hud_mid,464,"Grid: "+string(gap_text)+"|");
-else
-draw_text(hud_mid,464,"Grid: "+string(gap_text));
-draw_text(hud_mid,512,"Preview");
-draw_text(hud_mid,560,"Reset view");
-draw_text(hud_mid,608,"Statistics");
-draw_text(hud_mid,656,"");
+draw_text(hud_mid,btn_pos[1]-btn_size,"Files");
+draw_text(hud_mid,btn_pos[5]-btn_size,"Point");
+draw_text(hud_mid,btn_pos[8]-btn_size,"Path");
+draw_text(hud_mid,btn_pos[12]-btn_size,"Editor");
 
 if debug and !preview
-draw_text(96,128,"Points: " + string(path_get_number(path)) +
+draw_text(96,192,"Points: " + string(path_get_number(path)) +
 	"\nLength: " + string(path_get_length(path)) +
 	"\nSelected: " + string(selected+1) +
 	"\nDragging: " + string(dragging+1) +
 	"\n\nPoint X: " + string(path_get_point_x(path,selected)) +
-	"\nPoint Y: " + string(path_get_point_y(path,selected))
+	"\nPoint Y: " + string(path_get_point_y(path,selected)) +
+	"\n\nView X: " + string(camera_get_view_x(view_camera[0])) +
+	"\nView Y: " + string(camera_get_view_y(view_camera[0])) +
+	"\nZoom: " + string(zoom) +
+	"\n\nWidth: " + string(window_get_width()) +
+	"\nHeight: " + string(window_get_height())
 );
+
+if keyboard_check_pressed(vk_f12)
+{
+	date = "Screenshot "+date_datetime_string(date_current_datetime())
+	date = string_replace_all(date,":","-");
+	date = string_replace_all(date,".","-");
+	date += ".png"
+	fp = get_save_filename("PNG|.png",date)
+	if fp != ""
+	screen_save_part(fp,64,64,1024,576);
+}

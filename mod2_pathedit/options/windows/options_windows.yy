@@ -1,7 +1,7 @@
 {
-  "option_windows_display_name": "MoD2 Path Editor v0",
+  "option_windows_display_name": "MoD2 Path Editor",
   "option_windows_executable_name": "${project_name}.exe",
-  "option_windows_version": "0.0.0.0",
+  "option_windows_version": "0.1.0.0",
   "option_windows_company_info": "YoYo Games Ltd",
   "option_windows_product_info": "Created with GameMaker",
   "option_windows_copyright_info": "",
@@ -14,7 +14,7 @@
   "option_windows_start_fullscreen": false,
   "option_windows_allow_fullscreen_switching": false,
   "option_windows_interpolate_pixels": true,
-  "option_windows_vsync": false,
+  "option_windows_vsync": true,
   "option_windows_resize_window": true,
   "option_windows_borderless": false,
   "option_windows_scale": 1,

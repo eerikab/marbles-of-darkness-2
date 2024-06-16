@@ -1,8 +1,25 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if sprite_exists(background)
-draw_sprite(background,0,0,0)
+if sprite_exists(background) and bg_view
+{
+	width = sprite_get_width(background);
+	height = sprite_get_height(background);
+	if bg_view == 1
+	draw_sprite(background,0,0,0);
+	else if bg_view == 2
+	draw_sprite_stretched(background,0,0,0,1024,576);
+	else if bg_view == 3
+	draw_sprite(background, 0, 512-width/2,
+		288-height/2)
+	else if bg_view == 4
+	{
+		bg_zoom = min(1024/width,576/height);
+		width *= bg_zoom;
+		height *= bg_zoom;
+		draw_sprite_stretched(background,0, 512-width/2, 288-height/2, width, height)
+	}
+}
 
 draw_set_color(c_dkgray);
 draw_rectangle(0,0,room_width,room_height,true);
@@ -22,20 +39,23 @@ if preview = 0
 	draw_set_color(c_red);
 	//draw_path(path,0,0,1);
 	pos = 0;
-	while pos < 1
+	if path_get_length(path) > 0
 	{
-		draw_set_color(make_color_rgb(
-			250-path_get_speed(path,pos)*2.5,
-			path_get_speed(path,pos)*1.25,
-			path_get_speed(path,pos)*2.5));
+		while pos < 1
+		{
+			draw_set_color(make_color_rgb(
+				250-path_get_speed(path,pos)*2.5,
+				path_get_speed(path,pos)*1.25,
+				path_get_speed(path,pos)*2.5));
 			
-		/*if path_get_speed(path,pos) > 50
-		draw_set_color(c_blue);
-		else
-		draw_set_color(c_red);*/
+			/*if path_get_speed(path,pos) > 50
+			draw_set_color(c_blue);
+			else
+			draw_set_color(c_red);*/
 		
-		draw_circle(path_get_x(path,pos),path_get_y(path,pos),1,false);
-		pos += 1/path_get_length(path)*zoom;
+			draw_circle(path_get_x(path,pos),path_get_y(path,pos),1,false);
+			pos += 1/path_get_length(path)*zoom;
+		}
 	}
 	
 	for (i = 0; i < path_get_number(path); i++)
@@ -53,9 +73,12 @@ else
 {
 	draw_set_color(c_white);
 	pos = 0;
-	while pos < 1
+	if path_get_length(path) > 0
 	{
-		draw_circle(path_get_x(path,pos),path_get_y(path,pos),16,false);
-		pos += 1/path_get_length(path)*zoom;
+		while pos < 1
+		{
+			draw_circle(path_get_x(path,pos),path_get_y(path,pos),16,false);
+			pos += 1/path_get_length(path)*zoom;
+		}
 	}
 }
