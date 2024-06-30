@@ -1,6 +1,7 @@
 /// @description Initialize variables
 // You can write your code in this editor
 
+//Orb colours
 global.color[0] = make_color_rgb(255,255,255);
 global.color[1] = make_color_rgb(0,0,255);
 global.color[2] = make_color_rgb(255,0,0);
@@ -21,32 +22,6 @@ global.color[16] = make_color_rgb(255,255,255);
 global.color[17] = make_color_rgb(255,255,255);
 global.color[18] = make_color_rgb(255,255,255);
 global.color[19] = make_color_rgb(255,255,255);
-
-//Load save
-sc_load();
-
-ini_open("save.ini");
-global.music = ini_read_real("Settings","music",1);
-global.sound = ini_read_real("Settings","sound",1);
-global.vsync = ini_read_real("Settings","vsync",1);
-global.alias = ini_read_real("Settings","alias",1);
-window_set_fullscreen(ini_read_real("Settings","fullscreen",0));
-
-global.highscore[1] = ini_read_real("Highscore","1",0);
-global.highscore[2] = ini_read_real("Highscore","2",0);
-global.highscore[3] = ini_read_real("Highscore","3",0);
-global.highscore[4] = ini_read_real("Highscore","4",0);
-global.highscore[5] = ini_read_real("Highscore","5",0);
-
-global.stat_shot = ini_read_real("Stats","shot",0);
-global.stat_clear = ini_read_real("Stats","clear",0);
-global.stat_combo = ini_read_real("Stats","combo",0);
-global.stat_chain = ini_read_real("Stats","chain",0);
-global.stat_power = ini_read_real("Stats","power",0);
-global.stat_wins = ini_read_real("Stats","wins",0);
-global.stat_time = ini_read_real("Stats","time",0);
-
-ini_close();
 
 //Initialise variables
 global.bullets = 0;

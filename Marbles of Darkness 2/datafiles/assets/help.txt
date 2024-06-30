@@ -12,7 +12,7 @@ Sounds are in the "sounds" folder. This includes both the music and sound effect
 PATHS
 The path curves are stored externally in "paths" folder in plain text files. An easier way to edit them is using the experimental MoD2 Path Editor. Check the download page of the game to see if it's available. Editing the text file directly allows for more options. Paths are made from points and the orbs will smoothly go from one point to another. In the path files, each point must be on its own line and have 3 numbers seperated by spaces. First one is for the X (horizontal) location, second for the Y (vertical) location, third is the depth, which determines whether it will go over or under the tunnel image. It is recommended to use 0 for under and 100 for over, but it's not necessary. When it is over 50, it will go over the tunnel and be visible, else it will go under. Orb depth will smoothly change between points, so right between a 0 point and 100 point their depth would be 50.
 For example: 256 64 100 - This will create a point with X-location being 256 and Y-location 64. It would be on top of the tunnel.
-Most paths are configurable, the only necessity is "pt_map", which is used to display your location on the Adventure menu. Each point corresponds to one level or stage starting point on the map.
+Most paths are configurable, the only necessity is "pt_map", which is used to display your location on the Adventure menu. Each point corresponds to one level or stage starting point on the map. You should have a separate point on the menu path for each level, stage asterisk and end point. When there are not enough points, the position of the last one will simply be repeated.
 
 FONTS
 External fonts can be put in the "fonts" folder. TTF and OTF formats are supported. They are configurable and you don't even have to have any external fonts. For the sake of consistency, the default font of Verdana Bold in sizes 15 and 30 is left built-in.
@@ -37,11 +37,11 @@ orbs - How many orbs are in a segment?
 boost - How far does the launch boost take the orbs? It is like a percentage, so 0.2 would mean 20% of the path.
 target - How many orbs have to be cleared to complete the level?
 colors - How many colours of orbs are there?
-bonus - If you clear an entire segment, how many points you get?
+bonus - If you clear an entire segment, how many points do you get?
 cooldown - How many seconds is the interval before new segments spawn?
 When starting an Adventure run, you can select a difficulty and set of levels, called "length". You can have up to 5 difficulties and lengths. Each difficulty needs a name and a multiplier. What this does is that it multiplies most values in the steps you configured. For example, if the difficulty multiplier is 1.5, then there will be 1.5 times as much orbs and they move 1.5 times as fast. Every multiplier, including the other ones below, has to be positive. 0 or less is not accepted.
 You may have noticed that maps with multiple paths have individual segments sligthtly easier. "Path multiplier" is similar to the general difficulty multiplier, as it multiplies the step data and orb speed, but instead of being picked by the player, it depends on how many paths are in the map. You can set the multipliers with "1path", "2path" and so on. If missing, it defaults to 1, so it uses the normal values.
-You can have different Adventure level sets or lengths. First you need to specify the name and how many stages are there. For each stage you need to pick a difficulty as in step. Use "dif" + (stage for that). Then you need to set a map for each and every level in the set. Use the format "(stage)_(level)" and then the map as assigned in "maps.ini". For example, to use the 10th map as the second level in 5th stage, write 5_2="10". If you want to have a bonus level, you can assign it to the first level of the stage after the end. It wouldn't appear in Adventure, but would be unlocked in free play.
+You can have different Adventure level sets or lengths. First you need to specify the name and how many stages are there. For each stage you need to pick a difficulty as in step. Use "dif" + (stage) for that. Then you need to set a map for each and every level in the set. Use the format "(stage)_(level)" and then the map as assigned in "maps.ini". For example, to use the 10th map as the second level in 5th stage, write 5_2="10". If you want to have a bonus level, you can assign it as the first level of the stage after the end. It wouldn't appear in Adventure, but would be unlocked in free play.
 The Default section marks that, if you would start an Adventure run, which difficulty and length would it default to.
 In the Free play section, write how many steps you want to be available in Practice, what is the difficulty multiplier and how much does a bar fill increase the multiplier in Endless.
 
@@ -61,7 +61,8 @@ Lastly, there is "general.ini" for any less categorized settings. Unless said ot
 "Display" section deals with how the game is displayed on screen
 display_width, display_height - The resolution of the game window as it appears on your system. The game view will be visually stretched to fill the display. Defaults to 1024 and 576.
 room_width, room_height - The size of the game area. While the last values only visually stretch it, this changes the actual size of the game board. Defaults to 1024 and 576. Minimum allowed resolution is 848x480, but as the game is designed for 1024x576, this is the minimum recommended for everything to fit nicely.
-stretch_background. If the backgrounds aren't the same size as the room, setting this to 1 will stretch them to fill the screen. It only stretches the backgrounds, none of the sprites.
+stretch_background - If the backgrounds aren't the same size as the room, setting this to 1 will stretch them to fill the screen. It only stretches the backgrounds, none of the sprites.
+title - Window title. Note that it only switches to the custom title in the middle of initial loading, so the default one would be used regardless up to a few seconds.
 
 "GUI" deals with visual elements.
 instruction_pad - In the instructions, the rolling shooter will be replaced with the rotating pad.
@@ -83,3 +84,4 @@ pusherspeedpath - If you want the length of the path to impact the pusher speed,
 pusherboostconstant, pusherboostpath - Similar to the previous two, but instead change the speed of the launch boost at the start of the path.
 orbacceleration - Speed change of the orbs. This affects the acceleration and decelaration of the pusher, knockback and pullback of the orbs.
 link1-link3 - Web links used for the social buttons in credits. Defaults to a page about missing webpages.
+savefile - Prefix to the save files that differentiates them from the save data of the original game. Different configurations might cause conflicts when saving and loading, hence a different save file name is advisable for different level setups. A blank prefix leaves it compatible with the vanilla game and its previous versions.

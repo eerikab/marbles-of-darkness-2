@@ -100,7 +100,7 @@ with(ob_pusher)
 			
 			if !instance_exists(ob_orbshot)
 			{
-				ob_shooter.image_index = irandom_range(1, min(10, global.dif_col[global.difficulty]));
+				ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
 				instance_create_depth(x,y,-10,ob_orbshot);
 			}
 		}
@@ -271,7 +271,7 @@ with(ob_pusher)
 			
 			if !instance_exists(ob_orbshot)
 			{
-				ob_shooter.image_index = irandom_range(1, min(10, global.dif_col[global.difficulty]));
+				ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
 				instance_create_depth(x,y,-10,ob_orbshot);
 			}
 		}
@@ -442,7 +442,7 @@ with(ob_pusher)
 			
 			if !instance_exists(ob_orbshot)
 			{
-				ob_shooter.image_index = irandom_range(1, min(10, global.dif_col[global.difficulty]));
+				ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
 				instance_create_depth(x,y,-10,ob_orbshot);
 			}
 		}
@@ -613,7 +613,7 @@ with(ob_pusher)
 			
 			if !instance_exists(ob_orbshot)
 			{
-				ob_shooter.image_index = irandom_range(1, min(10, global.dif_col[global.difficulty]));
+				ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
 				instance_create_depth(x,y,-10,ob_orbshot);
 			}
 		}
@@ -784,7 +784,7 @@ with(ob_pusher)
 			
 			if !instance_exists(ob_orbshot)
 			{
-				ob_shooter.image_index = irandom_range(1, min(10, global.dif_col[global.difficulty]));
+				ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
 				instance_create_depth(x,y,-10,ob_orbshot);
 			}
 		}

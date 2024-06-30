@@ -399,7 +399,11 @@
     {"CopyToMask":-1,"filePath":"datafiles/assets/config","resourceVersion":"1.0","name":"texts.ini","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/assets/sprites","resourceVersion":"1.0","name":"sp_progress_back.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/assets/sprites","resourceVersion":"1.0","name":"sp_progress_front.png","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"manual.pdf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"readme.html","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/media","resourceVersion":"1.0","name":"image1.png","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/media","resourceVersion":"1.0","name":"image2.jpg","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/media","resourceVersion":"1.0","name":"image3.png","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/media","resourceVersion":"1.0","name":"image4.png","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2022.6.1.26",

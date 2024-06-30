@@ -4,6 +4,7 @@
 area = "Images"
 global.sprite_accuracy = sprite_add(global.directory + "sprites/sp_accuracy.png",1,0,1,0,0);
 sprite_set_offset(global.sprite_accuracy, 0, sprite_get_height(global.sprite_accuracy)/2);
+sprite_collision_mask(global.sprite_accuracy,1,0,0,0,0,0,bboxkind_precise,192);
 if !sprite_exists(global.sprite_accuracy)
 sc_error("sp_accuracy not found");
 
@@ -47,7 +48,7 @@ global.sprite_blocker = sprite_add(global.directory + "sprites/sp_blocker.png",1
 sprite_set_offset(global.sprite_blocker,
 	sprite_get_width(global.sprite_blocker)/2, sprite_get_height(global.sprite_blocker)/2);
 if !sprite_exists(global.sprite_asterisk)
-sc_error("sp_asterisk not found");
+sc_error("sp_blocker not found");
 	
 global.sprite_board = sprite_add(global.directory + "sprites/sp_board.png",1,0,1,0,0);
 sprite_set_offset(global.sprite_board,
@@ -75,7 +76,8 @@ sc_error("sp_button_round not found");
 	
 global.sprite_electric_beam = sprite_add(global.directory + "sprites/sp_electric_beam.png",1,0,1,0,0);
 sprite_set_offset(global.sprite_electric_beam,
-	sprite_get_width(global.sprite_electric_beam)/2, sprite_get_height(global.sprite_electric_beam)/2);
+	0, sprite_get_height(global.sprite_electric_beam)/2);
+sprite_collision_mask(global.sprite_electric_beam,1,0,0,0,0,0,bboxkind_precise,192);
 if !sprite_exists(global.sprite_electric_beam)
 sc_error("sp_electric_beam not found");
 	
@@ -270,6 +272,7 @@ global.accuracy_alpha = ini_read_real("Powerup display","accuracy_opacity",1);
 	
 i = 1;
 sect = "Hole";
+global.light_num = 0;
 while ini_key_exists(sect,"light" + string(i) + "_dist")
 and ini_key_exists(sect,"light" + string(i) + "_angle")
 {

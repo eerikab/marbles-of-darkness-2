@@ -14,4 +14,5 @@ function sc_pause(){
 	instance_deactivate_object(ob_blocker);
 	instance_deactivate_object(ob_orb_shadow);
 	instance_deactivate_object(ob_final_bonus);
+	instance_deactivate_object(ob_pad2);
 }

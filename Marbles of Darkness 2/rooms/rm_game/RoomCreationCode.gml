@@ -25,13 +25,6 @@ if global.paths > 4
 sc_window();
 sc_background(global.background[global.selected]);
 
-if global.tunnel[global.selected] == 0
-instance_destroy(ob_tunnel);
-else
-{
-	ob_tunnel.sprite_index = global.tunnel[global.selected];
-}
-
 global.onehole = global.level_onehole[global.selected];
 
 //instance_create_layer(640,360,"Instances",ob_fill_spawn)

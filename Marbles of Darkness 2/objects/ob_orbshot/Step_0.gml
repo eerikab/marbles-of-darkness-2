@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 //Shoot if mouse pressed
-if mouse_check_button_pressed(mb_left) and shot = false and visible and mouse_y < room_height - 64
+if mouse_check_button_pressed(mb_left) and shot = false and visible and ob_button_menu.image_index == 0
 and (!instance_exists(ob_pad2) or ob_pad2.image_index == 0)
 {
 	shot = true;
@@ -14,14 +14,20 @@ and (!instance_exists(ob_pad2) or ob_pad2.image_index == 0)
 	ob_shooter.alarm[0] = 1;
 	if colour = 12
 	{
+		var points = 0;
 		beam = instance_create_depth(x,y,depth,ob_electric_beam);
 		beam.image_angle = image_angle;
 		audio_play_sound(global.sou_power_electric_blast,0,0);
 		with(ob_orb)
 		{
 			if place_meeting(x,y,ob_electric_beam)
-			instance_destroy();
+			{
+				points += 100;
+				global.level_progress += 1;
+				instance_destroy();
+			}
 		}
+		sc_score(points,x,y,9,0,0);
 		instance_destroy();
 		exit;
 	}
@@ -102,8 +108,8 @@ if !shot
 	if mouse_check_button_pressed(mb_right) and colour > 0 and colour != 16
 	{
 		var temp = colour;
-		colour = ob_shooter.image_index;
-		ob_shooter.image_index = temp;
+		colour = ob_shooter.colour;
+		ob_shooter.colour = temp;
 		audio_play_sound(global.sou_swap,0,0);
 	}
 	
@@ -112,7 +118,6 @@ if !shot
 	instance_destroy(self,false);
 	exit;
 	}
-	
 	
 	if !instance_exists(ob_orb) or colour = 0
 	visible = 0;
@@ -138,7 +143,8 @@ else
 			}
 		}
 		
-		if y <= -16
+		if y <= -16 or y >= room_height+16
+		or x <= -16 or x >= room_width+16
 		{
 			//Remove if out of screen
 			if colour != 17
@@ -150,30 +156,44 @@ else
 			instance_destroy();
 		}
 		
-		//Powerup
+		//Touching powerup
 		pow = 0;
-		if place_meeting(x,y,ob_powerup) and (colour < 11 or colour > 19)
+		dist = 0;
+		if (colour < 11 or colour > 19)
 		{
-			pow = instance_nearest(x,y,ob_powerup);
+			with(ob_powerup)
+			{
+				var pd = point_distance(x,y,other.x,other.y);
+				if pd <= 32 and (other.pow == 0 or pd < other.dist)
+				{
+					other.pow = self;
+					other.dist = pd;
+				}
+			}
 		}
 	
 		//Touching with orb
 		orb = 0;
-		if place_meeting(x,y,ob_orb) or place_meeting(x,y,ob_pusher)
+		dist = 0;
+		if (colour < 12 or colour > 19)
 		{
-			if place_meeting(x,y,ob_pusher) and (colour < 12 or colour > 19)
-			orb = instance_nearest(x,y,ob_pusher);
-			else
-			orb = instance_nearest(x,y,ob_orb);
-			
-			if orb.shootable == 0
+			with(ob_pusher)
 			{
-				orb = 0;
-				with(ob_orb)
+				var pd = point_distance(x,y,other.x,other.y);
+				if shootable and pos > 0 and pd <= 32 and (other.orb == 0 or pd < other.dist)
 				{
-					if place_meeting(x,y,other) and shootable == 1
-					orb = id;
+					other.orb = self;
+					other.dist = pd;
 				}
+			}
+		}
+		with(ob_orb)
+		{
+			var pd = point_distance(x,y,other.x,other.y);
+			if shootable and pos > 0 and pd <= 32 and (other.orb == 0 or pd < other.dist)
+			{
+				other.orb = self;
+				other.dist = pd;
 			}
 		}
 		
@@ -181,7 +201,7 @@ else
 		if pow != 0 and (orb == 0 or point_distance(x,y,pow.x,pow.y) < point_distance(x,y,orb.x,orb.y))
 		{
 			//Powerup
-			with(instance_nearest(x,y,ob_powerup))
+			with(pow)
 			{
 				alarm[0] = 1;
 			}
@@ -189,6 +209,7 @@ else
 		}
 		else if orb != 0
 		{
+			var points = 0;
 			//Orb
 			if colour == 12 //Electric beam
 			{
@@ -200,11 +221,12 @@ else
 				{
 					if point_distance(x,y,other.x,other.y) < 160
 					{
-						score += 100;
+						points += 100;
 						global.level_progress += 1;
 						instance_destroy();
 					}
 				}
+				sc_score(points,x,y,8,0,0);
 				audio_play_sound(global.sou_power_fireball_blast,0,0);
 				effect_create_above(ef_explosion,x,y,2,make_color_rgb(255,128,0));
 				instance_destroy();
@@ -217,12 +239,13 @@ else
 				{
 					if colour == global.match_colour
 					{
-						score += 100;
+						points += 100;
 						global.level_progress += 1;
 						effect_create_above(ef_explosion,x,y,0, global.color[colour]);
 						instance_destroy();
 					}
 				}
+				sc_score(points,x,y,global.match_colour,0,0);
 				audio_play_sound(global.sou_power_colourbomb_blast,0,0);
 				instance_destroy();
 				exit;

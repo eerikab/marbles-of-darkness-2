@@ -20,7 +20,7 @@ if instance_exists(ob_button_newgame)
 {
 	
 	draw_set_valign(fa_top);
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	if global.gamemode == 1
 	mode = "Adventure";
 	else if global.gamemode == 2

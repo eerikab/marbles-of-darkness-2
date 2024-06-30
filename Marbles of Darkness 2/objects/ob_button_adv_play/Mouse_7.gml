@@ -11,7 +11,7 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 		global.difficulty = global.stage_dif[global.adv_stage];
 		if global.adv_points == 0 and global.first_start
 		{
-			ini_open("save.ini");
+			ini_open(global.savefile + "save.ini");
 			points = ini_read_real("Adventure","score",0);
 			ini_close();
 			sc_highscore(points);

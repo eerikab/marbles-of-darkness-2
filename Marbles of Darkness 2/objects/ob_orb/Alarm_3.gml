@@ -22,7 +22,7 @@ while poison > 0
 		if pathnr == 5 and index != 0
 		orb = ds_list_find_value(global.ds_id5,index-i);
 		
-		if orb != 0 and instance_exists(orb) and orb.object_index == ob_orb
+		if orb != 0  and is_numeric(orb) and instance_exists(orb) and orb.object_index == ob_orb
 		{
 			orb.alarm[4] = counter;
 		}
@@ -43,7 +43,7 @@ while poison > 0
 		if pathnr == 5 and index != ds_list_size(global.ds_id5)-1
 		orb = ds_list_find_value(global.ds_id5,index+i);
 		
-		if orb != 0 and instance_exists(orb) and orb.object_index == ob_orb
+		if orb != 0 and is_numeric(orb) and instance_exists(orb) and orb.object_index == ob_orb
 		{
 			orb.alarm[4] = counter;
 		}

@@ -28,40 +28,28 @@ if counter == 100
 if index == 1
 {
 	orb = ds_list_find_value(global.ds_id1,irandom( ds_list_size( global.ds_id1) - 2));
-	effect_create_above(ef_explosion,orb.x,orb.y,0, make_colour_rgb(255,128,0));
-	instance_destroy(orb);
-	global.level_progress += 1;
-	score += 100;
 }
 if index == 2
 {
 	orb = ds_list_find_value(global.ds_id2,irandom( ds_list_size( global.ds_id2) - 2));
-	effect_create_above(ef_explosion,orb.x,orb.y,0, make_colour_rgb(255,128,0));
-	instance_destroy(orb);
-	global.level_progress += 1;
-	score += 100;
 }
 if index == 3
 {
 	orb = ds_list_find_value(global.ds_id3,irandom( ds_list_size( global.ds_id3) - 2));
-	effect_create_above(ef_explosion,orb.x,orb.y,0, make_colour_rgb(255,128,0));
-	instance_destroy(orb);
-	global.level_progress += 1;
-	score += 100;
 }
 if index == 4
 {
 	orb = ds_list_find_value(global.ds_id4,irandom( ds_list_size( global.ds_id4) - 2));
-	effect_create_above(ef_explosion,orb.x,orb.y,0, make_colour_rgb(255,128,0));
-	instance_destroy(orb);
-	global.level_progress += 1;
-	score += 100;
 }
 if index == 5
 {
 	orb = ds_list_find_value(global.ds_id5,irandom( ds_list_size( global.ds_id5) - 2));
-	effect_create_above(ef_explosion,orb.x,orb.y,0, make_colour_rgb(255,128,0));
-	instance_destroy(orb);
+}
+
+with(orb)
+{
+	effect_create_above(ef_explosion,x,y,0, make_colour_rgb(255,128,0));
+	instance_destroy();
 	global.level_progress += 1;
 	score += 100;
 }

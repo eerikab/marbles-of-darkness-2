@@ -8,7 +8,7 @@ if image_index == 2 and !instance_exists(ob_block) and !instance_exists(ob_board
 	if global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] == 0
 	{
 		global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] = 1;
-		ini_open("save.ini");
+		ini_open(global.savefile + "save.ini");
 		ini_write_real("Unlocked",string(global.lvl_adv[global.adv_stage,global.adv_level]),1);
 		ini_close();
 	}

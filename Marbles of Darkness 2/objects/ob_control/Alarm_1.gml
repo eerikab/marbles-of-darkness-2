@@ -8,6 +8,7 @@ while i <= global.paths
 	a.pathnr = i;
 	if !instance_exists(ob_intro)
 	ob_hole.image_alpha = 1;
+	if global.gamemode < 3
 	a = instance_create_depth(x,y,-25,ob_final_bonus);
 	a.pathnr = i;
 	i += 1;

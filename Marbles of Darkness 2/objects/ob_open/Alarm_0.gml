@@ -15,6 +15,7 @@ global.rm_height = 480;
 window_set_size(global.display_width,global.display_height);
 display_set_gui_size(global.rm_width,global.rm_height);
 global.background_stretch = ini_read_real("Display","stretch_background",0);
+window_set_caption(ini_read_string("Display","title",""))
 
 x = ini_read_real("GUI","loading_x",0);
 y = ini_read_real("GUI","loading_y",0);
@@ -50,8 +51,35 @@ global.skip = ini_read_real("Gameplay","skiplevel",0);
 global.link[0] = ini_read_string("Gameplay","link1","https://en.wikipedia.org/wiki/HTTP_404");
 global.link[1] = ini_read_string("Gameplay","link2","https://en.wikipedia.org/wiki/HTTP_404");
 global.link[2] = ini_read_string("Gameplay","link3","https://en.wikipedia.org/wiki/HTTP_404");
+global.savefile = ini_read_string("Gameplay","savefile","");
 
 sc_window();
+
+ini_close();
+
+//Load save
+sc_load();
+
+ini_open(global.savefile + "save.ini");
+global.music = ini_read_real("Settings","music",1);
+global.sound = ini_read_real("Settings","sound",1);
+global.vsync = ini_read_real("Settings","vsync",1);
+global.alias = ini_read_real("Settings","alias",1);
+window_set_fullscreen(ini_read_real("Settings","fullscreen",0));
+
+global.highscore[1] = ini_read_real("Highscore","1",0);
+global.highscore[2] = ini_read_real("Highscore","2",0);
+global.highscore[3] = ini_read_real("Highscore","3",0);
+global.highscore[4] = ini_read_real("Highscore","4",0);
+global.highscore[5] = ini_read_real("Highscore","5",0);
+
+global.stat_shot = ini_read_real("Stats","shot",0);
+global.stat_clear = ini_read_real("Stats","clear",0);
+global.stat_combo = ini_read_real("Stats","combo",0);
+global.stat_chain = ini_read_real("Stats","chain",0);
+global.stat_power = ini_read_real("Stats","power",0);
+global.stat_wins = ini_read_real("Stats","wins",0);
+global.stat_time = ini_read_real("Stats","time",0);
 
 ini_close();
 

@@ -32,7 +32,7 @@ if global.level_progress >= global.target and i < sprite_width
 	{
 		global.level_progress = 0;
 		global.endless_dif += 1;
-		if global.endless_dif mod 2 == 1 and global.difficulty < 6
+		if global.endless_dif mod 2 == 1 and global.difficulty < global.difficulty_num
 		global.difficulty += 1;
 		else
 		global.hardness += global.increment;

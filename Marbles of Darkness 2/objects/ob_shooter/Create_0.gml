@@ -23,3 +23,4 @@ xstart = x;
 ystart = y;
 offset = 0;
 dir = 2;
+colour = 0;

@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function sc_load(){
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	global.first_start = ini_section_exists("Adventure");
 	global.adv_stage = ini_read_real("Adventure","stage",1);
 	global.adv_level = ini_read_real("Adventure","level",1); 
@@ -24,7 +24,7 @@ function sc_load(){
 }
 
 function sc_save(){
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	
 	mode = "Adventure";
 	ini_write_real("Adventure","stage",global.adv_stage);
@@ -48,7 +48,7 @@ function sc_save(){
 
 function sc_mid_save(mode){
 	instance_activate_all();
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	
 	//Save info
 	if global.gamemode == 1
@@ -103,12 +103,12 @@ function sc_mid_save(mode){
 	
 	with(ob_pusher)
 	ini_write_real(mode,id,spd);
-	ini_write_real(mode,"mid_shooter",ob_shooter.image_index);
+	ini_write_real(mode,"mid_shooter",ob_shooter.colour);
 	with(ob_spawner)
 	ini_write_real(mode,"mid_cooldown_" + string(pathnr),cooldown);
 	
 	//Powerups
-	var _txt = file_text_open_write(mode + ".txt")
+	var _txt = file_text_open_write(global.savefile + mode + ".txt")
 	var _savedata = array_create(0);
 	with(ob_powerup)
 	{
@@ -375,12 +375,11 @@ function sc_mid_save(mode){
 	ini_write_real("In progress","endless",1);
 	
 	ini_close();
-	game_save(mode + ".dat");
 }
 
 function sc_mid_load(mode){
 	
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	global.selected = ini_read_real(mode,"mid_selected",1);
 	global.difficulty = ini_read_real(mode,"mid_difficulty",1);
 	global.dif_user = ini_read_real(mode,"mid_user",1);
@@ -391,7 +390,7 @@ function sc_mid_load(mode){
 }
 
 function sc_stat(){
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("Stats","shot",global.stat_shot);
 	ini_write_real("Stats","clear",global.stat_clear);
 	ini_write_real("Stats","combo",global.stat_combo);

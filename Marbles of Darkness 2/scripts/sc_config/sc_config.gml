@@ -101,6 +101,7 @@ function sc_config(){
 		
 		i += 1;
 	}
+	global.difficulty_num = i-1;
 	
 	sect = "Path multiplier";
 	area = "Path multiplier";

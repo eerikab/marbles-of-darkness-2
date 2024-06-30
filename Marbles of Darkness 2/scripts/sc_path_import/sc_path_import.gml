@@ -4,6 +4,11 @@
 function sc_path_import(_name){
 	area = "Paths"
 	path = path_add();
+	if !file_exists(global.directory + "paths/" + _name + ".txt")
+	{
+		sc_error(_name + " not found");
+		exit;
+	}
 	file = file_text_open_read(global.directory + "paths/" + _name + ".txt");
 	while !file_text_eof(file)
 	{
@@ -18,6 +23,6 @@ function sc_path_import(_name){
 	path_set_kind(path,1);
 	path_set_precision(path,8);
 	if path_get_length(path) == 0
-	sc_error(_name + " not found");
+	sc_error(_name + " is not a valid path");
 	return(path)
 }

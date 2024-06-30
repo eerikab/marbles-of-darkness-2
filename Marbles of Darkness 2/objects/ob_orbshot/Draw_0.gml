@@ -15,9 +15,14 @@ if global.accuracy > 0 and !shot
 	image_blend = global.color[colour];
 	while image_xscale < 1
 	{
-		image_xscale += 0.01;
+		image_xscale += 0.002;
 		var stop = 0;
 		with(ob_orb)
+		{
+			if place_meeting(x,y,other) and shootable
+			stop = 1;
+		}
+		with(ob_pusher)
 		{
 			if place_meeting(x,y,other) and shootable
 			stop = 1;

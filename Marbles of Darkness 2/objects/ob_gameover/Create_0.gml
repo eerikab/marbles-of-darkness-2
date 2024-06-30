@@ -9,13 +9,13 @@ if global.gamemode == 1
 }
 else if global.gamemode == 2
 {
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("In progress","practice",0);
 	ini_close();
 }
 else if global.gamemode == 3
 {
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("In progress","endless",0);
 	if score > global.endless_high[global.selected]
 	{

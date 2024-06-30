@@ -11,7 +11,7 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha == 1
 		alarm[0] = 1;
 	}
 	
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("Settings","music",global.music);
 	ini_write_real("Settings","sound",global.sound);
 	ini_write_real("Settings","fullscreen",window_get_fullscreen());

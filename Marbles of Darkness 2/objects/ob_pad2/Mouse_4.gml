@@ -2,6 +2,9 @@
 // You can write your code in this editor
 
 //Swap places with pad
+ob_shooter.xstart = x;
+ob_shooter.ystart = y;
+
 ix = ob_shooter.x;
 iy = ob_shooter.y;
 

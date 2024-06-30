@@ -7,6 +7,9 @@ draw_sprite_part(global.back_play,0,0,room_height-128,432,128,0,room_height-128)
 
 //Selected map
 draw_sprite_stretched(global.background[global.selected],0,x-200,y-192,400,225);
+if global.tunnel[global.selected] != 0
+draw_sprite_stretched(global.tunnel[global.selected],0,x-200,y-192,400,225);
+
 if global.gamemode == 2
 {
 	draw_text(x,y+224,global.txt_free_dif);

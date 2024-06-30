@@ -15,7 +15,7 @@ if global.gamemode == 1
 	if global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] == 0
 	{
 		global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] = 1;
-		ini_open("save.ini");
+		ini_open(global.savefile + "save.ini");
 		ini_write_real("Unlocked",string(global.lvl_adv[global.adv_stage,global.adv_level]),1);
 		ini_close();
 	}
@@ -23,7 +23,7 @@ if global.gamemode == 1
 }
 else if global.gamemode == 2
 {
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("In progress","practice",0);
 	if global.unlocked[global.selected] = global.difficulty
 	{
@@ -34,7 +34,7 @@ else if global.gamemode == 2
 }
 else if global.gamemode == 3
 {
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_write_real("In progress","endless",0);
 	ini_close();
 }

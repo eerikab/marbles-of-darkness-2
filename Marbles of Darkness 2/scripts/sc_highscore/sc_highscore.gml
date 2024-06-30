@@ -3,7 +3,7 @@
 
 function sc_highscore(_score){
 	//Overwrite Adventure data
-	ini_open("save.ini");
+	ini_open(global.savefile + "save.ini");
 	ini_section_delete("Adventure");
 	ini_write_real("Adventure","placeholder",0);
 	

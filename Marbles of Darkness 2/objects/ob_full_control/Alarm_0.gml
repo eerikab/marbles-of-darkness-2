@@ -1,7 +1,7 @@
 /// @description Load mid-level save
 // You can write your code in this editor
 
-ini_open("save.ini");
+ini_open(global.savefile + "save.ini");
 	
 //Load 1st path
 
@@ -246,7 +246,7 @@ with(ob_spawner)
 cooldown = ini_read_real(mode,"mid_cooldown_" + string(pathnr),0);
 
 //Powerups
-var _txt = file_text_open_read(mode + ".txt");
+var _txt = file_text_open_read(global.savefile + mode + ".txt");
 var _json = file_text_readln(_txt);
 show_debug_message(_json);
 var _loaddata = json_parse(_json);
@@ -327,7 +327,7 @@ while (array_length(_loaddata) > 0)
 	}
 }
 
-ob_shooter.image_index = ini_read_real(mode,"mid_shooter",0);
+ob_shooter.colour = ini_read_real(mode,"mid_shooter",0);
 if instance_exists(ob_hole)
 ob_hole.image_alpha = 1;
 file_text_close(_txt);
