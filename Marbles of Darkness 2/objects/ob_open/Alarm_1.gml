@@ -18,10 +18,5 @@ if global.mus_game_num < 1
 global.mus_game_num = 1;
 global.mus_warning = audio_create_stream(global.directory + "sounds/mu_warning.ogg");
 sc_sound_gain(0,global.music);
-sc_window();
-sc_background(global.back_menu);
 
-if error_raised
-exit;
-progress = 40;
-alarm[2] = delay;
+sc_load_advance();

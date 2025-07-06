@@ -21,8 +21,6 @@ global.txt_button_menu = sc_newline(sect,"menu",placeholder);
 global.txt_button_new = sc_newline(sect,"new",placeholder);
 global.txt_button_next = sc_newline(sect,"next",placeholder);
 global.txt_button_previous = sc_newline(sect,"previous",placeholder);
-global.txt_button_loading = sc_newline(sect,"loading",placeholder);
-global.txt_button_click = sc_newline(sect,"click",placeholder);
 
 sect = "Credits";
 global.txt_credits = sc_newline(sect,"title",placeholder);
@@ -112,7 +110,4 @@ for(i = 1; i <= 7; i++)
 global.txt_stat[i] = sc_newline(sect,"stat"+string(i),placeholder);
 ini_close();
 
-if error_raised
-exit
-
-progress = 100;
+sc_load_advance();

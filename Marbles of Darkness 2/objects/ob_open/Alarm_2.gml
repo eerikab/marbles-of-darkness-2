@@ -41,8 +41,4 @@ global.sou_swap = audio_create_stream(global.directory + "sounds/so_swap.ogg");
 
 sc_sound_gain(1,global.sound);
 
-if error_raised
-exit;
-progress = 50;
-alarm[3] = delay;
-audio_play_sound(global.mus_menu,0,1);
+sc_load_advance();

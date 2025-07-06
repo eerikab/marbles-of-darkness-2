@@ -1,0 +1,5 @@
+version 1.2
+
+Startup improvements. Cleaned up, unified loading images. Display loading steps. 
+
+Set everything related to the startup screen immediately to prevent things jumping around.

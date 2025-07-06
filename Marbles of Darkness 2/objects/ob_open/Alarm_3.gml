@@ -14,7 +14,4 @@ for (i = 1; i <= global.maps; i += 1)
 	ini_close();
 }
 
-if error_raised
-exit;
-alarm[4] = delay;
-progress = 60;
+sc_load_advance();

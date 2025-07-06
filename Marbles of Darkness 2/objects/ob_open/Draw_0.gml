@@ -5,20 +5,16 @@ draw_x = x - sprite_width/2;
 draw_y = y - sprite_height/2;
 
 draw_sprite(back,0,x,y);
-
-draw_sprite_part(sprite_index,0,0,0,
-	progress/100*sprite_width,
-	sprite_height,draw_x,draw_y);
 	
-if progress == 100
+if (progress == steps)
 {
 	draw_sprite(sprite_index,1,draw_x,draw_y);
-	draw_text(x,y,global.txt_button_click);
+	draw_text(x,y,txt_click);
 }
 else
 {
 	draw_sprite_part(sprite_index,0,0,0,
-		progress/100*sprite_width,
+		progress/steps*sprite_width,
 		sprite_height,draw_x,draw_y);
-	draw_text(x,y,global.txt_button_loading);
+	draw_text(x,y,txt_load_current);
 }
