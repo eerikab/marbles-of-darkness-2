@@ -1,23 +1,24 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-size[1] = ds_list_size(global.ds_id1);
-size[2] = ds_list_size(global.ds_id2);
-size[3] = ds_list_size(global.ds_id3);
-size[4] = ds_list_size(global.ds_id4);
-size[5] = ds_list_size(global.ds_id5);
-if size[1] + size[2] + size[3] + size[4] + size[5] == 0
+size_total = 0;
+for (i = 1; i <= global.paths; i++)
+{
+	size[i] = array_length(global.ls_orbs[i]);
+	size_total += size[i]
+}
+if size_total == 0
 {
 	instance_destroy();
 	exit;
 }
 
-index = irandom_range(1,global.paths);
+pathnr = irandom_range(1,global.paths);
 counter = 0
-while size[index] == 0 and counter < 100
+while size[pathnr] == 0 and counter < 100
 {
 	counter += 1;
-	index = irandom_range(1,global.paths);
+	pathnr = irandom_range(1,global.paths);
 }
 if counter == 100
 {
@@ -25,25 +26,17 @@ if counter == 100
 	exit;
 }
 
-if index == 1
+orb = global.ls_orbs[pathnr, array_length(global.ls_orbs[pathnr]) - 2];
+counter = 0;
+while (orb.object_index != ob_orb and counter < 100) 
 {
-	orb = ds_list_find_value(global.ds_id1,irandom( ds_list_size( global.ds_id1) - 2));
+	orb = global.ls_orbs[pathnr, array_length(global.ls_orbs[pathnr]) - 2];
+	counter += 1;
 }
-if index == 2
+if counter == 100
 {
-	orb = ds_list_find_value(global.ds_id2,irandom( ds_list_size( global.ds_id2) - 2));
-}
-if index == 3
-{
-	orb = ds_list_find_value(global.ds_id3,irandom( ds_list_size( global.ds_id3) - 2));
-}
-if index == 4
-{
-	orb = ds_list_find_value(global.ds_id4,irandom( ds_list_size( global.ds_id4) - 2));
-}
-if index == 5
-{
-	orb = ds_list_find_value(global.ds_id5,irandom( ds_list_size( global.ds_id5) - 2));
+	instance_destroy();
+	exit;
 }
 
 with(orb)

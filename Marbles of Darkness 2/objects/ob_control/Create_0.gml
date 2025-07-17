@@ -23,25 +23,19 @@ global.accuracy = 0;
 global.target = global.dif_target[global.difficulty]*global.hardness;
 
 //Defining variables
-global.ds_pos1 = ds_list_create();
-global.ds_col1 = ds_list_create();
-global.ds_id1 = ds_list_create();
+global.paths = global.level_paths[global.selected];
+//Orb array orbs[path,index] = ID
+global.ls_orbs = [];
+for (i = 1; i <= global.paths; i++)
+{
+	global.ls_orbs[i] = [];
+	global.txt_end_bonus = 0;
+	global.path[i] = global.level_path[global.selected,i];
+	instance_create_layer(640,360,"Instances",ob_spawner, {pathnr : i});
+}
 
-global.ds_pos2 = ds_list_create();
-global.ds_col2 = ds_list_create();
-global.ds_id2 = ds_list_create();
 
-global.ds_pos3 = ds_list_create();
-global.ds_col3 = ds_list_create();
-global.ds_id3 = ds_list_create();
-
-global.ds_pos4 = ds_list_create();
-global.ds_col4 = ds_list_create();
-global.ds_id4 = ds_list_create();
-
-global.ds_pos5 = ds_list_create();
-global.ds_col5 = ds_list_create();
-global.ds_id5 = ds_list_create();
+global.onehole = global.level_onehole[global.selected];
 
 randomize();
 
@@ -77,9 +71,3 @@ global.endless_dif = 1;
 global.warning = 0;
 global.level_time = 0;
 global.shots_missed = 0;
-
-global.end_bonus[1] = 0;
-global.end_bonus[2] = 0;
-global.end_bonus[3] = 0;
-global.end_bonus[4] = 0;
-global.end_bonus[5] = 0;

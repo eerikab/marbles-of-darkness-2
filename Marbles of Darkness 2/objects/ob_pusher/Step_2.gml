@@ -4,27 +4,8 @@
 image_angle = point_direction(x,y,path_get_x(path,pos+(1/length)),path_get_y(path,pos+(1/length)));
 
 //If no more orbs are left
-if pathnr = 1
-{
-	index = ds_list_find_index(global.ds_id1,id);
-}
-else if pathnr = 2
-{
-	index = ds_list_find_index(global.ds_id2,id);
-}
-else if pathnr = 3
-{
-	index = ds_list_find_index(global.ds_id3,id);
-}
-else if pathnr = 4
-{
-	index = ds_list_find_index(global.ds_id4,id);
-}
-else if pathnr = 5
-{
-	index = ds_list_find_index(global.ds_id5,id);
-}
-if index = 0
+index = array_get_index(global.ls_orbs,id);
+if index == 0
 {
 	if global.game == 1
 	{

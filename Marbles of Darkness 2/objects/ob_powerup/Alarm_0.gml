@@ -78,125 +78,34 @@ switch(image_index)
 	case 15: instance_create_depth(x,y,0,ob_inferno);
 		audio_play_sound(global.sou_power_inferno,0,0);
 		break;
-	//Poinson
+	//Poison
 	case 16: global.specialorb = 19;
 		audio_play_sound(global.sou_power_poison,0,0);
 		break;
 	//Group
 	case 17: 
-		index = 1
-		while index < ds_list_size(global.ds_id1)
+		for (pathnr = 1; pathnr <= global.paths; pathnr++)
 		{
-			orb = ds_list_find_value(global.ds_id1,index);
-			
-			if orb.object_index = ob_orb
+			for (index = 1; index < array_length(global.ls_orbs[pathnr]); index++)
 			{
-				with orb
+				
+				orb = global.ls_orbs[pathnr,index];
+			
+				if (orb.object_index == ob_orb) 
 				{
-					var frontorb = ds_list_find_value(global.ds_id1,index-1);
-					var backorb = ds_list_find_value(global.ds_id1,index+1);
-					
-					if frontorb.object_index = ob_orb
+					with orb
 					{
-						if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
-						colour = frontorb.colour;
-						ds_list_replace(global.ds_col1,index,colour);
+						var frontorb = global.ls_orbs[pathnr,index-1];
+						var backorb = global.ls_orbs[pathnr,index+1];
+					
+						if (frontorb.object_index == ob_orb)
+						{
+							if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
+							colour = frontorb.colour;
+						}
 					}
 				}
 			}
-			index += 1;
-		}
-		
-		index = 1
-		while index < ds_list_size(global.ds_id2)
-		{
-			orb = ds_list_find_value(global.ds_id2,index);
-			
-			if orb.object_index = ob_orb
-			{
-				with orb
-				{
-					var frontorb = ds_list_find_value(global.ds_id2,index-1);
-					var backorb = ds_list_find_value(global.ds_id2,index+1);
-					
-					if frontorb.object_index = ob_orb
-					{
-						if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
-						colour = frontorb.colour;
-						ds_list_replace(global.ds_col2,index,colour);
-					}
-				}
-			}
-			index += 1;
-		}
-		
-		index = 1
-		while index < ds_list_size(global.ds_id3)
-		{
-			orb = ds_list_find_value(global.ds_id3,index);
-			
-			if orb.object_index = ob_orb
-			{
-				with orb
-				{
-					var frontorb = ds_list_find_value(global.ds_id3,index-1);
-					var backorb = ds_list_find_value(global.ds_id3,index+1);
-					
-					if frontorb.object_index = ob_orb
-					{
-						if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
-						colour = frontorb.colour;
-						ds_list_replace(global.ds_col3,index,colour);
-					}
-				}
-			}
-			index += 1;
-		}
-		
-		index = 1
-		while index < ds_list_size(global.ds_id4)
-		{
-			orb = ds_list_find_value(global.ds_id4,index);
-			
-			if orb.object_index = ob_orb
-			{
-				with orb
-				{
-					var frontorb = ds_list_find_value(global.ds_id4,index-1);
-					var backorb = ds_list_find_value(global.ds_id4,index+1);
-					
-					if frontorb.object_index = ob_orb
-					{
-						if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
-						colour = frontorb.colour;
-						ds_list_replace(global.ds_col4,index,colour);
-					}
-				}
-			}
-			index += 1;
-		}
-		
-		index = 1
-		while index < ds_list_size(global.ds_id5)
-		{
-			orb = ds_list_find_value(global.ds_id5,index);
-			
-			if orb.object_index = ob_orb
-			{
-				with orb
-				{
-					var frontorb = ds_list_find_value(global.ds_id5,index-1);
-					var backorb = ds_list_find_value(global.ds_id5,index+1);
-					
-					if frontorb.object_index = ob_orb
-					{
-						if colour != frontorb.colour and (backorb.object_index != ob_orb or backorb.colour != colour)
-						colour = frontorb.colour;
-						ds_list_replace(global.ds_col5,index,colour);
-					}
-				}
-			}
-			index += 1;
 		}
 		
 		audio_play_sound(global.sou_power_group,0,0);

@@ -12,26 +12,18 @@ else
 }
 
 
-if global.game = 1
+if global.game
 {
 	//if colour = 16
 	//colour = irandom_range(1,global.orb_sprites);
 	//Check if there's an orb with the same colour
-	if ((ds_list_find_index(global.ds_col1,colour) = -1
-	and ds_list_find_index(global.ds_col2,colour) = -1
-	and ds_list_find_index(global.ds_col3,colour) = -1
-	and ds_list_find_index(global.ds_col4,colour) = -1
-	and ds_list_find_index(global.ds_col5,colour) = -1) or colour = 0 or colour = 16) 
+	if (!sc_check_colour(colour) or colour = 0 or colour = 16) 
 	and (colour < 11 or colour > 19 or colour = 16) 
 	and instance_exists(ob_orb) and instance_exists(ob_orbshot)
 	{
 		//Switch colour until valid
 		colour = irandom_range(1,global.orb_sprites);
-		while (ds_list_find_index(global.ds_col1,colour) = -1
-		and ds_list_find_index(global.ds_col2,colour) = -1
-		and ds_list_find_index(global.ds_col3,colour) = -1
-		and ds_list_find_index(global.ds_col4,colour) = -1
-		and ds_list_find_index(global.ds_col5,colour) = -1)
+		while !sc_check_colour(colour)
 		or (colour > 10 and colour < 20)
 		colour = irandom_range(1,global.dif_col[global.difficulty]);
 	}

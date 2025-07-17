@@ -73,6 +73,7 @@ txt_load = [
 	ini_read_string(sect,"click","")
 ]
 txt_click = ini_read_string(sect,"click","");
+txt_error = ini_read_string(sect,"fail","Failure while loading. Check the resources");
 ini_close();
 
 //Menu background

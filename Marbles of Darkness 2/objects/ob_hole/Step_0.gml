@@ -4,25 +4,29 @@
 if !active
 exit;
 
-if (pathnr == 1 and ds_list_find_value(global.ds_pos1,0) > 1-dist/length)
-or (pathnr == 2 and ds_list_find_value(global.ds_pos2,0) > 1-dist/length)
-or (pathnr == 3 and ds_list_find_value(global.ds_pos3,0) > 1-dist/length)
-or (pathnr == 4 and ds_list_find_value(global.ds_pos4,0) > 1-dist/length)
-or (pathnr == 5 and ds_list_find_value(global.ds_pos5,0) > 1-dist/length) 
-or (pathnr == 0 and (ds_list_find_value(global.ds_pos1,0) > 1-dist/length
-or ds_list_find_value(global.ds_pos2,0) > 1-dist/length 
-or ds_list_find_value(global.ds_pos3,0) > 1-dist/length
-or ds_list_find_value(global.ds_pos4,0) > 1-dist/length
-or ds_list_find_value(global.ds_pos5,0) > 1-dist/length)) 
+
+if (pathnr == 0)
+{
+	for (i = 1; i<=global.paths; i++)
+	{
+		if (array_length(global.ls_orbs[pathnr]) > 0 and global.ls_orbs[i,0] > 1-dist/length)
+		{
+			global.warning = 1;
+			warning = 1;
+		}
+	}
+}
+else if (array_length(global.ls_orbs[pathnr]) > 0 and global.ls_orbs[pathnr,0].pos > 1-dist/length)
 or global.lost
 {
 	global.warning = 1;
 	warning = 1;
 }
-else
+
+else 
 warning = 0;
 
-if warning = 1
+if warning
 {
 	if global.lost
 	{

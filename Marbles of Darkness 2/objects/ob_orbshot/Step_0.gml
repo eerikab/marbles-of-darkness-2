@@ -87,18 +87,10 @@ if !shot
 	}
 	
 	//Check if there's an orb with the same colour
-	if ((ds_list_find_index(global.ds_col1,colour) = -1
-	and ds_list_find_index(global.ds_col2,colour) = -1
-	and ds_list_find_index(global.ds_col3,colour) = -1
-	and ds_list_find_index(global.ds_col4,colour) = -1
-	and ds_list_find_index(global.ds_col5,colour) = -1) or colour = 0) 
+	if (!sc_check_colour(colour) or colour == 0) 
 	and (colour < 11 or colour > 19) and instance_exists(ob_orb)
 	{
-		while ((ds_list_find_index(global.ds_col1,colour) = -1
-		and ds_list_find_index(global.ds_col2,colour) = -1
-		and ds_list_find_index(global.ds_col3,colour) = -1
-		and ds_list_find_index(global.ds_col4,colour) = -1
-		and ds_list_find_index(global.ds_col5,colour) = -1) 
+		while (!sc_check_colour(colour) 
 		or colour = 0 or (colour > 10 and colour < 20))
 		and instance_exists(ob_orb)
 		colour = irandom_range(1,global.dif_col[global.difficulty]);
@@ -315,7 +307,7 @@ else
 				length = path_get_length(path);
 				audio_play_sound(global.sou_orb_hit,0,0);
 			
-				if orb.object_index = ob_pusher
+				if orb.object_index == ob_pusher
 				{
 					//Go in front of the pusher
 					index = orb.index;
@@ -350,36 +342,8 @@ else
 				match_length = point_distance(x,y,xpos,ypos);
 				match_dir = point_direction(xpos,ypos,x,y);
 				//Insert orb to orbs list
-				if pathnr == 1
-				{
-					ds_list_insert(global.ds_pos1,index,temp_pos);
-					ds_list_insert(global.ds_col1,index,-1);
-					ds_list_insert(global.ds_id1,index,id);
-				}
-				if pathnr == 2
-				{
-					ds_list_insert(global.ds_pos2,index,temp_pos);
-					ds_list_insert(global.ds_col2,index,-1);
-					ds_list_insert(global.ds_id2,index,id);
-				}
-				if pathnr == 3
-				{
-					ds_list_insert(global.ds_pos3,index,temp_pos);
-					ds_list_insert(global.ds_col3,index,-1);
-					ds_list_insert(global.ds_id3,index,id);
-				}
-				if pathnr == 4
-				{
-					ds_list_insert(global.ds_pos4,index,temp_pos);
-					ds_list_insert(global.ds_col4,index,-1);
-					ds_list_insert(global.ds_id4,index,id);
-				}
-				if pathnr == 5
-				{
-					ds_list_insert(global.ds_pos5,index,temp_pos);
-					ds_list_insert(global.ds_col5,index,-1);
-					ds_list_insert(global.ds_id5,index,id);
-				}
+				array_insert(global.ls_orbs[pathnr],index,id);
+				pos = temp_pos;
 			}
 		}
 		
@@ -388,11 +352,7 @@ else
 	else
 	{
 		//If not found on orbs list, remove itself
-		if (pathnr == 1 and ds_list_find_index(global.ds_id1,id) == -1)
-		or (pathnr == 2 and ds_list_find_index(global.ds_id2,id) == -1)
-		or (pathnr == 3 and ds_list_find_index(global.ds_id3,id) == -1)
-		or (pathnr == 4 and ds_list_find_index(global.ds_id4,id) == -1)
-		or (pathnr == 5 and ds_list_find_index(global.ds_id5,id) == -1)
+		if (array_get_index(global.ls_orbs[pathnr],id) == -1)
 		{
 			matching = 0;
 			instance_destroy();

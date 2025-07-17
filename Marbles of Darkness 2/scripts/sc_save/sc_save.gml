@@ -47,7 +47,7 @@ function sc_save(){
 }
 
 function sc_mid_save(mode){
-	instance_activate_all();
+	/*instance_activate_all();
 	ini_open(global.savefile + "save.ini");
 	
 	//Save info
@@ -374,7 +374,7 @@ function sc_mid_save(mode){
 	else if global.gamemode == 3
 	ini_write_real("In progress","endless",1);
 	
-	ini_close();
+	ini_close();*/
 }
 
 function sc_mid_load(mode){

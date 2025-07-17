@@ -4,6 +4,6 @@ function sc_error(msg){
 	if error_raised
 	exit;
 	
-	error = show_message_async("Failure while loading. Check the resources \n\n" + area + "\n" + msg);
+	error = show_message_async(txt_error + "\n\n" + area + "\n" + msg);
 	error_raised = true;
 }

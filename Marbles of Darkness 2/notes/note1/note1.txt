@@ -1,5 +1,9 @@
 version 1.2
 
-Startup improvements. Cleaned up, unified loading images. Display loading steps. 
+Startup improvements. Cleaned up the code, unified loading images. 
+
+Display loading steps. New section in text config for loading messages.
 
 Set everything related to the startup screen immediately to prevent things jumping around.
+
+In image config, not setting frame count for an orb sprite defaults to 1.

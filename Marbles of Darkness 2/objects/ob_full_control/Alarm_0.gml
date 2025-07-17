@@ -1,7 +1,7 @@
 /// @description Load mid-level save
 // You can write your code in this editor
 
-ini_open(global.savefile + "save.ini");
+/*ini_open(global.savefile + "save.ini");
 	
 //Load 1st path
 

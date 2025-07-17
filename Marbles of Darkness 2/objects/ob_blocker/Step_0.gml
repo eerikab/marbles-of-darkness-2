@@ -6,36 +6,10 @@ path_position -= 1/length;
 image_angle += 1;
 
 //Find front orb position
-if pathnr = 1
-{
-	if ds_list_size(global.ds_id1) == 0
-	exit;
-	orb = ds_list_find_value(global.ds_id1,0);
-}
-if pathnr = 2
-{
-	if ds_list_size(global.ds_id2) == 0
-	exit;
-	orb = ds_list_find_value(global.ds_id2,0);
-}
-if pathnr = 3
-{
-	if ds_list_size(global.ds_id3) == 0
-	exit;
-	orb = ds_list_find_value(global.ds_id3,0);
-}
-if pathnr = 4
-{
-	if ds_list_size(global.ds_id4) == 0
-	exit;
-	orb = ds_list_find_value(global.ds_id4,0);
-}
-if pathnr = 5
-{
-	if ds_list_size(global.ds_id5) == 0
-	exit;
-	orb = ds_list_find_value(global.ds_id5,0);
-}
+if (array_length(global.ls_orbs[pathnr]) == 0)
+exit;
+orb = global.ls_orbs[pathnr,0];
+
 //Break front orb if too close
 if instance_exists(orb) and orb.pos > path_position - 34/length 
 {
