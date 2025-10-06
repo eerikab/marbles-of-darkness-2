@@ -8,6 +8,7 @@ draw_text(x+48,y,global.length_name[i]);
 draw_set_halign(fa_center);
 if abs(mouse_y - y) < 16 and abs(mouse_x - x) < 160
 {
+	if global.colortext
 	draw_set_colour(c_yellow);
 	draw_text(global.rm_width/2,global.rm_height/2+96,string(global.count_stages[i]) + global.txt_stages
 		+ string(global.count_levels[i]) + global.txt_levels);

@@ -296,7 +296,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 							//Knockback
 							if other_index.object_index = ob_orb
 							{
-								match_knockback = reverse*1.5;
+								match_knockback = reverse*1.25;
 								alarm[0] = 1;
 							
 							}

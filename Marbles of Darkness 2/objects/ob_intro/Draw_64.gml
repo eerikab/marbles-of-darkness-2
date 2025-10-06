@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Level texbox
 // You can write your code in this editor
 
 draw_set_color(c_black);
@@ -16,6 +16,8 @@ height = string_height(txt);
 draw_rectangle(x,y-height/2-8,room_width,y+height/2+8,false);
 
 draw_set_alpha(alpha2);
+draw_set_color(c_white);
+if global.colortext
 draw_set_colour(c_yellow);
 draw_text(room_width/2,y,txt);
 draw_set_font(global.font_small);

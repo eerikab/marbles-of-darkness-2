@@ -7,3 +7,9 @@ Display loading steps. New section in text config for loading messages.
 Set everything related to the startup screen immediately to prevent things jumping around.
 
 In image config, not setting frame count for an orb sprite defaults to 1.
+
+Completely reworked how orbs are stored in a list. 
+This makes it much easier to manage and less prone to odd crashes.
+
+Modding fixes - correct launch speed and applied text color everywhere.
+Menu backgrounds are also used correctly.
