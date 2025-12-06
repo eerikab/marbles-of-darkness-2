@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Toggle pause
 // You can write your code in this editor
 
 if instance_exists(ob_orb)

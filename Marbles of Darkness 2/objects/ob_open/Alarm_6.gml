@@ -42,7 +42,9 @@ name = global.directory + "config/images.ini";
 ini_open(name);
 i = 1;
 sect = "Orbs"
-area = "Image config, Orbs"
+area = "Image config, Orbs";
+global.orb_shadow = [];
+global.orb_shadow[0] = global.sprite_pusher_shadow;
 while true
 {
 	if ini_key_exists(sect,"sprite"+string(i))
@@ -52,7 +54,18 @@ while true
 			ini_read_string(sect,"sprite"+string(i),""),frame,1,0,0,
 			"Orb " + string(i) + " sprite"
 		);
-		global.orb_shadow[i] = ini_read_real(sect,"shadow"+string(i),1);
+		
+		
+		shadow = ini_read_string(sect,"shadow"+string(i),"1");
+		switch(shadow)
+		{
+			case "0": global.orb_shadow[i] = 0; break;
+			case "1": global.orb_shadow[i] = 1; break;
+			default:
+				global.orb_shadow[i] = sc_load_sprite(shadow,0,1,0,0,
+					"Orb " + string(i) + " shadow");
+				break;
+		}
 		
 		global.orb_sprites = i;
 		if i > 19
@@ -89,8 +102,11 @@ global.accuracy_alpha = ini_read_real("Powerup display","accuracy_opacity",1);
 i = 1;
 sect = "Hole";
 global.light_num = 0;
-while ini_key_exists(sect,"light" + string(i) + "_dist")
-and ini_key_exists(sect,"light" + string(i) + "_angle")
+global.light_dist = [];
+global.light_angle = [];
+global.light_rotation = ini_read_real(sect,"rotation",0);
+while (ini_key_exists(sect,"light" + string(i) + "_dist")
+and ini_key_exists(sect,"light" + string(i) + "_angle"))
 {
 	global.light_dist[i] = ini_read_real(sect,"light" + string(i) + "_dist",0);
 	global.light_angle[i] = ini_read_real(sect,"light" + string(i) + "_angle",0);

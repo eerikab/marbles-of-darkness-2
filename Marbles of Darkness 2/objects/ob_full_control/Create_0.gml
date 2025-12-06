@@ -2,6 +2,7 @@
 // You can write your code in this editor
 
 //Orb colours
+global.color = [];
 global.color[0] = make_color_rgb(255,255,255);
 global.color[1] = make_color_rgb(0,0,255);
 global.color[2] = make_color_rgb(255,0,0);

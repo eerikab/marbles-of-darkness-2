@@ -38,5 +38,9 @@ function sc_load_advance(){
 		alarm[progress] = delay;
 		sc_loading_text(txt_load[progress]);
 	}
+	else
+	{
+		global.loaded = true;
+	}
 	progress += 1;
 }

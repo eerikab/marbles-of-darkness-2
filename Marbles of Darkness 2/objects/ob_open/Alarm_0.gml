@@ -7,6 +7,7 @@ ini_open(name);
 //Load interface configuration
 global.hud_height = ini_read_real("GUI","hud_height",32);
 global.instruct_pad = ini_read_real("GUI","instruction_pad",0);
+global.offset = [];
 global.offset[1] = ini_read_real("GUI","lives_offset",0);
 global.offset[2] = ini_read_real("GUI","level_offset",0);
 global.offset[3] = ini_read_real("GUI","bar_offset",0);

@@ -1,6 +1,6 @@
-/// @description Insert description here
+/// @description Display level HUD
 // You can write your code in this editor
-draw_x = x - sprite_width/2;
+draw_x = x - sprite_width/2 + global.offset[3];
 draw_y = y - sprite_height/2;
 
 if paused
@@ -16,9 +16,9 @@ if paused
 	draw_set_font(global.font_small);
 }
 
-draw_sprite(global.sprite_level_ui,0,room_width/2,room_height-global.hud_height/2);
+draw_sprite(global.sprite_level_ui, 0, room_width/2, room_height-global.hud_height/2);
 
-draw_sprite(global.sprite_progress_back,0,x,y);
+draw_sprite(global.sprite_progress_back, 0, x+global.offset[3], y);
 
 draw_sprite_part(sprite_index,0,0,0,
 	global.level_progress/global.target*sprite_width,

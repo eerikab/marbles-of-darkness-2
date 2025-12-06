@@ -4,6 +4,7 @@
 //Difficulty settings
 
 global.level_progress = 0;
+global.matching = [];
 global.matching[1] = 0;
 global.matching[2] = 0;
 global.matching[3] = 0;

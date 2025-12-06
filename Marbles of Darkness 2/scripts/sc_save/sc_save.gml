@@ -390,13 +390,16 @@ function sc_mid_load(mode){
 }
 
 function sc_stat(){
-	ini_open(global.savefile + "save.ini");
-	ini_write_real("Stats","shot",global.stat_shot);
-	ini_write_real("Stats","clear",global.stat_clear);
-	ini_write_real("Stats","combo",global.stat_combo);
-	ini_write_real("Stats","chain",global.stat_chain);
-	ini_write_real("Stats","power",global.stat_power);
-	ini_write_real("Stats","wins",global.stat_wins);
-	ini_write_real("Stats","time",global.stat_time);
-	ini_close();
+	if global.loaded
+	{
+		ini_open(global.savefile + "save.ini");
+		ini_write_real("Stats","shot",global.stat_shot);
+		ini_write_real("Stats","clear",global.stat_clear);
+		ini_write_real("Stats","combo",global.stat_combo);
+		ini_write_real("Stats","chain",global.stat_chain);
+		ini_write_real("Stats","power",global.stat_power);
+		ini_write_real("Stats","wins",global.stat_wins);
+		ini_write_real("Stats","time",global.stat_time);
+		ini_close();
+	}
 }

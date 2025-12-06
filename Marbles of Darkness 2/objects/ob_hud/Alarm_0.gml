@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Unpause
 // You can write your code in this editor
 
 instance_activate_all();

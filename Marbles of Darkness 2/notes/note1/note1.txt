@@ -8,8 +8,23 @@ Set everything related to the startup screen immediately to prevent things jumpi
 
 In image config, not setting frame count for an orb sprite defaults to 1.
 
-Completely reworked how orbs are stored in a list. 
+Completely reworked how orbs are stored in a list.
 This makes it much easier to manage and less prone to odd crashes.
 
 Modding fixes - correct launch speed and applied text color everywhere.
 Menu backgrounds are also used correctly.
+
+New configuration options: delayed start and warning light rotation.
+
+Now supporting custom orb shadows.
+Window display, including the startup screen, resized to 1280x720. Content size remains the same.
+
+Removed old progress bar sprite from the files.
+Fixed level HUD elements positioning.
+
+New channel link in credits.
+
+
+Todo:
+add dropping powerups like in luxor
+fix strong orb knockback.

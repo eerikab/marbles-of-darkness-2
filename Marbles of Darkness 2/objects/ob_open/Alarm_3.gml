@@ -5,6 +5,8 @@
 sc_config();
 sc_adv_setup(0);
 global.path_map = sc_path_import("pt_map");
+global.unlocked = [];
+global.endless_high = [];
 
 for (i = 1; i <= global.maps; i += 1)
 {

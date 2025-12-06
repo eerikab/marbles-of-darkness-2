@@ -46,6 +46,4 @@ if global.precise > 0 and !shot
 }
 
 //Orb
-if global.orb_shadow[colour]
-draw_sprite(global.sprite_orb_shadow, 0, x+4, y+4);
 draw_self();

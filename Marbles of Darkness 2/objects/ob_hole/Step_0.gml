@@ -53,4 +53,4 @@ else
 	dir = 1
 }
 
-angle += 0.2;
+angle += global.light_rotation;

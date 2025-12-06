@@ -11,6 +11,9 @@ sect = ""; //INI file section to read
 progress = 0; //Amount of steps completed
 steps = 9; //Amount of steps in loading
 
+error = -1; // Dialogs
+delayed = -1; // Delay textbox
+
 //OS localization, file directories
 switch os_type
 {
@@ -38,12 +41,34 @@ global.rm_height = 480;
 window_set_size(global.display_width,global.display_height);
 display_set_gui_size(global.rm_width,global.rm_height);
 global.background_stretch = ini_read_real("Display","stretch_background",0);
-window_set_caption(ini_read_string("Display","title",""))
+window_set_caption(ini_read_string("Display","title",""));
 x = ini_read_real("GUI","loading_x",0);
 y = ini_read_real("GUI","loading_y",0);
+delay_start = ini_read_real("GUI","delayed_start",0);
+global.loaded = false;
 
 ini_close();
 sc_window();
+
+//Loading text
+name = global.directory + "config/texts.ini";
+ini_open(name);
+sect = "Startup";
+txt_loading = ini_read_string(sect,"loading","");
+txt_load_current = txt_loading;
+txt_load = [
+	ini_read_string(sect,"config",""),
+	ini_read_string(sect,"music",""),
+	ini_read_string(sect,"sound",""),
+	ini_read_string(sect,"paths",""),
+	ini_read_string(sect,"bg",""),
+	ini_read_string(sect,"tunnel",""),
+	ini_read_string(sect,"sprite",""),
+	ini_read_string(sect,"text",""),
+	ini_read_string(sect,"click","")
+];
+txt_error = ini_read_string(sect,"fail","Failure while loading. Check the resources");
+ini_close();
 
 //Load sprites
 area = "Sprites"
@@ -55,28 +80,9 @@ global.sprite_progress_front = sc_load_sprite("sp_progress_front",2,0);
 sprite_index = global.sprite_progress_front;
 back = global.sprite_progress_back;
 
-//Loading text
-name = global.directory + "config/texts.ini";
-ini_open(name);
-sect = "Opening";
-txt_load_current = "";
-txt_loading = ini_read_string(sect,"loading","");
-txt_load = [
-	ini_read_string(sect,"config",""),
-	ini_read_string(sect,"music",""),
-	ini_read_string(sect,"sound",""),
-	ini_read_string(sect,"paths",""),
-	ini_read_string(sect,"bg",""),
-	ini_read_string(sect,"tunnel",""),
-	ini_read_string(sect,"sprite",""),
-	ini_read_string(sect,"text",""),
-	ini_read_string(sect,"click","")
-]
-txt_click = ini_read_string(sect,"click","");
-txt_error = ini_read_string(sect,"fail","Failure while loading. Check the resources");
-ini_close();
-
 //Menu background
+global.background = [];
+global.tunnel = [];
 name = global.directory + "config/images.ini";
 ini_open(name);
 area = "Image config, Backgrounds";
@@ -108,4 +114,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_color(c_white);
 
+if delay_start
+delayed = show_message_async("Delayed startup enabled. Click OK to continue with the game.");
+else
 sc_load_advance();
