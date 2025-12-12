@@ -8,6 +8,32 @@ if mode = 1
 }
 else
 {
+	if global.lost
+	{
+		depth = -75;
+		direction = point_direction(x, y, ob_hole.x, ob_hole.y);
+		spin += 0.4;
+		image_angle += spin;
+		if x == ob_hole.x and y == ob_hole.y
+		{
+			image_xscale -= 0.02;
+			image_yscale -= 0.02;
+			if image_xscale == 0
+			visible = 0;
+		}
+		else
+		{
+			spd += 0.4;
+			x += lengthdir_x(spd,direction);
+			y += lengthdir_y(spd,direction);
+			if round(direction / 10) != round(point_direction(x, y, ob_hole.x, ob_hole.y) / 10)
+			{
+				x = ob_hole.x;
+				y = ob_hole.y;
+			}
+		}
+	}
+	else
 	image_angle = point_direction(x,y,mouse_x,mouse_y);
 }
 

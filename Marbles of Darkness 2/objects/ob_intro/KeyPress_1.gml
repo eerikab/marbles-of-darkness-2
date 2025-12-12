@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Skip intro
 // You can write your code in this editor
 
 if skip

@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Fade out menu music
 // You can write your code in this editor
 
 if start

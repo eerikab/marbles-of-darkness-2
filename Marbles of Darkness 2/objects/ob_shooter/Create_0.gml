@@ -24,3 +24,5 @@ ystart = y;
 offset = 0;
 dir = 2;
 colour = 0;
+spin = 0;
+spd = 0;

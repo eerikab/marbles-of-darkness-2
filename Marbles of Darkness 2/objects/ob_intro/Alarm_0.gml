@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Fade into the level
 // You can write your code in this editor
 
 if alpha1 == 1

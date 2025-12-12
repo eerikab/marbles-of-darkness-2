@@ -11,20 +11,39 @@ In image config, not setting frame count for an orb sprite defaults to 1.
 Completely reworked how orbs are stored in a list.
 This makes it much easier to manage and less prone to odd crashes.
 
+However, something about the new orb movement logic made cascades push the orbs further back,
+so I specifically had to make the knockback lighter. I don't know what this is about.
+
 Modding fixes - correct launch speed and applied text color everywhere.
 Menu backgrounds are also used correctly.
-
-New configuration options: delayed start and warning light rotation.
-
-Now supporting custom orb shadows.
-Window display, including the startup screen, resized to 1280x720. Content size remains the same.
 
 Removed old progress bar sprite from the files.
 Fixed level HUD elements positioning.
 
+New configuration options: delayed start, knockback strength, 
+powerup drops and warning light rotation.
+
+Now supporting custom orb shadows.
+Window display, including the startup screen, resized to 1280x720. Content size remains the same.
+
 New channel link in credits.
+
+Fixed error messaging when loading faulty modding configuration,
+preventing additional GameMaker crash reports from popping up.
+
+Added an option to have powerups fall to the shooter like in Luxor, except in levels with pads.
+
+Pads get sucked into the hole on a fail like in MoD 1.
 
 
 Todo:
-add dropping powerups like in luxor
-fix strong orb knockback.
+fix strong orb knockback
+speed up off-screen knockback recovery
+fix mid level saves
+
+possibly:
+allow more paths and pads
+not hit orbs off-screen
+android port
+debug overlay
+(?)

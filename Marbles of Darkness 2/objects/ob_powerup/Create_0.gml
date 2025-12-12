@@ -12,9 +12,17 @@ White - Colour Bomb, Whitener
 Orange - Inferno, Poison
 Cyan - Group, Blocker*/
 
+if global.powerup_drop and ob_shooter.mode == 1
+drop = 1;
+else
+{
+	drop = 0;
+	image_xscale = 0.5;
+	image_yscale = 0.5;
+}
+
 image_speed = 0;
-image_xscale = 0.5;
-image_yscale = 0.5;
+
 
 //Choose one powerup from the two set to the colour
 if colour < 10
@@ -49,3 +57,7 @@ direction = 90;
 
 move = 32;
 cooldown = global.cool_power*60;
+xspeed = 4;
+yspeed = -6;
+if x > room_width/2
+xspeed *= -1;

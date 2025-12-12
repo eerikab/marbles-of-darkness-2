@@ -35,12 +35,13 @@ global.push_spd_path = ini_read_real("Gameplay","pusherspeedpath",0);
 global.push_boost_const = ini_read_real("Gameplay","pusherboostconstant",0);
 global.push_boost_path = ini_read_real("Gameplay","pusherboostpath",0);
 global.push_accel = ini_read_real("Gameplay","orbacceleration",0);
+global.knockback = ini_read_real("Gameplay","knockback_strength",1);
+global.powerup_drop = ini_read_real("Gameplay","powerup_drop",0);
 global.skip = ini_read_real("Gameplay","skiplevel",0);
 global.link[0] = ini_read_string("Gameplay","link1","https://en.wikipedia.org/wiki/HTTP_404");
 global.link[1] = ini_read_string("Gameplay","link2","https://en.wikipedia.org/wiki/HTTP_404");
 global.link[2] = ini_read_string("Gameplay","link3","https://en.wikipedia.org/wiki/HTTP_404");
 global.savefile = ini_read_string("Gameplay","savefile","");
-
 ini_close();
 
 //Load save

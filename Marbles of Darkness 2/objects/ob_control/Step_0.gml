@@ -20,6 +20,9 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 	
 	for (index = array_length(global.ls_orbs[pathnr]) - 1; index >= 0; index--)
 	{	
+		if global.matching[pathnr]
+		break;
+		
 		with(global.ls_orbs[pathnr,index])
 		{
 			index = other.index;
@@ -28,19 +31,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 			if (object_index == ob_pusher)
 			{
 				//Destroy if isolated
-				
-				if (index == 0)
-				{
-					if global.game == 1
-					{
-						sc_score(global.dif_point[global.difficulty]*global.hardness, x, y, 0, 0, 1);
-					}
-					instance_destroy();
-					break;
-				}
-				
-				other_index = global.ls_orbs[pathnr,index-1];
-				if (other_index.object_index == ob_pusher)
+				if (index == 0 or global.ls_orbs[pathnr,index-1].object_index == ob_pusher)
 				{
 					if global.game == 1
 					{
@@ -235,7 +226,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 				if knockback > 0
 				{
 					global.match_pos = pos;
-					i = index+1;
+					i = index;
 					while i < array_length(global.ls_orbs[pathnr])
 					{
 						j = global.ls_orbs[pathnr,i];
@@ -250,10 +241,9 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 						else
 						break;
 					}
-					pos -= knockback/length;
 					knockback -= global.push_accel;
 					if knockback < 0
-					knockback = 0
+					knockback = 0;
 					
 				}
 				
@@ -296,7 +286,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 							//Knockback
 							if other_index.object_index = ob_orb
 							{
-								match_knockback = reverse*1.25;
+								match_knockback = reverse*1.5;
 								alarm[0] = 1;
 							
 							}
@@ -623,4 +613,4 @@ while(i>-1)
 		}
 	}
 	i -= 1;
-}
+}*/

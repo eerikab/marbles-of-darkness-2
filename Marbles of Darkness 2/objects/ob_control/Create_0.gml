@@ -40,7 +40,7 @@ global.onehole = global.level_onehole[global.selected];
 
 randomize();
 
-instance_create_depth(x,y,-5,ob_shooter);
+instance_create_depth(x,y,-10,ob_shooter);
 instance_create_depth(x,y,-100,ob_hud);
 instance_create_depth(x,y,-20,ob_intro);
 global.chain = 0;

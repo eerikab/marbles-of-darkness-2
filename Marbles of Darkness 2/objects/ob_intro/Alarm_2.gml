@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Fade out
 // You can write your code in this editor
 
 alpha3 -= 0.015;

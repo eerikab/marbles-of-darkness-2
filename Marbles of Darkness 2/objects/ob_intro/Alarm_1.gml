@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Start the level
 // You can write your code in this editor
 
 //instance_destroy(ob_intro_glow);

@@ -1,9 +1,9 @@
-/// @description Insert description here
+/// @description Set up intro
 // You can write your code in this editor
 
-alpha1 = 1;
-alpha2 = 0;
-alpha3 = 0.75;
+alpha1 = 1; //Black cover
+alpha2 = 0; //Level text
+alpha3 = 0.75; //Textbox
 alarm[0] = 120;
 alarm[3] = 60;
 gain = 1;

@@ -156,7 +156,7 @@ else
 			with(ob_powerup)
 			{
 				var pd = point_distance(x,y,other.x,other.y);
-				if pd <= 32 and (other.pow == 0 or pd < other.dist)
+				if !drop and pd <= 32 and (other.pow == 0 or pd < other.dist)
 				{
 					other.pow = self;
 					other.dist = pd;
