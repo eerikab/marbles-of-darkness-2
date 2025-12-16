@@ -77,8 +77,8 @@ function sc_config(){
 	while( ini_section_exists("Step " + string(i)))
 	{
 		//Load level difficulties
-		area = "Level config, Step " + string(i);
 		sect = "Step " + string(i);
+		area = "Level config, " + sect;
 		global.dif_orbs[i] = ini_read_real(sect,"orbs",0);
 		global.dif_len[i] = ini_read_real(sect,"boost",0);
 		global.dif_target[i] = ini_read_real(sect,"target",0);

@@ -8,7 +8,7 @@ Set everything related to the startup screen immediately to prevent things jumpi
 
 In image config, not setting frame count for an orb sprite defaults to 1.
 
-Completely reworked how orbs are stored in a list.
+Completely reworked how orbs are stored in lists.
 This makes it much easier to manage and less prone to odd crashes.
 
 However, something about the new orb movement logic made cascades push the orbs further back,
@@ -35,15 +35,22 @@ Added an option to have powerups fall to the shooter like in Luxor, except in le
 
 Pads get sucked into the hole on a fail like in MoD 1.
 
+If an orb segment is knocked off screen entirely and no more cascades are happening there,
+it is quickly brought back into game field.
+
+Mid-level saving is improved to use the new orb listing.
+It also keeps track of Accuracy powerup duration.
+
+Splash screen no longer used at startup.
+
 
 Todo:
 fix strong orb knockback
-speed up off-screen knockback recovery
-fix mid level saves
 
 possibly:
 allow more paths and pads
 not hit orbs off-screen
 android port
 debug overlay
+show instructions on first play
 (?)

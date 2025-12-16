@@ -45,12 +45,11 @@ instance_create_depth(x,y,-100,ob_hud);
 instance_create_depth(x,y,-20,ob_intro);
 global.chain = 0;
 
-alarm[1] = 1;
-
 global.game = 1;
 global.lost = 0;
 
-alarm[5] = 60;
+alarm[0] = 1;
+alarm[1] = 60;
 
 score = 0;
 if global.gamemode == 1

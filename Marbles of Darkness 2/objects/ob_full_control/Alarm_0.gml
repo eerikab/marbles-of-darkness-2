@@ -1,211 +1,7 @@
 /// @description Load mid-level save
 // You can write your code in this editor
 
-/*ini_open(global.savefile + "save.ini");
-	
-//Load 1st path
-
-var pos1 = ds_list_create();
-var col1 = ds_list_create();
-var id1 = ds_list_create();
-ds = ini_read_string(mode,"pos1","");
-ds_list_read(pos1,ds);
-ds = ini_read_string(mode,"col1","");
-ds_list_read(col1,ds);
-ds = ini_read_string(mode,"id1","");
-ds_list_read(id1,ds);
-	
-for(i = 0; i < ds_list_size(pos1); i++)
-{
-	if ds_list_find_value(col1,i) == 0
-	{
-	a = instance_create_depth(x,y,0,ob_pusher,
-		{
-			path : global.path[1],
-			pathnr : 1,
-			pos : ds_list_find_value(pos1,i),
-			index : -1,
-			colour : ds_list_find_value(col1,i)
-		});
-		a.spd = ini_read_real(mode,ds_list_find_value(id1,i),0);
-	}
-	else
-	a = instance_create_depth(x,y,0,ob_orb,
-		{
-			path : global.path[1],
-			pathnr : 1,
-			pos : ds_list_find_value(pos1,i),
-			index : -1,
-			colour : ds_list_find_value(col1,i)
-		});
-	a.pos = ds_list_find_value(pos1,i);
-	a.colour = ds_list_find_value(col1,i);
-}
-
-//Load 2nd path
-if global.paths > 1
-{
-	pos1 = ds_list_create();
-	col1 = ds_list_create();
-	id1 = ds_list_create();
-	ds = ini_read_string(mode,"pos2","");
-	ds_list_read(pos1,ds);
-	ds = ini_read_string(mode,"col2","");
-	ds_list_read(col1,ds);
-	ds = ini_read_string(mode,"id2","");
-	ds_list_read(id1,ds);
-	
-	for(i = 0; i < ds_list_size(pos1); i++)
-	{
-		if ds_list_find_value(col1,i) == 0
-		{
-		a = instance_create_depth(x,y,0,ob_pusher,
-			{
-				path : global.path[2],
-				pathnr : 2,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-			a.spd = ini_read_real(mode,ds_list_find_value(id1,i),0);
-		}
-		else
-		a = instance_create_depth(x,y,0,ob_orb,
-			{
-				path : global.path[2],
-				pathnr : 2,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-		a.pos = ds_list_find_value(pos1,i);
-		a.colour = ds_list_find_value(col1,i);
-	}
-}
-
-//Load 3rd path
-if global.paths > 2
-{
-	pos1 = ds_list_create();
-	col1 = ds_list_create();
-	id1 = ds_list_create();
-	ds = ini_read_string(mode,"pos3","");
-	ds_list_read(pos1,ds);
-	ds = ini_read_string(mode,"col3","");
-	ds_list_read(col1,ds);
-	ds = ini_read_string(mode,"id3","");
-	ds_list_read(id1,ds);
-	
-	for(i = 0; i < ds_list_size(pos1); i++)
-	{
-		if ds_list_find_value(col1,i) == 0
-		{
-		a = instance_create_depth(x,y,0,ob_pusher,
-			{
-				path : global.path[3],
-				pathnr : 3,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-			a.spd = ini_read_real(mode,ds_list_find_value(id1,i),0);
-		}
-		else
-		a = instance_create_depth(x,y,0,ob_orb,
-			{
-				path : global.path[3],
-				pathnr : 3,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-		a.pos = ds_list_find_value(pos1,i);
-		a.colour = ds_list_find_value(col1,i);
-	}
-}
-
-//Load 4th path
-if global.paths > 3
-{
-	pos1 = ds_list_create();
-	col1 = ds_list_create();
-	id1 = ds_list_create();
-	ds = ini_read_string(mode,"pos4","");
-	ds_list_read(pos1,ds);
-	ds = ini_read_string(mode,"col4","");
-	ds_list_read(col1,ds);
-	ds = ini_read_string(mode,"id4","");
-	ds_list_read(id1,ds);
-	
-	for(i = 0; i < ds_list_size(pos1); i++)
-	{
-		if ds_list_find_value(col1,i) == 0
-		{
-		a = instance_create_depth(x,y,0,ob_pusher,
-			{
-				path : global.path[4],
-				pathnr : 4,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-			a.spd = ini_read_real(mode,ds_list_find_value(id1,i),0);
-		}
-		else
-		a = instance_create_depth(x,y,0,ob_orb,
-			{
-				path : global.path[4],
-				pathnr : 4,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-		a.pos = ds_list_find_value(pos1,i);
-		a.colour = ds_list_find_value(col1,i);
-	}
-}
-
-//Load 5th path
-if global.paths > 4
-{
-	pos1 = ds_list_create();
-	col1 = ds_list_create();
-	id1 = ds_list_create();
-	ds = ini_read_string(mode,"pos5","");
-	ds_list_read(pos1,ds);
-	ds = ini_read_string(mode,"col5","");
-	ds_list_read(col1,ds);
-	ds = ini_read_string(mode,"id5","");
-	ds_list_read(id1,ds);
-	
-	for(i = 0; i < ds_list_size(pos1); i++)
-	{
-		if ds_list_find_value(col1,i) == 0
-		{
-		a = instance_create_depth(x,y,0,ob_pusher,
-			{
-				path : global.path[5],
-				pathnr : 5,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-			a.spd = ini_read_real(mode,ds_list_find_value(id1,i),0);
-		}
-		else
-		a = instance_create_depth(x,y,0,ob_orb,
-			{
-				path : global.path[5],
-				pathnr : 5,
-				pos : ds_list_find_value(pos1,i),
-				index : -1,
-				colour : ds_list_find_value(col1,i)
-			});
-		a.pos = ds_list_find_value(pos1,i);
-		a.colour = ds_list_find_value(col1,i);
-	}
-}
-
+ini_open(global.savefile + "save.ini");
 	
 //Load data
 //Save data
@@ -226,6 +22,7 @@ global.matches = ini_read_real(mode,"mid_matches",0);
 global.onehole = ini_read_real(mode,"mid_onehole",0);
 global.orbs_shot = ini_read_real(mode,"mid_orbs_shot",0);
 global.path_multi = ini_read_real(mode,"mid_path_multi",0);
+global.accuracy = ini_read_real(mode,"mid_accuracy",0);
 global.powerups = ini_read_real(mode,"mid_powerups",0);
 global.precise = ini_read_real(mode,"mid_precise",0);
 global.retract = ini_read_real(mode,"mid_retract",0);
@@ -242,29 +39,26 @@ score = ini_read_real(mode,"mid_score",0);
 global.adv_live_score = ini_read_real(mode,"mid_live_score",0);
 lives = ini_read_real(mode,"mid_lives",0);
 
+ob_shooter.colour = ini_read_real(mode,"mid_shooter",0);
+
+global.music_nr = ini_read_real(mode,"mid_music",0);
+if global.music_nr > global.mus_game_num
+global.music_nr = 1;
+global.lvl_music = global.mus_game[global.music_nr];
+if !audio_is_playing(global.lvl_music)
+{
+sc_sound_stop(0);
+sc_sound_gain(0, global.music);
+audio_play_sound(global.lvl_music,0,1);
+audio_play_sound(global.mus_warning,0,1);
+audio_pause_sound(global.mus_warning);
+}
+ini_close();
+
 with(ob_spawner)
 cooldown = ini_read_real(mode,"mid_cooldown_" + string(pathnr),0);
 
-//Powerups
 var _txt = file_text_open_read(global.savefile + mode + ".txt");
-var _json = file_text_readln(_txt);
-show_debug_message(_json);
-var _loaddata = json_parse(_json);
-while (array_length(_loaddata) > 0)
-{
-	var _loadobj = array_pop(_loaddata);
-	with(instance_create_depth(0,0,0,asset_get_index(_loadobj.obj),{colour : 1}))
-	{
-		x = _loadobj.x;
-		y = _loadobj.y;
-		image_index = _loadobj.image_index;
-		image_blend = _loadobj.image_blend;
-		depth = _loadobj.depth;
-		move = _loadobj.move;
-		cooldown = _loadobj.cooldown;
-		
-	}
-}
 
 //Shot orbs
 _json = file_text_readln(_txt);
@@ -288,6 +82,57 @@ while (array_length(_loaddata) > 0)
 		pos = _loadobj.pos;
 		orb = _loadobj.orb;
 		create_orb = _loadobj.create_orb;
+	}
+}
+
+//Load paths
+var _json = file_text_readln(_txt);
+var paths = json_parse(_json);
+
+for(pathnr = 0; pathnr < array_length(paths); pathnr++)
+{
+	for (index = 0; index < array_length(paths[pathnr]); index++)
+	{
+		pos = paths[pathnr][index][0];
+		col = paths[pathnr][index][1];
+		
+		if col == 0
+		object = ob_pusher;
+		else
+		object = ob_orb;
+
+		a = instance_create_depth(x,y,0,object,
+		{
+			path : global.path[pathnr+1],
+			pathnr : pathnr+1,
+			pos : pos,
+			index : -1,
+			colour : col
+		});
+		a.spd = 0;
+
+		a.pos = pos;
+		a.colour = col;
+	}
+}
+
+//Powerups
+var _json = file_text_readln(_txt);
+show_debug_message(_json);
+var _loaddata = json_parse(_json);
+while (array_length(_loaddata) > 0)
+{
+	var _loadobj = array_pop(_loaddata);
+	with(instance_create_depth(0,0,0,asset_get_index(_loadobj.obj),{colour : 1}))
+	{
+		x = _loadobj.x;
+		y = _loadobj.y;
+		image_index = _loadobj.image_index;
+		image_blend = _loadobj.image_blend;
+		depth = _loadobj.depth;
+		move = _loadobj.move;
+		cooldown = _loadobj.cooldown;
+		
 	}
 }
 
@@ -327,23 +172,8 @@ while (array_length(_loaddata) > 0)
 	}
 }
 
-ob_shooter.colour = ini_read_real(mode,"mid_shooter",0);
 if instance_exists(ob_hole)
 ob_hole.image_alpha = 1;
-file_text_close(_txt);
 instance_destroy(ob_intro);
 instance_activate_all();
 
-global.music_nr = ini_read_real(mode,"mid_music",0);
-if global.music_nr > global.mus_game_num
-global.music_nr = 1;
-global.lvl_music = global.mus_game[global.music_nr];
-if !audio_is_playing(global.lvl_music)
-{
-sc_sound_stop(0);
-sc_sound_gain(0, global.music);
-audio_play_sound(global.lvl_music,0,1);
-audio_play_sound(global.mus_warning,0,1);
-audio_pause_sound(global.mus_warning);
-}
-ini_close();

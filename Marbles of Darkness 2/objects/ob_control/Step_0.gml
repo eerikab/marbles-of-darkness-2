@@ -25,7 +25,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 		
 		with(global.ls_orbs[pathnr,index])
 		{
-			index = other.index;
+			index = other.index; 
 			
 			//Pusher
 			if (object_index == ob_pusher)
@@ -60,7 +60,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					}
 				}
 				
-				//Find the first orb of the group
+				//Find the first orb of connected group
 				other_pos = pos;
 				other_index = index;
 				loop = true;
@@ -75,7 +75,8 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					if other_index == 0
 					loop = false;
 				}
-		
+				
+				//Find the first orb of connected group
 				other_index = index - 1;
 				loop = true
 				first_pos = pos
@@ -91,9 +92,35 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					else
 					loop = false;
 					if other_index == 0
-					loop = false
+					loop = false;
 					other_index -= 1;
 				}
+				other_index += 1;
+				first_index = other_index;
+				
+				if first_pos < 0 and pos < (index - first_index) * -32/length
+				{
+					// If the segment is knocked offscreen and no cascades are happening, speed up the recovery
+					while other_index < index
+					{
+						if global.ls_orbs[pathnr,other_index].colour == global.ls_orbs[pathnr,other_index+1].colour
+						and global.ls_orbs[pathnr,other_index].pos > 34/length + global.ls_orbs[pathnr,other_index+1].pos
+						break;
+						
+						other_index += 1;
+					}
+					if other_index == index
+					{
+						while other_index >= first_index
+						{
+							//Reset orb knockback
+							global.ls_orbs[pathnr,other_index].knockback = 0;
+							other_index -= 1;
+						}
+						pos = (index - first_index) * -32/length;
+					}
+				}
+				
 		
 				//Change speed
 				if spd > max_spd and global.game
@@ -244,7 +271,6 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					knockback -= global.push_accel;
 					if knockback < 0
 					knockback = 0;
-					
 				}
 				
 				//Reverse
@@ -286,7 +312,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 							//Knockback
 							if other_index.object_index = ob_orb
 							{
-								match_knockback = reverse*1.5;
+								match_knockback = reverse*global.knockback;
 								alarm[0] = 1;
 							
 							}

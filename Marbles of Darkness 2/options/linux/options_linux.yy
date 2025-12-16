@@ -6,7 +6,7 @@
   "option_linux_short_desc": "",
   "option_linux_long_desc": "",
   "option_linux_splash_screen": "splash/splash.png",
-  "option_linux_display_splash": true,
+  "option_linux_display_splash": false,
   "option_linux_icon": "icons/64.png",
   "option_linux_start_fullscreen": false,
   "option_linux_allow_fullscreen": false,

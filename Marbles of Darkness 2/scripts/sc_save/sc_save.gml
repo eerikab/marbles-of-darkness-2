@@ -1,12 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function sc_load(){
+	///Load game progress
 	ini_open(global.savefile + "save.ini");
 	global.first_start = ini_section_exists("Adventure");
 	global.adv_stage = ini_read_real("Adventure","stage",1);
-	global.adv_level = ini_read_real("Adventure","level",1); 
-	global.adv_points = ini_read_real("Adventure","score",0); 
-	global.adv_lives = ini_read_real("Adventure","lives",3); 
+	global.adv_level = ini_read_real("Adventure","level",1);
+	global.adv_points = ini_read_real("Adventure","score",0);
+	global.adv_lives = ini_read_real("Adventure","lives",3);
 	global.adv_live_score = ini_read_real("Adventure","live_score",0);
 	global.dif_user = ini_read_real("Adventure","difficulty",1);
 	global.adv_length = ini_read_real("Adventure","length",1);
@@ -24,6 +25,7 @@ function sc_load(){
 }
 
 function sc_save(){
+	///Save game progress
 	ini_open(global.savefile + "save.ini");
 	
 	mode = "Adventure";
@@ -47,7 +49,8 @@ function sc_save(){
 }
 
 function sc_mid_save(mode){
-	/*instance_activate_all();
+	///Mid-level save
+	instance_activate_all();
 	ini_open(global.savefile + "save.ini");
 	
 	//Save info
@@ -82,6 +85,7 @@ function sc_mid_save(mode){
 	ini_write_real(mode,"mid_orbs_shot",global.orbs_shot);
 	ini_write_real(mode,"mid_path_multi",global.path_multi);
 	ini_write_real(mode,"mid_powerups",global.powerups);
+	ini_write_real(mode,"mid_accuracy",global.accuracy);
 	ini_write_real(mode,"mid_precise",global.precise);
 	ini_write_real(mode,"mid_retract",global.retract);
 	ini_write_real(mode,"mid_reverse",global.reverse);
@@ -107,27 +111,20 @@ function sc_mid_save(mode){
 	with(ob_spawner)
 	ini_write_real(mode,"mid_cooldown_" + string(pathnr),cooldown);
 	
-	//Powerups
-	var _txt = file_text_open_write(global.savefile + mode + ".txt")
-	var _savedata = array_create(0);
-	with(ob_powerup)
-	{
-		var _saveobj =
-		{
-			obj : object_get_name(object_index),
-			y : y,
-			x : x,
-			image_index : image_index,
-			image_blend : image_blend,
-			depth : depth,
-			cooldown : cooldown,
-			move : move
-		}
-		array_push(_savedata,_saveobj);
-	}
-	var _string = json_stringify(_savedata);
-	file_text_write_string(_txt,_string);
-	file_text_writeln(_txt);
+	if global.gamemode == 1
+	ini_write_real("In progress","adventure",1);
+	else if global.gamemode == 2
+	ini_write_real("In progress","practice",1);
+	else if global.gamemode == 3
+	ini_write_real("In progress","endless",1);
+	
+	ini_close();
+	
+	
+	var _txt = file_text_open_write(global.savefile + mode + ".txt");
+	show_debug_message(_txt);
+	if _txt == -1
+	show_debug_message("File open failed");
 	
 	//Shot orbs
 	_savedata = array_create(0);
@@ -135,111 +132,21 @@ function sc_mid_save(mode){
 	{
 		if matching
 		{
-			if pathnr = 1
-			{
-				ds_list_delete(global.ds_id1,index)
-				ds_list_delete(global.ds_pos1,index)
-				ds_list_delete(global.ds_col1,index)
+			array_delete(global.ls_orbs[pathnr],index,1);
 					
-				if instance_exists(orb)
-				{
-					instance_create_layer(x,y,"Instances",ob_orb,
-					{
-						path : orb.path,
-						pathnr : orb.pathnr,
-						pos : orb.pos - (33 / orb.length),
-						index : index,
-						colour : colour
-					});
-				}
-				global.matching[1] = 1;
-				ob_control.alarm[0] = 1;
-				instance_destroy();
-			}
-			if pathnr = 2
+			if instance_exists(orb)
 			{
-				ds_list_delete(global.ds_id2,index)
-				ds_list_delete(global.ds_pos2,index)
-				ds_list_delete(global.ds_col2,index)
-					
-				if instance_exists(orb)
+				instance_create_layer(x,y,"Instances",ob_orb,
 				{
-					instance_create_layer(x,y,"Instances",ob_orb,
-					{
-						path : orb.path,
-						pathnr : orb.pathnr,
-						pos : orb.pos - (33 / orb.length),
-						index : index,
-						colour : colour
-					});
-				}
-				global.matching[2] = 1;
-				ob_control.alarm[2] = 1;
-				instance_destroy();
+					path : orb.path,
+					pathnr : orb.pathnr,
+					pos : orb.pos - (33 / orb.length),
+					index : index,
+					colour : colour
+				});
 			}
-			if pathnr = 3
-			{
-				ds_list_delete(global.ds_id3,index)
-				ds_list_delete(global.ds_pos3,index)
-				ds_list_delete(global.ds_col3,index)
-					
-				if instance_exists(orb)
-				{
-					instance_create_layer(x,y,"Instances",ob_orb,
-					{
-						path : orb.path,
-						pathnr : orb.pathnr,
-						pos : orb.pos - (33 / orb.length),
-						index : index,
-						colour : colour
-					});
-				}
-				global.matching[3] = 1;
-				ob_control.alarm[3] = 1;
-				instance_destroy();
-			}
-			if pathnr = 4
-			{
-				ds_list_delete(global.ds_id4,index)
-				ds_list_delete(global.ds_pos4,index)
-				ds_list_delete(global.ds_col4,index)
-					
-				if instance_exists(orb)
-				{
-					instance_create_layer(x,y,"Instances",ob_orb,
-					{
-						path : orb.path,
-						pathnr : orb.pathnr,
-						pos : orb.pos - (33 / orb.length),
-						index : index,
-						colour : colour
-					});
-				}
-				global.matching[4] = 1;
-				ob_control.alarm[4] = 1;
-				instance_destroy();
-			}
-			if pathnr = 5
-			{
-				ds_list_delete(global.ds_id5,index)
-				ds_list_delete(global.ds_pos5,index)
-				ds_list_delete(global.ds_col5,index)
-					
-				if instance_exists(orb)
-				{
-					instance_create_layer(x,y,"Instances",ob_orb,
-					{
-						path : orb.path,
-						pathnr : orb.pathnr,
-						pos : orb.pos - (33 / orb.length),
-						index : index,
-						colour : colour
-					});
-				}
-				global.matching[5] = 1;
-				ob_control.alarm[6] = 1;
-				instance_destroy();
-			}
+			global.matching[pathnr] = 1;
+			instance_destroy();
 		}
 		else
 		{
@@ -263,6 +170,42 @@ function sc_mid_save(mode){
 			array_push(_savedata,_saveobj);
 		}
 	}
+	_string = json_stringify(_savedata);
+	file_text_write_string(_txt,_string);
+	file_text_writeln(_txt);
+	
+	//Save paths
+	paths = [];
+	for (pathnr = 0; pathnr < global.paths; pathnr++)
+	{
+		paths[pathnr] = [];
+		for (index = 0; index < array_length(global.ls_orbs[pathnr+1]); index++)
+		{
+			orb = global.ls_orbs[pathnr+1, index];
+			paths[pathnr, index] = [orb.pos, orb.colour];
+		}
+	}
+	var json = json_stringify(paths);
+	file_text_write_string(_txt,json);
+	file_text_writeln(_txt);
+	
+	//Powerups
+	var _savedata = array_create(0);
+	with(ob_powerup)
+	{
+		var _saveobj =
+		{
+			obj : object_get_name(object_index),
+			y : y,
+			x : x,
+			image_index : image_index,
+			image_blend : image_blend,
+			depth : depth,
+			cooldown : cooldown,
+			move : move
+		}
+		array_push(_savedata,_saveobj);
+	}
 	var _string = json_stringify(_savedata);
 	file_text_write_string(_txt,_string);
 	file_text_writeln(_txt);
@@ -279,7 +222,7 @@ function sc_mid_save(mode){
 		}
 		array_push(_savedata,_saveobj);
 	}
-	var _string = json_stringify(_savedata);
+	_string = json_stringify(_savedata);
 	file_text_write_string(_txt,_string);
 	file_text_writeln(_txt);
 	
@@ -295,7 +238,7 @@ function sc_mid_save(mode){
 		}
 		array_push(_savedata,_saveobj);
 	}
-	var _string = json_stringify(_savedata);
+	_string = json_stringify(_savedata);
 	file_text_write_string(_txt,_string);
 	file_text_writeln(_txt);
 	
@@ -310,75 +253,14 @@ function sc_mid_save(mode){
 		}
 		array_push(_savedata,_saveobj);
 	}
-	var _string = json_stringify(_savedata);
+	_string = json_stringify(_savedata);
 	file_text_write_string(_txt,_string);
 	file_text_writeln(_txt);
 	
-	
 	file_text_close(_txt);
-		
-	
-	//Save 1st path
-	var ds = ds_list_write(global.ds_pos1);
-	ini_write_string(mode,"pos1",ds);
-	ds = ds_list_write(global.ds_col1);
-	ini_write_string(mode,"col1",ds);
-	ds = ds_list_write(global.ds_id1);
-	ini_write_string(mode,"id1",ds);
-	
-	//Save 2nd path
-	if global.paths > 1
-	{
-		ds = ds_list_write(global.ds_pos2);
-		ini_write_string(mode,"pos2",ds);
-		ds = ds_list_write(global.ds_col2);
-		ini_write_string(mode,"col2",ds);
-		ds = ds_list_write(global.ds_id2);
-		ini_write_string(mode,"id2",ds);
-	}
-	//Save 3nd path
-	if global.paths > 2
-	{
-		ds = ds_list_write(global.ds_pos3);
-		ini_write_string(mode,"pos3",ds);
-		ds = ds_list_write(global.ds_col3);
-		ini_write_string(mode,"col3",ds);
-		ds = ds_list_write(global.ds_id3);
-		ini_write_string(mode,"id3",ds);
-	}
-	//Save 4th path
-	if global.paths > 3
-	{
-		ds = ds_list_write(global.ds_pos4);
-		ini_write_string(mode,"pos4",ds);
-		ds = ds_list_write(global.ds_col4);
-		ini_write_string(mode,"col4",ds);
-		ds = ds_list_write(global.ds_id4);
-		ini_write_string(mode,"id4",ds);
-	}
-	//Save 5th path
-	if global.paths > 4
-	{
-		ds = ds_list_write(global.ds_pos5);
-		ini_write_string(mode,"pos5",ds);
-		ds = ds_list_write(global.ds_col5);
-		ini_write_string(mode,"col5",ds);
-		ds = ds_list_write(global.ds_id5);
-		ini_write_string(mode,"id5",ds);
-	}
-	
-	if global.gamemode == 1
-	ini_write_real("In progress","adventure",1);
-	else if global.gamemode == 2
-	ini_write_real("In progress","practice",1);
-	else if global.gamemode == 3
-	ini_write_real("In progress","endless",1);
-	
-	ini_close();*/
 }
 
 function sc_mid_load(mode){
-	
 	ini_open(global.savefile + "save.ini");
 	global.selected = ini_read_real(mode,"mid_selected",1);
 	global.difficulty = ini_read_real(mode,"mid_difficulty",1);
