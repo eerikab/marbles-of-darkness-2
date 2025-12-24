@@ -2,6 +2,13 @@
 // You can write your code in this editor
 
 //Load config
+global.length_name = [];
+global.count_stages = [];
+global.count_levels = [];
+global.lvl_adv = [];
+global.lvl_stage = [];
+global.stage_dif = [];
+
 sc_config();
 sc_adv_setup(0);
 global.path_map = sc_path_import("pt_map");

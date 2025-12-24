@@ -1,7 +1,7 @@
 {
   "option_mac_display_name": "Marbles of Darkness 2",
   "option_mac_app_id": "com.eerikabel.mod2",
-  "option_mac_version": "1.1.0",
+  "option_mac_version": "1.2.0",
   "option_mac_output_dir": "~/marblesofdarkness2",
   "option_mac_team_id": "",
   "option_mac_signing_identity": "Developer ID Application:",

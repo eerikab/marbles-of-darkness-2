@@ -32,19 +32,13 @@ with(ob_slider_sound)
 	if image_alpha = 0
 	instance_destroy();
 }
-with(ob_fullscreen)
+with(ob_toggle_par)
 {
 	image_alpha = other.image_alpha;
 	if image_alpha = 0
 	instance_destroy();
 }
 with(ob_vsync)
-{
-	image_alpha = other.image_alpha;
-	if image_alpha = 0
-	instance_destroy();
-}
-with(ob_alias)
 {
 	image_alpha = other.image_alpha;
 	if image_alpha = 0

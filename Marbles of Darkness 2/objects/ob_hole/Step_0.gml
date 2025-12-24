@@ -9,7 +9,7 @@ if (pathnr == 0)
 {
 	for (i = 1; i<=global.paths; i++)
 	{
-		if (array_length(global.ls_orbs[pathnr]) > 0 and global.ls_orbs[i,0] > 1-dist/length)
+		if (array_length(global.ls_orbs[i]) > 0 and global.ls_orbs[i,0].pos > 1-dist/length)
 		{
 			global.warning = 1;
 			warning = 1;
@@ -22,7 +22,6 @@ or global.lost
 	global.warning = 1;
 	warning = 1;
 }
-
 else 
 warning = 0;
 

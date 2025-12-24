@@ -1,6 +1,8 @@
 /// @description Initialize variables
 // You can write your code in this editor
 
+depth = -500;
+
 //Orb colours
 global.color = [];
 global.color[0] = make_color_rgb(255,255,255);
@@ -56,5 +58,13 @@ global.stop = 0;
 global.warning = 0;
 global.music_nr = 0;
 global.freeplay_select = 1;
+global.instruct_shown = 0;
+
+global.debug = 0;
+if debug_mode
+{
+	global.debug = 1;
+	show_debug_overlay(true);
+}
 
 alarm[1] = 60;

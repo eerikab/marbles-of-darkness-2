@@ -5,7 +5,7 @@ function sc_adv_setup(_mode){
 	ini_open(name);
 	
 	if _mode == 0 //Check config
-	{
+	{	
 		i = 1;
 		global.length_num = 0;
 		while( ini_section_exists("Length " + string(i)))
@@ -50,6 +50,10 @@ function sc_adv_setup(_mode){
 	{
 		sect = "Length " + string(global.adv_length);
 		global.stages = ini_read_real(sect,"stages",0);
+		
+		global.lvl_adv = [];
+		global.lvl_stage = [];
+		global.stage_dif = [];
 	
 		stage = 1;
 		level = 1;

@@ -17,6 +17,7 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha == 1
 	ini_write_real("Settings","fullscreen",window_get_fullscreen());
 	ini_write_real("Settings","vsync",global.vsync);
 	ini_write_real("Settings","alias",gpu_get_texfilter());
+	ini_write_real("Settings","skip",global.skip_instruct);
 	ini_close();
 	
 }

@@ -5,6 +5,7 @@ sprite_index = global.sprite_board;
 image_alpha = 0;
 alarm[0] = 1;
 spd = 0.02;
+clicks = 0;
 	
 
 button = instance_create_depth(x-64,y-112,depth-25,ob_fullscreen);

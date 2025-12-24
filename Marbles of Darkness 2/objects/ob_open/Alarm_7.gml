@@ -13,7 +13,7 @@ global.txt_complete = sc_newline(sect,"complete",placeholder);
 sect = "Buttons";
 global.txt_button_play = sc_newline(sect,"play",placeholder);
 global.txt_button_start = sc_newline(sect,"start",placeholder);
-global.txt_button_back = sc_newline(sect,"back",placeholder);
+global.txt_button_continue = sc_newline(sect,"continue",placeholder);
 global.txt_button_close = sc_newline(sect,"close",placeholder);
 global.txt_button_exit = sc_newline(sect,"exit",placeholder);
 global.txt_button_load = sc_newline(sect,"load",placeholder);
@@ -21,6 +21,7 @@ global.txt_button_menu = sc_newline(sect,"menu",placeholder);
 global.txt_button_new = sc_newline(sect,"new",placeholder);
 global.txt_button_next = sc_newline(sect,"next",placeholder);
 global.txt_button_previous = sc_newline(sect,"previous",placeholder);
+global.txt_skip = sc_newline(sect,"skip",placeholder);
 
 sect = "Credits";
 global.txt_credits = sc_newline(sect,"title",placeholder);

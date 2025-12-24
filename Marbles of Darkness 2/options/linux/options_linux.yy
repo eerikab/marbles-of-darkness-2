@@ -1,6 +1,6 @@
 {
   "option_linux_display_name": "Marbles of Darkness 2",
-  "option_linux_version": "1.1.1",
+  "option_linux_version": "1.2.0",
   "option_linux_maintainer_email": "",
   "option_linux_homepage": "https://eerikabel.itch.io/marbles-of-darkness-2",
   "option_linux_short_desc": "",

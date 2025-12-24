@@ -3,11 +3,21 @@
 
 if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 {
+	a = instance_create_depth(x,y,0,ob_transition);
+	if global.skip_instruct or global.instruct_shown
+	a.nextroom = rm_game;
+	else
+	{
+		global.instruct_shown = 1;
+		a.nextroom = rm_instructions;
+	}
+	global.nextroom = rm_game;
+	
+
 	if global.gamemode == 1
 	{
 		global.selected = global.lvl_adv[global.adv_stage,global.adv_level];
-		a = instance_create_depth(x,y,0,ob_transition);
-		a.nextroom = rm_game;
+
 		global.difficulty = global.stage_dif[global.adv_stage];
 		if global.adv_points == 0 and global.first_start
 		{
@@ -17,10 +27,5 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 			sc_highscore(points);
 		}
 		sc_save();
-	}
-	else
-	{
-		a = instance_create_depth(x,y,0,ob_transition);
-		a.nextroom = rm_game;
 	}
 }

@@ -4,12 +4,7 @@
 //Difficulty settings
 
 global.level_progress = 0;
-global.matching = [];
-global.matching[1] = 0;
-global.matching[2] = 0;
-global.matching[3] = 0;
-global.matching[4] = 0;
-global.matching[5] = 0;
+
 if global.gamemode == 1
 global.hardness = global.dif_mode[global.dif_user];
 else
@@ -27,16 +22,18 @@ global.target = global.dif_target[global.difficulty]*global.hardness;
 global.paths = global.level_paths[global.selected];
 //Orb array orbs[path,index] = ID
 global.ls_orbs = [];
+global.matching = [];
+
 for (i = 1; i <= global.paths; i++)
 {
 	global.ls_orbs[i] = [];
-	global.txt_end_bonus = 0;
+	global.matching[i] = 0;
+	
 	global.path[i] = global.level_path[global.selected,i];
 	instance_create_layer(640,360,"Instances",ob_spawner, {pathnr : i});
 }
-
-
 global.onehole = global.level_onehole[global.selected];
+global.txt_end_bonus = 0;
 
 randomize();
 

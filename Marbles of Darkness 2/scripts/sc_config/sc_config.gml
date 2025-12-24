@@ -6,7 +6,7 @@ function sc_config(){
 	i = 1;
 	
 	//Load map data
-	while ini_section_exists("Map " + string(i))
+	for (i = 1; ini_section_exists("Map " + string(i)); i++)
 	{
 		sect = "Map " + string(i)
 		//General
@@ -17,6 +17,11 @@ function sc_config(){
 		else
 		global.tunnel[i] = 0;
 		global.level_onehole[i] = ini_read_real(sect,"onehole",0);
+		
+		global.level_pad[i,0] = "";
+		global.level_pad[i,1] = "";
+		global.level_pad[i,2] = "";
+		global.level_pad[i,3] = "";
 		if ini_key_exists(sect,"padx") and ini_key_exists(sect,"pady")
 		{
 			global.level_pad[i,0] = ini_read_real(sect,"padx",0);
@@ -26,45 +31,20 @@ function sc_config(){
 				global.level_pad[i,2] = ini_read_real(sect,"pad2x",0);
 				global.level_pad[i,3] = ini_read_real(sect,"pad2y",0);
 			}
-			else
-			{
-				global.level_pad[i,2] = "";
-				global.level_pad[i,3] = "";
-			}
-		}
-		else
-		{
-			global.level_pad[i,0] = "";
-			global.level_pad[i,1] = "";
-			global.level_pad[i,2] = "";
-			global.level_pad[i,3] = "";
 		}
 		
 		//Paths
-		global.level_path[i,1] = sc_path_import(ini_read_string(sect,"path1",""));
-		global.level_paths[i] = 1;
-		if ini_key_exists(sect,"path2")
+		for (pathnr = 1; pathnr <= 5; pathnr++)
 		{
-			global.level_path[i,2] = sc_path_import(ini_read_string(sect,"path2",""));
-			global.level_paths[i] = 2;
-			if ini_key_exists(sect,"path3")
+			key = "path"+string(pathnr);
+			if ini_key_exists(sect, key)
 			{
-				global.level_path[i,3] = sc_path_import(ini_read_string(sect,"path3",""));
-				global.level_paths[i] = 3;
-				if ini_key_exists(sect,"path4")
-				{
-					global.level_path[i,4] = sc_path_import(ini_read_string(sect,"path4",""));
-					global.level_paths[i] = 4;
-					if ini_key_exists(sect,"path5")
-					{
-						global.level_path[i,5] = sc_path_import(ini_read_string(sect,"path5",""));
-						global.level_paths[i] = 5;
-					}
-				}
+				global.level_path[i,pathnr] = sc_path_import(ini_read_string(sect,key,""));
+				global.level_paths[i] = pathnr;
 			}
+			else
+			break;
 		}
-		
-		i += 1;
 	}
 	global.maps = i-1;
 	ini_close();

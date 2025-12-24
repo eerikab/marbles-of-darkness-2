@@ -3,7 +3,7 @@
 
 if image_index == 2 and !instance_exists(ob_block)
 {
-	ob_instructions.i -= 1;
-	if ob_instructions.i == 0
-	ob_instructions.i = 4;
+	ob_instructions.page -= 1;
+	if ob_instructions.page == 0
+	ob_instructions.page = 4;
 }

@@ -6,4 +6,5 @@ if image_index == 2 and !instance_exists(ob_block) and
 {
 	a = instance_create_depth(x,y,0,ob_transition);
 	a.nextroom = rm_instructions;
+	global.nextroom = rm_menu;
 }

@@ -3,5 +3,5 @@
 
 draw_self();
 draw_set_alpha(image_alpha);
-draw_text(x,y,global.txt_button_next);
+draw_text(x,y,global.txt_button_continue);
 draw_set_alpha(1);

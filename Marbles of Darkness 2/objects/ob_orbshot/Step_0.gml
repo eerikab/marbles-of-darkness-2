@@ -1,61 +1,12 @@
 /// @description Movement
 // You can write your code in this editor
 
-//Shoot if mouse pressed
-if mouse_check_button_pressed(mb_left) and shot = false and visible and ob_button_menu.image_index == 0
-and (!instance_exists(ob_pad2) or ob_pad2.image_index == 0)
-{
-	shot = true;
-	alarm[0] = 10;
-	global.orbs_shot += 1;
-	global.stat_shot += 1;
-	audio_play_sound(global.sou_shoot,0,0);
-	ob_shooter.dir = 2;
-	ob_shooter.alarm[0] = 1;
-	if colour = 12
-	{
-		var points = 0;
-		beam = instance_create_depth(x,y,depth,ob_electric_beam);
-		beam.image_angle = image_angle;
-		audio_play_sound(global.sou_power_electric_blast,0,0);
-		with(ob_orb)
-		{
-			if place_meeting(x,y,ob_electric_beam)
-			{
-				points += 100;
-				global.level_progress += 1;
-				instance_destroy();
-			}
-		}
-		sc_score(points,x,y,9,0,0);
-		instance_destroy();
-		exit;
-	}
-	if global.precise > 0
-	{
-		effect_create_above(ef_spark,x,y,0,c_white);
-		x = mouse_x;
-		y = mouse_y;
-		effect_create_above(ef_spark,x,y,0,c_white);
-	}
-	if colour = 17
-	{
-		//Duplicate itself
-		orb = instance_create_depth(x,y,depth,ob_orbshot);
-		orb.image_angle = image_angle - 20;
-		orb.shot = 1;
-		orb.colour = colour;
-		orb.create_orb = 0;
-		orb.visible = 1;
-		
-		orb = instance_create_depth(x,y,depth,ob_orbshot);
-		orb.image_angle = image_angle + 20;
-		orb.shot = 1;
-		orb.colour = colour;
-		orb.create_orb = 0;
-		orb.visible = 1;
-	}
-}
+if mouse_check_button_pressed(mb_left) and ob_button_menu.image_index == 0
+and ((ob_shooter.mode == 1 and mouse_y >= y-16) 
+or (ob_shooter.mode == 2 and position_meeting(mouse_x,mouse_y,ob_shooter)))
+mobile_swap = 1;
+else
+mobile_swap = 0;
 
 //Standby
 if !shot
@@ -97,7 +48,7 @@ if !shot
 	}
 	
 	//Orb swap
-	if mouse_check_button_pressed(mb_right) and colour > 0 and colour != 16
+	if (mouse_check_button_pressed(mb_right) or mobile_swap) and colour > 0 and colour != 16
 	{
 		var temp = colour;
 		colour = ob_shooter.colour;
@@ -357,5 +308,62 @@ else
 			matching = 0;
 			instance_destroy();
 		}
+	}
+}
+
+//Shoot if mouse pressed
+if (mouse_check_button_pressed(mb_left) and !mobile_swap) 
+and shot = false and visible and ob_button_menu.image_index == 0
+and (!instance_exists(ob_pad2) or ob_pad2.image_index == 0)
+{
+	shot = true;
+	alarm[0] = 10;
+	global.orbs_shot += 1;
+	global.stat_shot += 1;
+	audio_play_sound(global.sou_shoot,0,0);
+	ob_shooter.dir = 2;
+	ob_shooter.alarm[0] = 1;
+	if colour = 12
+	{
+		var points = 0;
+		beam = instance_create_depth(x,y,depth,ob_electric_beam);
+		beam.image_angle = image_angle;
+		audio_play_sound(global.sou_power_electric_blast,0,0);
+		with(ob_orb)
+		{
+			if place_meeting(x,y,ob_electric_beam)
+			{
+				points += 100;
+				global.level_progress += 1;
+				instance_destroy();
+			}
+		}
+		sc_score(points,x,y,9,0,0);
+		instance_destroy();
+		exit;
+	}
+	if global.precise > 0
+	{
+		effect_create_above(ef_spark,x,y,0,c_white);
+		x = mouse_x;
+		y = mouse_y;
+		effect_create_above(ef_spark,x,y,0,c_white);
+	}
+	if colour = 17
+	{
+		//Duplicate itself
+		orb = instance_create_depth(x,y,depth,ob_orbshot);
+		orb.image_angle = image_angle - 20;
+		orb.shot = 1;
+		orb.colour = colour;
+		orb.create_orb = 0;
+		orb.visible = 1;
+		
+		orb = instance_create_depth(x,y,depth,ob_orbshot);
+		orb.image_angle = image_angle + 20;
+		orb.shot = 1;
+		orb.colour = colour;
+		orb.create_orb = 0;
+		orb.visible = 1;
 	}
 }

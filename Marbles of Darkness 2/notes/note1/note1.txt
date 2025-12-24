@@ -31,7 +31,7 @@ New channel link in credits.
 Fixed error messaging when loading faulty modding configuration,
 preventing additional GameMaker crash reports from popping up.
 
-Added an option to have powerups fall to the shooter like in Luxor, except in levels with pads.
+Added an option to have powerups fall to the shooter like in Luxor.
 
 Pads get sucked into the hole on a fail like in MoD 1.
 
@@ -43,6 +43,16 @@ It also keeps track of Accuracy powerup duration.
 
 Splash screen no longer used at startup.
 
+For mobile and touchscreen compatibility, clicking on the shooter swaps the orb.
+
+Skiplevel cheat no longer goes beyond the adventure campaign, avoiding crashes.
+
+Ported the game to Android. Button clicking and orb shooting better adapted to touchscreens.
+Also enhanced the instructions to also explain touchscreen play.
+
+Instructions are displayed when starting a game for the first time. Added an option to skip it on
+following runs. Modified instructions layout and option texts accordingly.
+
 
 Todo:
 fix strong orb knockback
@@ -50,7 +60,4 @@ fix strong orb knockback
 possibly:
 allow more paths and pads
 not hit orbs off-screen
-android port
-debug overlay
-show instructions on first play
 (?)

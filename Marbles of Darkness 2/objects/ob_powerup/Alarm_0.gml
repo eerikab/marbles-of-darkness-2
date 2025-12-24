@@ -43,15 +43,9 @@ switch(image_index)
 		audio_play_sound(global.sou_power_colourcloud,0,0);
 		break;
 	//Anti-Orbs
-	case 9: instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:1});
-		if global.paths > 1
-		instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:2}) 
-		if global.paths > 2
-		instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:3})
-		if global.paths > 3
-		instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:4})
-		if global.paths > 4
-		instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:5})
+	case 9: 
+		for (pathnr = 1; pathnr <= global.paths; pathnr++)
+		instance_create_depth(x,y,-50,ob_antiorb_spawner,{pathnr:pathnr})
 		audio_play_sound(global.sou_power_antiorb,0,0);
 		break;
 	//Precise Shot
@@ -88,7 +82,6 @@ switch(image_index)
 		{
 			for (index = 1; index < array_length(global.ls_orbs[pathnr]); index++)
 			{
-				
 				orb = global.ls_orbs[pathnr,index];
 			
 				if (orb.object_index == ob_orb) 
@@ -112,104 +105,19 @@ switch(image_index)
 		break;
 	
 	//Blocker
-	case 18: 
-		index = 0
-		with(ob_blocker)
+	case 18:
+		for (pathnr = 1; pathnr <= global.paths; pathnr++)
 		{
-			if pathnr == 1
-			other.index = 1;
-		}
-		if index = 1
-		{
+			free = 1;
 			with(ob_blocker)
 			{
-				if pathnr == 1
+				if pathnr == other.pathnr
 				life = max_life;
+				other.free = 0;
 			}
+			if free
+			instance_create_depth(x,y,-50,ob_blocker,{pathnr : pathnr});
 		}
-		else
-		instance_create_depth(x,y,-50,ob_blocker,{pathnr : 1});
-		
-		if global.paths > 1
-		{
-			index = 0
-			with(ob_blocker)
-			{
-				if pathnr == 2
-				other.index = 1;
-			}
-			if index = 1
-			{
-				with(ob_blocker)
-				{
-					if pathnr == 2
-					life = max_life;
-				}
-			}
-			else
-			instance_create_depth(x,y,-50,ob_blocker,{pathnr : 2});
-		}
-		
-		if global.paths > 2
-		{
-			index = 0
-			with(ob_blocker)
-			{
-				if pathnr == 3
-				other.index = 1;
-			}
-			if index = 1
-			{
-				with(ob_blocker)
-				{
-					if pathnr == 3
-					life = max_life;
-				}
-			}
-			else
-			instance_create_depth(x,y,-50,ob_blocker,{pathnr : 3});
-		}
-		
-		if global.paths > 3
-		{
-			index = 0
-			with(ob_blocker)
-			{
-				if pathnr == 4
-				other.index = 1;
-			}
-			if index = 1
-			{
-				with(ob_blocker)
-				{
-					if pathnr == 4
-					life = max_life;
-				}
-			}
-			else
-			instance_create_depth(x,y,-50,ob_blocker,{pathnr : 4});
-		}
-		
-		if global.paths > 4
-		{
-			index = 0
-			with(ob_blocker)
-			{
-				if pathnr == 5
-				other.index = 1;
-			}
-			if index = 1
-			{
-				with(ob_blocker)
-				{
-					if pathnr == 5
-					life = max_life;
-				}
-			}
-			else
-			instance_create_depth(x,y,-50,ob_blocker,{pathnr : 5});
-		}
-		
 		audio_play_sound(global.sou_power_blocker,0,0);
 		break;	
 }

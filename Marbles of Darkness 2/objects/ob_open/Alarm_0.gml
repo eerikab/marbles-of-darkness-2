@@ -52,6 +52,7 @@ global.music = ini_read_real("Settings","music",1);
 global.sound = ini_read_real("Settings","sound",1);
 global.vsync = ini_read_real("Settings","vsync",1);
 global.alias = ini_read_real("Settings","alias",1);
+global.skip_instruct = ini_read_real("Settings","skip",0);
 window_set_fullscreen(ini_read_real("Settings","fullscreen",0));
 
 global.highscore[1] = ini_read_real("Highscore","1",0);

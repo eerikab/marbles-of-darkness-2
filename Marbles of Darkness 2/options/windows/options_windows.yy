@@ -1,11 +1,11 @@
 {
   "option_windows_display_name": "Marbles of Darkness 2",
   "option_windows_executable_name": "${project_name}.exe",
-  "option_windows_version": "1.1.1.0",
+  "option_windows_version": "1.2.0.0",
   "option_windows_company_info": "",
   "option_windows_product_info": "",
   "option_windows_copyright_info": "",
-  "option_windows_description_info": "Marbles of Darkness 2",
+  "option_windows_description_info": "A marble shooter match-3 game",
   "option_windows_display_cursor": true,
   "option_windows_icon": "icons/icon.ico",
   "option_windows_save_location": 0,

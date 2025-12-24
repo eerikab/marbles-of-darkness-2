@@ -4,9 +4,9 @@
 draw_set_font(global.font_large);
 draw_text(global.rm_width/2,48,global.txt_instruct_title);
 draw_set_font(global.font_small);
-draw_text(global.rm_width/2,80,global.txt_page_num + string(i) + "/4");
+draw_text(global.rm_width/2,80,global.txt_page_num + string(page) + "/4");
 
-switch(i)
+switch(page)
 {
 	case 1:
 		draw_text(global.rm_width/2,104,global.txt_page[1]);

@@ -11,19 +11,10 @@ sect = ""; //INI file section to read
 progress = 0; //Amount of steps completed
 steps = 9; //Amount of steps in loading
 
-error = -1; // Dialogs
-delayed = -1; // Delay textbox
+error = -1; // Error dialogs
 
 //OS localization, file directories
-switch os_type
-{
-	case os_windows:
-		global.directory = program_directory + "/assets/";
-		break;
-	case os_linux:
-		global.directory = working_directory + "/assets/";
-		break;
-}
+global.directory = working_directory + "assets/";
 
 //Load window configuration
 name = global.directory + "config/general.ini";
@@ -44,7 +35,6 @@ global.background_stretch = ini_read_real("Display","stretch_background",0);
 window_set_caption(ini_read_string("Display","title",""));
 x = ini_read_real("GUI","loading_x",0);
 y = ini_read_real("GUI","loading_y",0);
-delay_start = ini_read_real("GUI","delayed_start",0);
 global.loaded = false;
 
 ini_close();
@@ -114,7 +104,4 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_color(c_white);
 
-if delay_start
-delayed = show_message_async("Delayed startup enabled. Click OK to continue with the game.");
-else
-sc_load_advance();
+alarm[11] = 60;
