@@ -10,7 +10,6 @@ else
 {
 	if global.lost
 	{
-		depth = -75;
 		direction = point_direction(x, y, ob_hole.x, ob_hole.y);
 		spin += 0.4;
 		image_angle += spin;

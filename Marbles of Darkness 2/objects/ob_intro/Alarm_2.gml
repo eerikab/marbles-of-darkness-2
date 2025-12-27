@@ -3,7 +3,10 @@
 
 alpha3 -= 0.015;
 alpha2 -= 0.02;
+if alpha1 > 0
 alpha1 -= 0.02;
+
+sc_intro_color(merge_color(c_white, c_black, alpha1));
 
 if alpha3 = 0
 {

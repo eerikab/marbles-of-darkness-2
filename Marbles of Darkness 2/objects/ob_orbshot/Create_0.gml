@@ -17,9 +17,9 @@ knockback = 0;
 reverse = 0;
 pos = 0;
 orb = 0;
-depth = -75;
 create_orb = 1;
 moving = 0;
+matched = 0;
 
 shadow = instance_create_depth(x, y, depth, ob_orb_shadow);
 shadow.orb = id;

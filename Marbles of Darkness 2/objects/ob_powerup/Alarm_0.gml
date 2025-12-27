@@ -112,8 +112,10 @@ switch(image_index)
 			with(ob_blocker)
 			{
 				if pathnr == other.pathnr
-				life = max_life;
-				other.free = 0;
+				{
+					life = max_life;
+					other.free = 0;
+				}
 			}
 			if free
 			instance_create_depth(x,y,-50,ob_blocker,{pathnr : pathnr});

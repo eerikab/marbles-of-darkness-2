@@ -22,6 +22,15 @@ function sc_load(){
 	sc_highscore(global.adv_points);
 	ini_close();
 	sc_adv_setup(1);
+	
+	//Force reset if invalid save is detected
+	global.adv_valid = true;
+	if global.adv_stage > global.stages or global.adv_level > global.lvl_stage[global.adv_stage]
+	{
+		global.adv_points = 0;
+		global.check_adv = 0;
+		global.adv_valid = false;
+	}
 }
 
 function sc_save(){
@@ -88,14 +97,11 @@ function sc_mid_save(mode){
 	ini_write_real(mode,"mid_accuracy",global.accuracy);
 	ini_write_real(mode,"mid_precise",global.precise);
 	ini_write_real(mode,"mid_retract",global.retract);
-	ini_write_real(mode,"mid_reverse",global.reverse);
 	ini_write_real(mode,"mid_selected",global.selected);
 	ini_write_real(mode,"mid_segments",global.segments);
 	ini_write_real(mode,"mid_shots_missed",global.shots_missed);
-	ini_write_real(mode,"mid_slow",global.slow);
 	ini_write_real(mode,"mid_specialorb",global.specialorb);
 	ini_write_real(mode,"mid_start_score",global.start_score);
-	ini_write_real(mode,"mid_stop",global.stop);
 	ini_write_real(mode,"mid_warning",global.warning);
 	ini_write_real(mode,"mid_music",global.music_nr);
 	
@@ -122,7 +128,6 @@ function sc_mid_save(mode){
 	
 	
 	var _txt = file_text_open_write(global.savefile + mode + ".txt");
-	show_debug_message(_txt);
 	if _txt == -1
 	show_debug_message("File open failed");
 	

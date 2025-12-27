@@ -12,7 +12,7 @@ if global.level_pad[global.selected,0] != "" and global.level_pad[global.selecte
 	y = global.level_pad[global.selected,1];
 	if global.level_pad[global.selected,2] != "" and global.level_pad[global.selected,3] != ""
 	instance_create_depth(global.level_pad[global.selected,2], global.level_pad[global.selected,3], 
-		depth,ob_pad2);
+		depth-5, ob_pad2);
 }
 else
 {

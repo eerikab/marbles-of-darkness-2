@@ -10,7 +10,12 @@ if alpha1 == 1
 	sc_sound_stop(0);
 }
 if alpha1 > 0
-alpha1 -= 0.04;
+{
+	alpha1 -= 0.04;
+	if alpha1 < 0
+	alpha1 = 0;
+	sc_intro_color(merge_color(c_white, c_black, alpha1));
+}
 else if x > 0
 x -= room_width/32;
 else if start == 0

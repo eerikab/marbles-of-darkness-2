@@ -2,12 +2,6 @@
 // You can write your code in this editor
 
 //Decrease buff time
-if global.reverse > 0
-global.reverse --;
-if global.stop > 0
-global.stop --;
-if global.slow > 0
-global.slow --;
 if global.precise > 0
 global.precise --;
 if global.accuracy > 0
@@ -25,7 +19,9 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 		
 		with(global.ls_orbs[pathnr,index])
 		{
-			index = other.index; 
+			index = other.index;
+			path = global.path[pathnr];
+			length = path_get_length(path);
 			
 			//Pusher
 			if (object_index == ob_pusher)
@@ -76,11 +72,11 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					loop = false;
 				}
 				
-				//Find the first orb of connected group
+				//Find the first orb of the segment
 				other_index = index - 1;
 				loop = true
 				first_pos = pos
-				first_orb = index
+				first_orb = id;
 				while loop
 				{
 					orb = global.ls_orbs[pathnr,other_index];
@@ -134,7 +130,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					if !instance_exists(ob_orbshot)
 					{
 						ob_shooter.colour = irandom_range(1, min(10, global.dif_col[global.difficulty]));
-						instance_create_depth(x,y,-10,ob_orbshot);
+						instance_create_depth(x,y,-80,ob_orbshot);
 					}
 				}
 				if first_pos < global.dif_len[global.difficulty] * global.path_multi * global.hardness
@@ -174,21 +170,24 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					{
 						if object_index == ob_orb
 						{
-							pos -= (global.push_spd_const + length*global.push_spd_path) * global.path_multi * global.hardness / length;
+							pos -= abs(global.push_spd_const + length*global.push_spd_path) * global.path_multi * global.hardness / length;
 							other_pos = pos - 32/length;
 							other_index = index + 1;
-							orb = global.ls_orbs[pathnr,other_index];
-							while other_index < array_length(global.ls_orbs[pathnr]) 
-							and instance_exists(orb) and orb.object_index != ob_orbshot
-							and global.ls_orbs[pathnr,other_index].pos > other_pos - 4/length
+							if other_index < array_length(global.ls_orbs[pathnr]) 
 							{
-								global.ls_orbs[pathnr,other_index].pos = other_pos;
+								orb = global.ls_orbs[pathnr,other_index];
+								while other_index < array_length(global.ls_orbs[pathnr]) 
+								and instance_exists(orb) and orb.object_index != ob_orbshot
+								and global.ls_orbs[pathnr,other_index].pos > other_pos - 4/length
+								{
+									global.ls_orbs[pathnr,other_index].pos = other_pos;
 								
-								other_pos -= 32/length;
-								if global.ls_orbs[pathnr,other_index].object_index == ob_orb
-								other_index += 1;
-								else
-								break;
+									other_pos -= 32/length;
+									if global.ls_orbs[pathnr,other_index].object_index == ob_orb
+									other_index += 1;
+									else
+									break;
+								}
 							}
 						}
 					}
@@ -240,17 +239,16 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 						colour : colour
 					});
 					
-					global.matching[pathnr] = 1;
 					instance_destroy();
 				}
 				
 			}
 			else
 			{
-				//If it is a rolling orb, move
+				//If it is a rolling orb, mov
 				
 				//Knockback
-				if knockback > 0
+				if knockback != 0
 				{
 					global.match_pos = pos;
 					i = index;
@@ -260,7 +258,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 						if instance_exists(j) and j.object_index != ob_orbshot and j.pos >= global.match_pos - 34/length
 						{
 							global.match_pos = j.pos;
-							j.pos -= knockback/length;
+							j.pos -= abs(knockback/length);
 							i += 1;
 							if j.object_index = ob_pusher and j.spd > 0
 							j.spd = 0;
@@ -284,10 +282,10 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					while i > -1
 					{
 						j = global.ls_orbs[pathnr,i];
-						if instance_exists(j) and j.object_index != ob_orbshot and j.pos <= global.match_pos+40/length
+						if instance_exists(j) and j.object_index != ob_orbshot and j.pos <= global.match_pos+34/length
 						{
 							global.match_pos = j.pos 
-							j.pos -= reverse/length;
+							j.pos -= abs(reverse/length);
 							i -= 1;
 							if j.object_index = ob_pusher and j.spd > 0
 							j.spd = 0;
@@ -317,7 +315,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 							
 							}
 							j = global.ls_orbs[pathnr, array_length(global.ls_orbs[pathnr])-1];
-							if j.pos - (knockback/length) >= pos-(33/length*(j.index-index)) and j.spd > 0
+							if j.pos - (knockback/length) >= pos-(34/length*(j.index-index)) and j.spd > 0
 							{
 								j.spd = 0;
 							}

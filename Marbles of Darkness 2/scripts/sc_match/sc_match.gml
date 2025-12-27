@@ -84,7 +84,15 @@ function sc_match(chain){
 		}
 		with(ob_orb)
 		{
-			if matched = true
+			if matched
+			{
+				global.level_progress += 1;
+				instance_destroy();
+			}
+		}
+		with(ob_orbshot)
+		{
+			if matched
 			{
 				global.level_progress += 1;
 				instance_destroy();
@@ -109,7 +117,7 @@ function sc_find(_path,_index,_dir){
 	//Stay in bounds
 	if _index > -1 and _index < array_length(global.ls_orbs[pathnr])
 	{
-		length = path_get_length(global.path[1]);
+		length = path_get_length(global.path[pathnr]);
 		if (match_colour = global.ls_orbs[pathnr,_index].colour 
 		or global.ls_orbs[pathnr,_index].colour == 11 or match_colour == 11)
 		and global.ls_orbs[pathnr,_index].colour > 0
@@ -126,7 +134,7 @@ function sc_find(_path,_index,_dir){
 			matches += 1;
 				
 				
-			if abs(global.ls_orbs[pathnr,_index].pos - global.match_pos) < 48/length
+			if abs(global.ls_orbs[pathnr,_index].pos - global.match_pos) < 40/length
 			{
 				//Continue the check
 				global.match_pos = global.ls_orbs[pathnr,_index].pos;

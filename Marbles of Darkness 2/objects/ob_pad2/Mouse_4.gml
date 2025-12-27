@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if global.lost
+exit;
+
 //Swap places with pad
 ob_shooter.xstart = x;
 ob_shooter.ystart = y;

@@ -21,7 +21,7 @@ txt1 += "\n\n" + global.txt_stat[3] + string(global.stat_combo);
 txt1 += "\n\n" + global.txt_stat[4] + string(global.stat_chain);
 txt1 += "\n\n" + global.txt_stat[5] + string(global.stat_power);
 txt1 += "\n\n" + global.txt_stat[6] + string(global.stat_wins);
-txt1 += "\n\n" + global.txt_stat[7] + hours+":"+mins;
+txt1 += "\n\n" + global.txt_stat[7] + hours+"h "+mins;
 
 draw_text(global.rm_width/4,global.rm_height/2,txt1);
 

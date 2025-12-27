@@ -22,5 +22,7 @@ for (i = 1; i <= global.maps; i += 1)
 	global.endless_high[i] = ini_read_real("Endless","highscore"+ string(i),0);
 	ini_close();
 }
+if global.unlocked[1] < 1
+global.unlocked[1] = 1;
 
 sc_load_advance();

@@ -12,7 +12,7 @@ Completely reworked how orbs are stored in lists.
 This makes it much easier to manage and less prone to odd crashes.
 
 However, something about the new orb movement logic made cascades push the orbs further back,
-so I specifically had to make the knockback lighter. I don't know what this is about.
+so I specifically had to make the knockback lighter than intended. I don't know what this is about.
 
 Modding fixes - correct launch speed and applied text color everywhere.
 Menu backgrounds are also used correctly.
@@ -20,8 +20,7 @@ Menu backgrounds are also used correctly.
 Removed old progress bar sprite from the files.
 Fixed level HUD elements positioning.
 
-New configuration options: delayed start, knockback strength, 
-powerup drops and warning light rotation.
+New configuration options: knockback strength, powerup drops and warning light rotation.
 
 Now supporting custom orb shadows.
 Window display, including the startup screen, resized to 1280x720. Content size remains the same.
@@ -46,12 +45,31 @@ Splash screen no longer used at startup.
 For mobile and touchscreen compatibility, clicking on the shooter swaps the orb.
 
 Skiplevel cheat no longer goes beyond the adventure campaign, avoiding crashes.
+Still, don't try to start any bonus levels from there.
 
 Ported the game to Android. Button clicking and orb shooting better adapted to touchscreens.
 Also enhanced the instructions to also explain touchscreen play.
 
 Instructions are displayed when starting a game for the first time. Added an option to skip it on
 following runs. Modified instructions layout and option texts accordingly.
+
+Added a FPS debug overlay.
+
+Shot orbs still dropping onto the path are also cleared in matches.
+
+Slight improvements to readme and modding help, also documenting the new changes.
+
+Changed how the intro animation works, though it should look the same.
+Improved layering in the game field.
+
+Actually enforced setting the title, background and first path to each map.
+
+Fixed game crashing when loading an invalid Adventure save after reducing levels.
+The player is notified of it and given the option to start a new game.
+
+Total time played format changed a little to make it clearer it's hours-minutes.
+
+Custom graphics in Windows installer.
 
 
 Todo:

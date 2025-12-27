@@ -3,4 +3,3 @@
 
 audio_play_sound(global.sou_level_start,0,0);
 skip = 1;
-

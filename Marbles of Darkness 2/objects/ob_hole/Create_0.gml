@@ -11,5 +11,6 @@ active = 0;
 dir = 1;
 spd = 0.02;
 dist = 800;
-image_alpha = 0;
+alpha = 0;
+image_blend = c_black;
 alarm[2] = 60;

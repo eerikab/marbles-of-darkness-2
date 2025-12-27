@@ -13,6 +13,8 @@ alarm[4] = 1;
 start = 0;
 skip = 0;
 
+sc_intro_color(c_black);
+
 global.lvl_music = 1;
 global.music_nr += 1;
 if global.music_nr > global.mus_game_num

@@ -242,8 +242,6 @@ else
 			else if colour == 19 //Poison
 			{
 				orb.alarm[3] = 1;
-				orb.poison = 7;
-				orb.poison_dir = 0;
 				audio_play_sound(global.sou_power_poison_blast,0,0);
 				instance_destroy();
 				exit;

@@ -3,7 +3,7 @@
   "option_linux_version": "1.2.0",
   "option_linux_maintainer_email": "",
   "option_linux_homepage": "https://eerikabel.itch.io/marbles-of-darkness-2",
-  "option_linux_short_desc": "",
+  "option_linux_short_desc": "A match-3 marble shooter game",
   "option_linux_long_desc": "",
   "option_linux_splash_screen": "splash/splash.png",
   "option_linux_display_splash": false,

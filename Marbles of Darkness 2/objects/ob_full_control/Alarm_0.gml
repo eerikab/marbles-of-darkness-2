@@ -26,14 +26,11 @@ global.accuracy = ini_read_real(mode,"mid_accuracy",0);
 global.powerups = ini_read_real(mode,"mid_powerups",0);
 global.precise = ini_read_real(mode,"mid_precise",0);
 global.retract = ini_read_real(mode,"mid_retract",0);
-global.reverse = ini_read_real(mode,"mid_reverse",0);
 global.selected = ini_read_real(mode,"mid_selected",0);
 global.segments = ini_read_real(mode,"mid_segments",0);
 global.shots_missed = ini_read_real(mode,"mid_shots_missed",0);
-global.slow = ini_read_real(mode,"mid_slow",0);
 global.specialorb = ini_read_real(mode,"mid_specialorb",0);
 global.start_score = ini_read_real(mode,"mid_start_score",0);
-global.stop = ini_read_real(mode,"mid_stop",0);
 global.warning = ini_read_real(mode,"mid_warning",0);
 score = ini_read_real(mode,"mid_score",0);
 global.adv_live_score = ini_read_real(mode,"mid_live_score",0);
@@ -62,7 +59,6 @@ var _txt = file_text_open_read(global.savefile + mode + ".txt");
 
 //Shot orbs
 _json = file_text_readln(_txt);
-show_debug_message(_json);
 _loaddata = json_parse(_json);
 while (array_length(_loaddata) > 0)
 {
@@ -118,7 +114,6 @@ for(pathnr = 0; pathnr < array_length(paths); pathnr++)
 
 //Powerups
 var _json = file_text_readln(_txt);
-show_debug_message(_json);
 var _loaddata = json_parse(_json);
 while (array_length(_loaddata) > 0)
 {
@@ -173,7 +168,8 @@ while (array_length(_loaddata) > 0)
 }
 
 if instance_exists(ob_hole)
-ob_hole.image_alpha = 1;
+ob_hole.alpha = 1;
+ob_hole.image_blend = c_white;
 instance_destroy(ob_intro);
 instance_activate_all();
 

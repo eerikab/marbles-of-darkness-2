@@ -17,7 +17,6 @@ combo = 1;
 shadow = instance_create_depth(x,y,depth,ob_orb_shadow);
 shadow.orb = id;
 poison = 0;
-poison_dir = 0;
 
 //If it's a new orb
 if index = -1

@@ -103,6 +103,7 @@ global.txt_difficulty = sc_newline(sect,"difficulty",placeholder);
 global.txt_length = sc_newline(sect,"length",placeholder);
 global.txt_stages = sc_newline(sect,"stages",placeholder);
 global.txt_levels = sc_newline(sect,"levels",placeholder);
+global.txt_adv_error = sc_newline(sect,"error",placeholder);
 
 sect = "Global stats";
 global.txt_stat_title = sc_newline(sect,"title",placeholder);

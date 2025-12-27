@@ -47,14 +47,11 @@ global.path_multi = 0;
 global.powerups = 0;
 global.precise = 0;
 global.retract = 0;
-global.reverse = 0;
 global.selected = 0;
 global.segments = 0;
 global.shots_missed = 0;
-global.slow = 0;
 global.specialorb = 0;
 global.start_score = 0;
-global.stop = 0;
 global.warning = 0;
 global.music_nr = 0;
 global.freeplay_select = 1;
@@ -66,5 +63,6 @@ if debug_mode
 	global.debug = 1;
 	show_debug_overlay(true);
 }
+text = "";
 
 alarm[1] = 60;

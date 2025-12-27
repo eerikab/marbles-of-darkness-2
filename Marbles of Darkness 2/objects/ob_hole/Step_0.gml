@@ -7,6 +7,7 @@ exit;
 
 if (pathnr == 0)
 {
+	warning = 0;
 	for (i = 1; i<=global.paths; i++)
 	{
 		if (array_length(global.ls_orbs[i]) > 0 and global.ls_orbs[i,0].pos > 1-dist/length)
@@ -24,6 +25,7 @@ or global.lost
 }
 else 
 warning = 0;
+
 
 if warning
 {

@@ -68,7 +68,7 @@ function sc_adv_setup(_mode){
 			else
 			{
 				global.lvl_stage[stage] = level-1;
-				global.stage_dif[stage] = ini_read_real(sect,"dif"+string(stage),0);
+				global.stage_dif[stage] = ini_read_real(sect,"dif"+string(stage), 0);
 				stage += 1;
 				level = 1;
 			}

@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Insert description herewo
 // You can write your code in this editor
 
 draw_set_alpha(image_alpha / 2);
@@ -13,12 +13,13 @@ draw_set_font(global.font_small);
 
 if instance_exists(ob_adventure_difficulty)
 {
-draw_text(x-160,y-96,global.txt_difficulty);
-draw_text(x+160,y-96,global.txt_length);
+	if !global.adv_valid
+	draw_text(x,y-128,global.txt_adv_error);
+	draw_text(x-160,y-96,global.txt_difficulty);
+	draw_text(x+160,y-96,global.txt_length);
 }
 if instance_exists(ob_button_newgame)
 {
-	
 	draw_set_valign(fa_top);
 	ini_open(global.savefile + "save.ini");
 	if global.gamemode == 1

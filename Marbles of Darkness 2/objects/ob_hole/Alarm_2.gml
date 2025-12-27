@@ -1,10 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if image_alpha == 0
+if alpha >= 1
+exit;
+
+if alpha == 0
 {
-	instance_create_depth(x,y,-75,ob_intro_glow);
+	instance_create_depth(x,y,-80,ob_intro_glow);
 }
-image_alpha += 0.1;
-if image_alpha < 1
+alpha += 0.1;
+image_blend = merge_color(c_black,c_white,alpha);
 alarm[2] = 1;

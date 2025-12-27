@@ -12,11 +12,11 @@ if global.gamemode == 1
 		global.adv_stage += 1;
 	}
 	global.adv_points = score;
-	if global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] == 0
+	if global.unlocked[global.selected] == 0
 	{
-		global.unlocked[global.lvl_adv[global.adv_stage,global.adv_level]] = 1;
+		global.unlocked[global.selected] = 1;
 		ini_open(global.savefile + "save.ini");
-		ini_write_real("Unlocked",string(global.lvl_adv[global.adv_stage,global.adv_level]),1);
+		ini_write_real("Unlocked",string(global.selected),1);
 		ini_close();
 	}
 	sc_save();

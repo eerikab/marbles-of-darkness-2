@@ -5,6 +5,14 @@ function sc_config(){
 	ini_open(name);
 	i = 1;
 	
+	global.title = [];
+	global.background = [];
+	global.tunnel = [];
+	global.level_onehole = [];
+	global.level_pad = [];
+	global.level_path = [];
+	global.level_paths = [];
+	
 	//Load map data
 	for (i = 1; ini_section_exists("Map " + string(i)); i++)
 	{
@@ -17,6 +25,11 @@ function sc_config(){
 		else
 		global.tunnel[i] = 0;
 		global.level_onehole[i] = ini_read_real(sect,"onehole",0);
+		
+		if global.title[i] == ""
+		sc_error(sect + " title not set");
+		if global.background[i] == ""
+		sc_error(sect + " background not set");
 		
 		global.level_pad[i,0] = "";
 		global.level_pad[i,1] = "";
@@ -43,11 +56,18 @@ function sc_config(){
 				global.level_paths[i] = pathnr;
 			}
 			else
-			break;
+			{
+				if pathnr == 1
+				sc_error(sect + " path not set");
+				break;
+			}
 		}
 	}
 	global.maps = i-1;
 	ini_close();
+	
+	if global.maps == 0
+	sc_error("No valid maps found");
 	
 	//Level configuration
 	name = global.directory + "config/levels.ini";
@@ -82,6 +102,8 @@ function sc_config(){
 		i += 1;
 	}
 	global.difficulty_num = i-1;
+	if global.difficulty_num == 0
+	sc_error("No valid difficulties found");
 	
 	sect = "Path multiplier";
 	area = "Path multiplier";

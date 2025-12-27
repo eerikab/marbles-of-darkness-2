@@ -10,9 +10,6 @@ global.hardness = global.dif_mode[global.dif_user];
 else
 global.hardness = global.dif_free;
 
-global.slow = 0;
-global.stop = 0;
-global.reverse = 0;
 global.precise = 0;
 global.accuracy = 0;
 
@@ -23,6 +20,7 @@ global.paths = global.level_paths[global.selected];
 //Orb array orbs[path,index] = ID
 global.ls_orbs = [];
 global.matching = [];
+global.path = [];
 
 for (i = 1; i <= global.paths; i++)
 {
@@ -33,11 +31,10 @@ for (i = 1; i <= global.paths; i++)
 	instance_create_layer(640,360,"Instances",ob_spawner, {pathnr : i});
 }
 global.onehole = global.level_onehole[global.selected];
-global.txt_end_bonus = 0;
 
 randomize();
 
-instance_create_depth(x,y,-10,ob_shooter);
+instance_create_depth(x,y,-75,ob_shooter);
 instance_create_depth(x,y,-100,ob_hud);
 instance_create_depth(x,y,-20,ob_intro);
 global.chain = 0;
