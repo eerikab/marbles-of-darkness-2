@@ -13,7 +13,6 @@
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},"order":5,},
     {"id":{"name":"ob_antiorb","path":"objects/ob_antiorb/ob_antiorb.yy",},"order":24,},
     {"id":{"name":"ob_adventure_dot","path":"objects/ob_adventure_dot/ob_adventure_dot.yy",},"order":48,},
-    {"id":{"name":"Note1","path":"notes/Note1/Note1.yy",},"order":0,},
     {"id":{"name":"sc_path_import","path":"scripts/sc_path_import/sc_path_import.yy",},"order":7,},
     {"id":{"name":"ob_button_credits","path":"objects/ob_button_credits/ob_button_credits.yy",},"order":87,},
     {"id":{"name":"ob_button_difficulty","path":"objects/ob_button_difficulty/ob_button_difficulty.yy",},"order":33,},
