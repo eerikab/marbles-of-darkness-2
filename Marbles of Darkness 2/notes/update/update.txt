@@ -1,0 +1,9 @@
+Changes since 1.2
+
+Fixed orbs spawning under the shooter when returning from menu.
+
+Fixed hole modifications and orb shadows in the instructions.
+Small modifications in placement in the instructions.
+
+Fixed a bug where starting and pausing the level during the intro fade-in causes a crash.
+Slight changes to objects fading in there.

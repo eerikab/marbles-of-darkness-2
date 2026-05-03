@@ -350,18 +350,17 @@ and (!instance_exists(ob_pad2) or ob_pad2.image_index == 0)
 	if colour = 17
 	{
 		//Duplicate itself
-		orb = instance_create_depth(x,y,depth,ob_orbshot);
-		orb.image_angle = image_angle - 20;
-		orb.shot = 1;
-		orb.colour = colour;
-		orb.create_orb = 0;
-		orb.visible = 1;
-		
-		orb = instance_create_depth(x,y,depth,ob_orbshot);
-		orb.image_angle = image_angle + 20;
-		orb.shot = 1;
-		orb.colour = colour;
-		orb.create_orb = 0;
-		orb.visible = 1;
+		offset = 20;
+		repeat(2)
+		{
+			orb = instance_create_depth(x,y,depth,ob_orbshot);
+			orb.image_angle = image_angle + offset;
+			orb.shot = 1;
+			orb.colour = colour;
+			orb.create_orb = 0;
+			orb.visible = 1;
+			
+			offset *= -1;
+		}
 	}
 }

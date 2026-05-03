@@ -1,1 +1,1 @@
-sprite_index = global.sprite_orb[5];
+colour = 5;

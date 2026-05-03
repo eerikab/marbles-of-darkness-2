@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Initialize
 // You can write your code in this editor
 
 x = global.rm_width/2-(512-x);
@@ -13,5 +13,5 @@ if global.instruct_pad
 else
 sprite_index = global.sprite_shooter;
 image_speed = 0;
-image_index = 1;
-alarm[0] = 120;
+image_index = 3;
+depth = 10;

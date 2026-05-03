@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if image_blend != c_white and !instance_exists(ob_intro)
+image_blend = c_white
+
 if mode = 1
 {
 	x = mouse_x;

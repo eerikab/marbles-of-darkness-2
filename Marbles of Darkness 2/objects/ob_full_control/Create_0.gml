@@ -56,6 +56,7 @@ global.warning = 0;
 global.music_nr = 0;
 global.freeplay_select = 1;
 global.instruct_shown = 0;
+global.lost = 0;
 
 global.debug = 0;
 if debug_mode

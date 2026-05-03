@@ -63,7 +63,7 @@ _loaddata = json_parse(_json);
 while (array_length(_loaddata) > 0)
 {
 	_loadobj = array_pop(_loaddata);
-	with(instance_create_depth(0,0,0,asset_get_index(_loadobj.obj)))
+	with(instance_create_depth(0,0,-80,asset_get_index(_loadobj.obj)))
 	{
 		x = _loadobj.x;
 		y = _loadobj.y;

@@ -3,6 +3,7 @@
 function sc_intro_color(col){
 	///Fade everything in from black during level intro
 	sc_background_colour(col);
+	if instance_exists(ob_shooter)
 	ob_shooter.image_blend = col;
 	if instance_exists(ob_tunnel)
 	ob_tunnel.image_blend = col;

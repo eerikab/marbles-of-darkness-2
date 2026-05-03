@@ -5,27 +5,25 @@ draw_set_font(global.font_large);
 draw_text(global.rm_width/2,48,global.txt_instruct_title);
 draw_set_font(global.font_small);
 draw_text(global.rm_width/2,80,global.txt_page_num + string(page) + "/4");
+draw_text(global.rm_width/2,104,global.txt_page[page]);
 
 switch(page)
 {
 	case 1:
-		draw_text(global.rm_width/2,104,global.txt_page[1]);
-		draw_text(x-256,y-16,global.txt_instruct[1]);
-		draw_text(x+256,y-16,global.txt_instruct[2]);
+		draw_text(x-256,y,global.txt_instruct[1]);
+		draw_text(x+256,y,global.txt_instruct[2]);
 		draw_text(x-256,y+192,global.txt_instruct[3]);
 		draw_text(x+256,y+192,global.txt_instruct[4]);
-		draw_arrow(x+256,y-96,x+256,y-128,12);
+		draw_arrow(x+240,y-96,x+240,y-128,12);
 		draw_sprite(global.sprite_powerup,0,x+192,y+96);
 		draw_sprite(global.sprite_powerup,4,x+192,y+96);
 		draw_sprite(global.sprite_powerup,0,x+320,y+96);
 		draw_sprite(global.sprite_powerup,5,x+320,y+96);
 		break;
 	case 2:
-		draw_text(global.rm_width/2,104,global.txt_page[2]);
-		draw_text(global.rm_width/2,global.rm_height/2,txt);
+		draw_text(global.rm_width/2,global.rm_height/2+16,txt);
 		break;
 	case 3:
-		draw_text(global.rm_width/2,104,global.txt_page[3]);
 		draw_text(global.rm_width/2,128,global.txt_instruct_powerups);
 		draw_set_halign(fa_left);
 		
@@ -69,7 +67,6 @@ switch(page)
 		break;
 		
 	case 4:
-		draw_text(global.rm_width/2,104,global.txt_page[4]);
 		draw_set_halign(fa_left);
 		
 		if global.colortext

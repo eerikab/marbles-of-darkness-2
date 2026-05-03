@@ -1,11 +1,18 @@
-/// @description Insert description here
+/// @description Lights, warning check
 // You can write your code in this editor
 
 if !active
 exit;
 
-
-if (pathnr == 0)
+if room == rm_instructions
+{
+	warning = 1;
+	if ob_instructions.page == 1
+	visible = 1;
+	else
+	visible = 0;
+}
+else if (pathnr == 0)
 {
 	warning = 0;
 	for (i = 1; i<=global.paths; i++)
@@ -26,10 +33,9 @@ or global.lost
 else 
 warning = 0;
 
-
 if warning
 {
-	if global.lost
+	if global.lost and room == rm_game
 	{
 		if alpha1 < 1
 		alpha1 += spd

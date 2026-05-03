@@ -43,8 +43,8 @@ ini_open(name);
 i = 1;
 sect = "Orbs"
 area = "Image config, Orbs";
-global.orb_shadow = [];
-global.orb_shadow[0] = global.sprite_pusher_shadow;
+global.sprite_orb = [global.sprite_pusher];
+global.orb_shadow = [global.sprite_pusher_shadow];
 while true
 {
 	if ini_key_exists(sect,"sprite"+string(i))

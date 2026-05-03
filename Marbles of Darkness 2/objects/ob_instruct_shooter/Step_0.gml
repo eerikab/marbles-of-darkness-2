@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Toggle visisbility
 // You can write your code in this editor
 
 if ob_instructions.page == 1
