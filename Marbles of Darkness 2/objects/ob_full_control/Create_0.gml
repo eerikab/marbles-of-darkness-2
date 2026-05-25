@@ -1,4 +1,4 @@
-/// @description Initialize variables
+/// @description Initialize global variables
 // You can write your code in this editor
 
 depth = -500;

@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function sc_config(){
+function sc_level_config(){
+	//Load level and map configuration
 	name = global.directory + "config/maps.ini";
 	ini_open(name);
 	i = 1;

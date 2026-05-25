@@ -9,10 +9,10 @@ global.lvl_adv = [];
 global.lvl_stage = [];
 global.stage_dif = [];
 
-sc_config();
-sc_adv_setup(0);
+sc_level_config();
+sc_adv_init();
 global.path_map = sc_path_import("pt_map");
-global.unlocked = [];
+global.unlocked = [0];
 global.endless_high = [];
 
 for (i = 1; i <= global.maps; i += 1)
@@ -22,7 +22,7 @@ for (i = 1; i <= global.maps; i += 1)
 	global.endless_high[i] = ini_read_real("Endless","highscore"+ string(i),0);
 	ini_close();
 }
-if global.unlocked[1] < 1
+if array_length(global.unlocked) > 1 and global.unlocked[1] < 1
 global.unlocked[1] = 1;
 
 sc_load_advance();

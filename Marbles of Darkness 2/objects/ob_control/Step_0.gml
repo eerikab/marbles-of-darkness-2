@@ -162,9 +162,10 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 				stop --;
 				if slow > 0
 				slow --;
-		
+
 				if power_reverse > 0
 				{
+					//Reverse power-up pushback
 					max_spd = 0;
 					with(first_orb)
 					{
@@ -175,9 +176,10 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 							other_index = index + 1;
 							if other_index < array_length(global.ls_orbs[pathnr]) 
 							{
+								//Move orbs in the first cluster of the stream back
 								orb = global.ls_orbs[pathnr,other_index];
 								while other_index < array_length(global.ls_orbs[pathnr]) 
-								and instance_exists(orb) and orb.object_index != ob_orbshot
+								and instance_exists(orb) and orb.object_index == ob_orb
 								and global.ls_orbs[pathnr,other_index].pos > other_pos - 4/length
 								{
 									global.ls_orbs[pathnr,other_index].pos = other_pos;
@@ -192,7 +194,7 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 						}
 					}
 				}
-				if stop > 0 or power_reverse > 0
+				if stop > 0
 				max_spd = 0;
 				else if slow > 0
 				max_spd /= 4;
@@ -254,14 +256,14 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					i = index;
 					while i < array_length(global.ls_orbs[pathnr])
 					{
-						j = global.ls_orbs[pathnr,i];
-						if instance_exists(j) and j.object_index != ob_orbshot and j.pos >= global.match_pos - 34/length
+						orb = global.ls_orbs[pathnr,i];
+						if instance_exists(orb) and orb.object_index != ob_orbshot and orb.pos >= global.match_pos - 34/length
 						{
-							global.match_pos = j.pos;
-							j.pos -= abs(knockback/length);
+							global.match_pos = orb.pos;
+							orb.pos -= abs(knockback/length);
 							i += 1;
-							if j.object_index = ob_pusher and j.spd > 0
-							j.spd = 0;
+							if orb.object_index = ob_pusher and orb.spd > 0
+							orb.spd = 0;
 						}
 						else
 						break;
@@ -281,14 +283,15 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 					global.match_pos = pos;
 					while i > -1
 					{
-						j = global.ls_orbs[pathnr,i];
-						if instance_exists(j) and j.object_index != ob_orbshot and j.pos <= global.match_pos+34/length
+						//Move the orbs
+						orb = global.ls_orbs[pathnr,i];
+						if instance_exists(orb) and orb.object_index == ob_orb and orb.pos <= global.match_pos+34/length
 						{
-							global.match_pos = j.pos 
-							j.pos -= abs(reverse/length);
+							global.match_pos = orb.pos 
+							orb.pos -= abs(reverse/length);
 							i -= 1;
-							if j.object_index = ob_pusher and j.spd > 0
-							j.spd = 0;
+							if orb.object_index == ob_pusher and orb.spd > 0
+							orb.spd = 0;
 						}
 						else
 						break;
@@ -314,10 +317,10 @@ for (pathnr = 1; pathnr <= global.paths; pathnr++)
 								alarm[0] = 1;
 							
 							}
-							j = global.ls_orbs[pathnr, array_length(global.ls_orbs[pathnr])-1];
-							if j.pos - (knockback/length) >= pos-(34/length*(j.index-index)) and j.spd > 0
+							orb = global.ls_orbs[pathnr, array_length(global.ls_orbs[pathnr])-1];
+							if orb.pos - (knockback/length) >= pos-(34/length*(orb.index-index)) and orb.spd > 0
 							{
-								j.spd = 0;
+								orb.spd = 0;
 							}
 							reverse = 0;
 						}

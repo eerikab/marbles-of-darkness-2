@@ -21,7 +21,7 @@ function sc_load(){
 	if global.adv_lives <= 0
 	sc_highscore(global.adv_points);
 	ini_close();
-	sc_adv_setup(1);
+	sc_adv_load();
 	
 	//Force reset if invalid save is detected
 	global.adv_valid = true;

@@ -7,3 +7,12 @@ Small modifications in placement in the instructions.
 
 Fixed a bug where starting and pausing the level during the intro fade-in causes a crash.
 Slight changes to objects fading in there.
+
+Fixed a thing where having no maps available would also pop up a generic crash message
+along with the intended warning.
+
+Cleaned some code and assets in the source relating to the startup.
+
+Orb clear particles can be above or below other objects, depending on the depth of the orb.
+
+Possible improvement to Reverse pushback. 
