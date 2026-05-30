@@ -6,7 +6,7 @@ sprite_index = global.sprite_board;
 if global.gamemode == 1
 {
 	global.adv_level += 1;
-	if global.adv_level > global.lvl_stage[global.adv_stage]
+	if global.adv_level > global.lvl_stage[global.adv_length, global.adv_stage]
 	{
 		global.adv_level = 1;
 		global.adv_stage += 1;

@@ -2,8 +2,8 @@
 // You can write your code in this editor
 
 if mouse_check_button_pressed(mb_left) and ob_button_menu.image_index == 0
-and ((ob_shooter.mode == 1 and mouse_y >= y-16) 
-or (ob_shooter.mode == 2 and position_meeting(mouse_x,mouse_y,ob_shooter)))
+and ((!ob_shooter.rotating and mouse_y >= y-16) 
+or (ob_shooter.rotating and position_meeting(mouse_x,mouse_y,ob_shooter)))
 mobile_swap = 1;
 else
 mobile_swap = 0;
@@ -12,7 +12,7 @@ mobile_swap = 0;
 if !shot
 {
 	//Move to shooter
-	if ob_shooter.mode == 1
+	if !ob_shooter.rotating
 	{
 		x = ob_shooter.x;
 		y = ob_shooter.y-global.shooter_offset;

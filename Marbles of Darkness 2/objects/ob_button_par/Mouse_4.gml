@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Change state to clicked
 // You can write your code in this editor
 
 if image_index != 3

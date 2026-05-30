@@ -1,6 +1,6 @@
-/// @description Insert description here
+/// @description Next page
 // You can write your code in this editor
 
 page += 1;
-if page == 5
+if page > global.pages
 page = 1;

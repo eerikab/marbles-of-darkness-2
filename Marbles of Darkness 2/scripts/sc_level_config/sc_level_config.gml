@@ -13,6 +13,7 @@ function sc_level_config(){
 	global.level_pad = [];
 	global.level_path = [];
 	global.level_paths = [];
+	global.max_paths = 0;
 	
 	//Load map data
 	for (i = 1; ini_section_exists("Map " + string(i)); i++)
@@ -32,29 +33,34 @@ function sc_level_config(){
 		if global.background[i] == ""
 		sc_error(sect + " background not set");
 		
-		global.level_pad[i,0] = "";
-		global.level_pad[i,1] = "";
-		global.level_pad[i,2] = "";
-		global.level_pad[i,3] = "";
+		global.level_pad[i] = [];
 		if ini_key_exists(sect,"padx") and ini_key_exists(sect,"pady")
 		{
 			global.level_pad[i,0] = ini_read_real(sect,"padx",0);
 			global.level_pad[i,1] = ini_read_real(sect,"pady",0);
-			if ini_key_exists(sect,"pad2x") and ini_key_exists(sect,"pad2y")
+			j = 2;
+			key = "pad"+string(j);
+			while ini_key_exists(sect,key+"x") and ini_key_exists(sect,key+"y")
 			{
-				global.level_pad[i,2] = ini_read_real(sect,"pad2x",0);
-				global.level_pad[i,3] = ini_read_real(sect,"pad2y",0);
+				array_push(global.level_pad[i], 
+					ini_read_real(sect,key+"x",0), 
+					ini_read_real(sect,key+"y",0));
+				j += 1;
+				key = "pad"+string(j);
 			}
 		}
 		
-		//Paths
-		for (pathnr = 1; pathnr <= 5; pathnr++)
+		//Paths - load as many as there are
+		for (pathnr = 1; pathnr > 0; pathnr++)
 		{
 			key = "path"+string(pathnr);
 			if ini_key_exists(sect, key)
 			{
 				global.level_path[i,pathnr] = sc_path_import(ini_read_string(sect,key,""));
 				global.level_paths[i] = pathnr;
+
+				if pathnr > global.max_paths
+				global.max_paths = pathnr;
 			}
 			else
 			{
@@ -74,16 +80,24 @@ function sc_level_config(){
 	name = global.directory + "config/levels.ini";
 	ini_open(name);
 	
-	i = 1;
-	while( ini_section_exists("Step " + string(i)))
+	global.max_colors = 0;
+	global.dif_orbs = [];
+	global.dif_len = [];
+	global.dif_target = [];
+	global.dif_col = [];
+	global.dif_point = [];
+	global.dif_cooldown = [];
+	for(i = 1; ini_section_exists("Step " + string(i)); i++)
 	{
+		
 		//Load level difficulties
 		sect = "Step " + string(i);
 		area = "Level config, " + sect;
 		global.dif_orbs[i] = ini_read_real(sect,"orbs",0);
 		global.dif_len[i] = ini_read_real(sect,"boost",0);
 		global.dif_target[i] = ini_read_real(sect,"target",0);
-		global.dif_col[i] = ini_read_real(sect,"colors",0);
+		colors = ini_read_real(sect,"colors",0);
+		global.dif_col[i] = colors;
 		global.dif_point[i] = ini_read_real(sect,"bonus",0);
 		global.dif_cooldown[i] = ini_read_real(sect,"cooldown",0);
 		
@@ -100,7 +114,8 @@ function sc_level_config(){
 		if global.dif_cooldown[i] <= 0
 		sc_error("'cooldown' not set or invalid");
 		
-		i += 1;
+		if colors > global.max_colors
+		global.max_colors = colors;
 	}
 	global.difficulty_num = i-1;
 	if global.difficulty_num == 0
@@ -108,9 +123,9 @@ function sc_level_config(){
 	
 	sect = "Path multiplier";
 	area = "Path multiplier";
-	for (i = 1; i<=5; i++)
+	for (i = 1; i <= global.max_paths; i++)
 	{
-		global.dif_path[i] = ini_read_real(sect,string(i)+"path",0);
+		global.dif_path[i] = ini_read_real(sect,string(i)+"path",1);
 		if global.dif_path[i] <= 0
 		sc_error("Path multiplier " + string(i) + " invalid");
 	}
@@ -140,6 +155,8 @@ function sc_level_config(){
 	area = "Level config, Free play"
 	sect = "Free play"
 	global.difs = ini_read_real(sect,"difficulties",0);
+	if global.difs > global.difficulty_num
+	sc_error("Practice uses more difficulties than are available");
 	if global.difs <= 0
 	sc_error("No difficulties set");
 	global.dif_free = ini_read_real(sect,"multiplier",1);

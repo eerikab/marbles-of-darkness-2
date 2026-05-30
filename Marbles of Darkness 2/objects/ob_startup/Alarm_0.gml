@@ -45,8 +45,6 @@ global.savefile = ini_read_string("Gameplay","savefile","");
 ini_close();
 
 //Load save
-sc_load();
-
 ini_open(global.savefile + "save.ini");
 global.music = ini_read_real("Settings","music",1);
 global.sound = ini_read_real("Settings","sound",1);

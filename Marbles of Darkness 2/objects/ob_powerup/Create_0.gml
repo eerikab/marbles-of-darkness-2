@@ -12,7 +12,7 @@ White - Colour Bomb, Whitener
 Orange - Inferno, Poison
 Cyan - Group, Blocker*/
 
-if global.powerup_drop and ob_shooter.mode == 1
+if global.powerup_drop and !ob_shooter.rotating
 drop = 1;
 else
 {
@@ -35,7 +35,7 @@ x = clamp(x,16,room_width-16);
 y = clamp(y,16,room_height-16);
 
 direction += 90;
-if direction mod 360 < 180 and ob_shooter.mode == 1
+if direction mod 360 < 180 and !ob_shooter.rotating
 direction += 180;
 
 if x < 48 and y > room_height-48

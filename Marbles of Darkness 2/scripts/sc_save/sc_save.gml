@@ -1,7 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
+///Load general game progress
 function sc_load(){
-	///Load game progress
+	
 	ini_open(global.savefile + "save.ini");
 	global.first_start = ini_section_exists("Adventure");
 	global.adv_stage = ini_read_real("Adventure","stage",1);
@@ -21,11 +23,12 @@ function sc_load(){
 	if global.adv_lives <= 0
 	sc_highscore(global.adv_points);
 	ini_close();
-	sc_adv_load();
+	global.stages = global.count_stages[global.adv_length];
 	
 	//Force reset if invalid save is detected
 	global.adv_valid = true;
-	if global.adv_stage > global.stages or global.adv_level > global.lvl_stage[global.adv_stage]
+	if global.adv_stage > global.stages 
+	or global.adv_level > global.lvl_stage[global.adv_length ,global.adv_stage]
 	{
 		global.adv_points = 0;
 		global.check_adv = 0;
@@ -33,8 +36,8 @@ function sc_load(){
 	}
 }
 
+///Save general game progress
 function sc_save(){
-	///Save game progress
 	ini_open(global.savefile + "save.ini");
 	
 	mode = "Adventure";
@@ -49,7 +52,7 @@ function sc_save(){
 	
 	
 	ini_write_string(mode,"mid_level","LVL "+string(global.adv_stage)+"-"+string(global.adv_level));
-	ini_write_string(mode,"mid_name",global.title[global.lvl_adv[global.adv_stage,global.adv_level]]);
+	ini_write_string(mode,"mid_name",global.title[global.selected]);
 	ini_write_real(mode,"mid_score",score);
 	ini_write_string(mode,"mid_difficulty_text",global.dif_mode_name[global.dif_user] + " difficulty");
 	ini_write_string(mode,"mid_length",global.length_name[global.adv_length] + " length");
@@ -57,8 +60,8 @@ function sc_save(){
 	ini_close();
 }
 
+///Mid-level save
 function sc_mid_save(mode){
-	///Mid-level save
 	instance_activate_all();
 	ini_open(global.savefile + "save.ini");
 	
@@ -265,6 +268,7 @@ function sc_mid_save(mode){
 	file_text_close(_txt);
 }
 
+///Load mid-level save
 function sc_mid_load(mode){
 	ini_open(global.savefile + "save.ini");
 	global.selected = ini_read_real(mode,"mid_selected",1);
@@ -276,6 +280,7 @@ function sc_mid_load(mode){
 	ob_full_control.mode = mode;
 }
 
+///Save stats
 function sc_stat(){
 	if global.loaded
 	{
@@ -287,6 +292,21 @@ function sc_stat(){
 		ini_write_real("Stats","power",global.stat_power);
 		ini_write_real("Stats","wins",global.stat_wins);
 		ini_write_real("Stats","time",global.stat_time);
+		ini_close();
+	}
+}
+
+///Save settings
+function sc_settings(){
+	if global.loaded
+	{
+		ini_open(global.savefile + "save.ini");
+		ini_write_real("Settings","music",global.music);
+		ini_write_real("Settings","sound",global.sound);
+		ini_write_real("Settings","fullscreen",window_get_fullscreen());
+		ini_write_real("Settings","vsync",global.vsync);
+		ini_write_real("Settings","alias",gpu_get_texfilter());
+		ini_write_real("Settings","skip",global.skip_instruct);
 		ini_close();
 	}
 }

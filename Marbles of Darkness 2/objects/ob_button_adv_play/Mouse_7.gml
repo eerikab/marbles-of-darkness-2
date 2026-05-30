@@ -16,7 +16,14 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 
 	if global.gamemode == 1
 	{
-		global.selected = global.lvl_adv[global.adv_stage,global.adv_level];
+		if global.adv_stage > global.stages
+		{
+			// Don't start out-of-bounds levels
+			instance_destroy(a);
+			exit;
+		}
+		
+		global.selected = global.lvl_adv[global.adv_length][global.adv_stage][global.adv_level];
 		
 		if !global.unlocked[global.selected]
 		{
@@ -26,7 +33,7 @@ if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 			ini_close();
 		}
 
-		global.difficulty = global.stage_dif[global.adv_stage];
+		global.difficulty = global.stage_dif[global.adv_length, global.adv_stage];
 		if global.adv_points == 0 and global.first_start
 		{
 			ini_open(global.savefile + "save.ini");

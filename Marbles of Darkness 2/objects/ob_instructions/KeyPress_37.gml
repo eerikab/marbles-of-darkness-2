@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Previous page
 // You can write your code in this editor
 
 page -= 1;

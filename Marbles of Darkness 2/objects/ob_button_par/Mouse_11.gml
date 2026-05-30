@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Disable hover
 // You can write your code in this editor
 
 if image_index == 1

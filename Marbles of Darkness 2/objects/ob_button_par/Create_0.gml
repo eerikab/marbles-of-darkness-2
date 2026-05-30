@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Init sprite
 // You can write your code in this editor
 
 sprite_index = global.sprite_button;

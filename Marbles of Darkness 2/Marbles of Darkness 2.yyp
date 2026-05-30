@@ -36,6 +36,7 @@
     {"id":{"name":"ob_tunnel","path":"objects/ob_tunnel/ob_tunnel.yy",},"order":10,},
     {"id":{"name":"ob_button_adventure","path":"objects/ob_button_adventure/ob_button_adventure.yy",},"order":43,},
     {"id":{"name":"ob_orb","path":"objects/ob_orb/ob_orb.yy",},"order":0,},
+    {"id":{"name":"sc_adv_options","path":"scripts/sc_adv_options/sc_adv_options.yy",},"order":17,},
     {"id":{"name":"rm_credits","path":"rooms/rm_credits/rm_credits.yy",},"order":44,},
     {"id":{"name":"rm_instructions","path":"rooms/rm_instructions/rm_instructions.yy",},"order":41,},
     {"id":{"name":"ob_adventure_light","path":"objects/ob_adventure_light/ob_adventure_light.yy",},"order":73,},
@@ -409,6 +410,8 @@
     {"CopyToMask":-1,"filePath":"datafiles/assets/sprites","resourceVersion":"1.0","name":"sp_progress_front.png","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"readme.html","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/assets/config","resourceVersion":"1.0","name":"levels.ini","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/assets","resourceVersion":"1.0","name":"credits.txt","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/assets","resourceVersion":"1.0","name":"LICENSE.txt","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2022.6.1.26",

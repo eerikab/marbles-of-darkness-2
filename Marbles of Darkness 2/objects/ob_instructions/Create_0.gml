@@ -1,7 +1,11 @@
-/// @description Insert description here
+/// @description Initialize
 // You can write your code in this editor
 
 page = 1;
+if global.max_colors < 5
+global.pages = 3;
+else
+global.pages = 4;
 x = global.rm_width/2;
 y = global.rm_height/2;
 

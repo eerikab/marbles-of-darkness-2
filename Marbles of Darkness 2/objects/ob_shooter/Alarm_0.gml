@@ -1,14 +1,13 @@
-/// @description Insert description here
+/// @description Knock back
 // You can write your code in this editor
 
-//Knock back
 offset += dir;
 if offset >= 4
 dir = -1;
 if offset > 0
 alarm[0] = 1;
 
-if mode = 1
+if !rotating
 {
 	y = ystart+offset;
 }

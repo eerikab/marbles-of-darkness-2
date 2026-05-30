@@ -1,22 +1,22 @@
-/// @description Insert description here
+/// @description Initialize shooters and pads
 // You can write your code in this editor
 
 y = global.rm_height - global.hud_height - 16;
 image_speed = 0;
-if global.level_pad[global.selected,0] != "" and global.level_pad[global.selected,1] != ""
+if array_length(global.level_pad[global.selected]) >= 2
 {
 	//Switch to rotating shooter
-	mode = 2;
+	rotating = true;
 	sprite_index = global.sprite_pad;
 	x = global.level_pad[global.selected,0];
 	y = global.level_pad[global.selected,1];
-	if global.level_pad[global.selected,2] != "" and global.level_pad[global.selected,3] != ""
-	instance_create_depth(global.level_pad[global.selected,2], global.level_pad[global.selected,3], 
-		depth-5, ob_pad2);
+	for (i = 2; i < array_length(global.level_pad[global.selected]); i += 2)
+	instance_create_depth(global.level_pad[global.selected, i], global.level_pad[global.selected, i+1], 
+		depth+5, ob_pad2);
 }
 else
 {
-	mode = 1;
+	rotating = false;
 	sprite_index = global.sprite_shooter;
 }
 xstart = x;

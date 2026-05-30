@@ -21,11 +21,13 @@ global.paths = global.level_paths[global.selected];
 global.ls_orbs = [];
 global.matching = [];
 global.path = [];
+global.end_bonus = [];
 
 for (i = 1; i <= global.paths; i++)
 {
 	global.ls_orbs[i] = [];
-	global.matching[i] = 0;
+	global.matching[i] = false;
+	global.end_bonus[i] = 0;
 	
 	global.path[i] = global.level_path[global.selected,i];
 	instance_create_layer(640,360,"Instances",ob_spawner, {pathnr : i});

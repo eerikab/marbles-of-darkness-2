@@ -22,7 +22,7 @@ repeat(global.stages)
 	a = instance_create_depth(x,y,depth,ob_adventure_dot);
 	a.sprite_index = global.sprite_asterisk;
 	a.stage = j;
-	repeat(global.lvl_stage[j])
+	repeat(global.lvl_stage[global.adv_length, j])
 	{
 		i += 1;
 		k += 1;

@@ -15,4 +15,23 @@ Cleaned some code and assets in the source relating to the startup.
 
 Orb clear particles can be above or below other objects, depending on the depth of the orb.
 
+Adopted MIT license for the source code and CC BY (Creative Commons) for the assets.
+Audio is also properly credited.
+
 Possible improvement to Reverse pushback. 
+
+Support for virtually unlimited paths and shooting pads on a map.
+
+Path multiplier defaults to 1 instead of 0, so you don't have to set it for every 
+amount of paths. You still should.
+
+Extra levels, accessed with the skiplevel cheat, no longer start to avoid breakages.
+
+More safeguards in place to stop invalid difficulties from being used.
+
+All levels for each length are now loaded and stored on startup so it wouldn't have to go
+looking through files afterwards.
+
+ESC now toggles the menu in-game.
+
+On the instructions, unused powerups don't show up and orbs try to use only available images.

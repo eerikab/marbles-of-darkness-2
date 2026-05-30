@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Move with the view
 // You can write your code in this editor
 
 if view_visible[0]
