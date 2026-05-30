@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if image_index == 2 and !instance_exists(ob_block)
+if image_index == 2 and !instance_exists(ob_block) and image_alpha = 1
 {
 	if audio_is_playing(global.mus_menu)
 	{

@@ -56,14 +56,14 @@ function sc_adv_setup(){
 				level = 1;
 			}
 		}
+		//Bonus map
+		key = string(stage)+"_"+string(level);
+		global.lvl_adv[length][stage][1] = ini_read_real(sect,key,1);
+		
 		length += 1;
 	}
 	if global.length_num == 0
 	sc_error("No lengths");
-	
-	//Bonus map
-	key = string(stage)+"_"+string(level);
-	global.lvl_adv[length][stage][1] = ini_read_real(sect,key,1);
 	
 	ini_close();
 }

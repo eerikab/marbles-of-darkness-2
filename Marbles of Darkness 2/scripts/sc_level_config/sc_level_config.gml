@@ -152,6 +152,9 @@ function sc_level_config(){
 	global.dif_default = ini_read_real("Default","difficulty",1);
 	global.len_default = ini_read_real("Default","length",1);
 	
+	if global.dif_default <= 0
+	sc_error("Invalid free play difficulty");
+	
 	area = "Level config, Free play"
 	sect = "Free play"
 	global.difs = ini_read_real(sect,"difficulties",0);

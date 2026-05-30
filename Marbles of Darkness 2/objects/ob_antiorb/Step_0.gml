@@ -6,7 +6,7 @@ pos -= 32/length;
 path_position = pos;
 depth = (0 - path_get_speed(path, pos))+50
 
-if global.ls_orbs[pathnr,0].pos > pos - 32/length 
+if array_length(global.ls_orbs[pathnr]) > 0 and global.ls_orbs[pathnr,0].pos > pos - 32/length 
 {
 	global.level_progress += 1;
 	score += 100;

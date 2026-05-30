@@ -1,5 +1,5 @@
 This project uses third-party audio with sound effects licensed separately. See credits.txt for attribution details.
-Otherwise, assets are licensed under CC-BY 4.0.
+Otherwise, assets are licensed under CC BY 4.0.
 
 You are free to:
 

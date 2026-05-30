@@ -8,6 +8,7 @@
         html { 
             background: url(media/image4.png) no-repeat center fixed; 
             background-size: cover;
+            background-color: navy;
         }
         body {
             width: 800px;
@@ -42,9 +43,9 @@
     <ul>
         <li>OS:
             <ul>
-                <li>Microsoft Windows: Windows 7 or later, 32-bit or 64-bit</li>
-                <li>Linux: Ubuntu 16.04, later or equivalent, 64-bit only</li>
-                <li>Android: Android 4.1 or later (12 or later recommended), 64-bit ARM</li>
+                <li>Microsoft Windows: Windows 7 or later, 32-bit or 64-bit x86</li>
+                <li>Linux: Ubuntu 16.04, later or equivalent, 64-bit x86 only</li>
+                <li>Android: Android 4.1 or later (12 or later recommended), 32 or 64-bit ARM or x64</li>
             </ul>
         </li>
         <li>Disk space: 70 MB</li>
@@ -88,8 +89,8 @@
     </p>
     <p>
         To switch the shot orb colour with the secondary colour displayed on the shooter, click the right mouse button or tap on the shooter.
-        The game can be paused by pressing Spacebar, clicking outside the game window or 
-        by pressing the Menu button on the bottom-right corner.
+        The game can be paused by pressing Spacebar or clicking outside the game window. The in-game menu can be brought up 
+        by pressing the Menu button on the bottom-right corner or by pressing the Escape key.
     </p>
     <br>
 
@@ -98,7 +99,7 @@
     <p>
         Power-ups are created with combos and chains. The one you get depends on the colour of the matched orbs. 
         Matched orbs drop a powerup next to the path, preferrably towards the bottom. 
-	These have to be collected by shooting a regular orb at them before they disappear in 20 seconds.
+	    These have to be collected by shooting a regular orb at them before they disappear in 20 seconds.
         There are 2 power-ups you can get per colour and 18 in total. In order they are:
     </p>
     <ul>
@@ -106,7 +107,7 @@
         <li style="color: blue;">Reverse - Pushes the stream away from the hole for 5 seconds.</li>
         <li style="color: red;">Stop - Stops the streams of orbs from moving forward for 7.5 seconds.</li>
         <li style="color: red;">Fireball - Special orb. When it reaches the stream, it explodes, removing all orbs near it.</li>
-        <li style="color:yellow;">Wild Orb - Special orb that matches with any colour. It can even connect two different colours that are on each of its sides.</li>
+        <li style="color: yellow;">Wild Orb - Special orb that matches with any colour. It can even connect two different colours that are on each of its sides.</li>
         <li style="color: yellow;">Accuracy - Shot orbs will move faster. There is also a guiding light pointing at where the orb will reach. Lasts 30 seconds</li>
         <li style="color: green;">Slow - Slows the streams down for 10 seconds.</li>
         <li style="color: green;">Colour Cloud - Special orb. All orbs around it will be turned into the colour of the orb it contacts with.</li>
@@ -166,10 +167,10 @@
         <li>Fullscreen -  Whether you want the game to be displayed in a window or have it fill the whole screen.</li>
         <li>Music - A slider that changes the volume of the background music.</li>
         <li>Sound - A slider adjusting the volume of sound effects.</li>
-        <li>VSync - Fixes visual tearing, where frames overlap or visual glitches happen.</li>
+        <li>VSync - Fixes visual tearing, where frames overlap or visual glitches occur.</li>
         <li>Anti-alias - Makes the display smoother and less pixelated. In this case, it is “interpolation” instead, but they are equivalent.</li>
     </ul>
-    <p>A hidden debug overlay displaying info about the game window can be enabled by holding
+    <p>A hidden debug overlay displaying info about the game window and the level can be enabled by holding
     Ctrl+Shift+F3 or by tapping the title of the Settings menu 5 times. To disable it, simply press F3
     or tap the Settings menu title again.</p>
     <br>
@@ -205,7 +206,7 @@
     <p>
         When a level is completed, you get a bonus for each path depending on how far the last pusher was from the hole. 
         0 would be at the hole and 10000 would be at the start of the path. 
-        It is possible for the pusher to go behind the starting point, increasing the bonus even further.
+        It is possible for the pusher to be knocked behind the starting point, increasing the bonus even further.
     </p>
     <p>When you complete Adventure, you get 150,000 points for each remaining life.</p>
     <br>
@@ -226,21 +227,24 @@
     <p>The game is developed solely by Eerik Abel, with music by Kevin MacLeod and sound effects from zapsplat.com used.</p>
     <p>
         Download links:
-        <br>itch.io <a href="https://eerikabel.itch.io/marbles-of-darkness-2">https://eerikabel.itch.io/marbles-of-darkness-2</a>
+        <br>Itch <a href="https://eerikabel.itch.io/marbles-of-darkness-2">https://eerikabel.itch.io/marbles-of-darkness-2</a>
         <br>GameJolt <a href="https://gamejolt.com/games/mod2/851273">https://gamejolt.com/games/mod2/851273</a>
         <br>GitHub <a href="https://github.com/eerikab/marbles-of-darkness-2/releases">https://github.com/eerikab/marbles-of-darkness-2/releases</a>
     </p>
     <p>
         Creator links (subject to change):
-        <br>itch  <a href="https://eerikabel.itch.io/">https://eerikabel.itch.io</a>
+        <br>Itch  <a href="https://eerikabel.itch.io/">https://eerikabel.itch.io</a>
         <br>YouTube <a href="https://www.youtube.com/@medianlane">https://www.youtube.com/@medianlane</a>
-        <br>Twitter <a href="https://x.com/medianlane">https://x.com/medianlane</a>
         <br>Discord <a href="https://discord.com/invite/fQV7cXKBQM">https://discord.com/invite/fQV7cXKBQM</a>
         <br>GitHub <a href="https://github.com/eerikab">https://github.com/eerikab</a> 
     </p>
     <br>
 
     <h3 id="Terms">Terms</h3>
+    <p>
+        The source code is covered under the MIT licence and the included assets under <a href="https://creativecommons.org/licenses/by/4.0/deed.en/">CC BY 4.0</a>, 
+        with sound effects under a custom license.
+    </p>
     <p>
         Simply put, you may use the game for your personal use. You may modify certain files, but not decompile the game or claim it as your own. 
         The game is made with GameMaker, property of YoYo Games. The licence is written in length below.

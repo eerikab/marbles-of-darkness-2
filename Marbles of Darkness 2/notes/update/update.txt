@@ -27,7 +27,7 @@ amount of paths. You still should.
 
 Extra levels, accessed with the skiplevel cheat, no longer start to avoid breakages.
 
-More safeguards in place to stop invalid difficulties from being used.
+More safeguards in place to stop invalid difficulties or multipliers from being used.
 
 All levels for each length are now loaded and stored on startup so it wouldn't have to go
 looking through files afterwards.
@@ -35,3 +35,11 @@ looking through files afterwards.
 ESC now toggles the menu in-game.
 
 On the instructions, unused powerups don't show up and orbs try to use only available images.
+
+Buttons cannot be pressed while fading in/out.
+
+Updates to the readme and modding help as usual.
+
+With Precise and Triple shot, the duplicates spawn at the mouse pointer.
+
+Fixed a possible crash with Anti-Orbs on an empty path.

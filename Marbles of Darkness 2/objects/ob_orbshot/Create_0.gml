@@ -24,6 +24,4 @@ matched = 0;
 shadow = instance_create_depth(x, y, depth, ob_orb_shadow);
 shadow.orb = id;
 
-x = ob_shooter.x;
-y = ob_shooter.y - 16;
 depth = ob_shooter.depth - 5;

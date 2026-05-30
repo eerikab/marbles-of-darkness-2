@@ -11,6 +11,8 @@ if global.gamemode == 1
 		global.adv_level = 1;
 		global.adv_stage += 1;
 	}
+	if global.adv_stage < array_length(global.lvl_adv[global.adv_length])
+	global.selected = global.lvl_adv[global.adv_length][global.adv_stage][global.adv_level];
 	global.adv_points = score;
 	if global.unlocked[global.selected] == 0
 	{
