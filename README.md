@@ -47,6 +47,6 @@ Compiling for Linux (guide) https://gamemaker.io/en/help/articles/setting-up-for
 ## Modding
 Marbles of Darkness 2 is intended to be simply modifiable. Images, sounds, paths and some configurations are editable and loaded in externally, instead of being built-in to the project.
 
-A path editor for the game, currently in experimental state, is also included in this project.
+A path editor for the game, currently in experimental state, is also included in this project. [The source code for it is now in another repository.](https://github.com/eerikab/mod2_pathedit)
 
 Note that as modded assets and functions are not part of the vanilla game, they may be more prone to bugs.
